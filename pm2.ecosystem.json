@@ -1,0 +1,14 @@
+{
+    "apps": [
+        {
+            "name": "roleshop",
+            "cwd": "./",
+            "script": "src/app.js",
+            "exec_mode": "fork",
+            "instances": 1,
+            "env": { "NODE_ENV": "production" },
+            "repo": "https://github.com/NullDev/Discord-RoleShop.git",
+            "ref": "origin/master"
+        }
+    ]
+}
