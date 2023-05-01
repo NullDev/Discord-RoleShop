@@ -4,6 +4,7 @@ import { config, meta } from "../config/config.js";
 import DiscordClient from "./service/client.js";
 import registerCommands from "./service/commandRegister.js";
 import interactionCreateHandler from "./events/interactionCreate.js";
+import messageCreate from "./events/messageCreate.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -49,6 +50,12 @@ client.on("ready", async() => {
     client.user?.setActivity({ name: config.discord.bot_status, type: ActivityType.Playing });
     client.user?.setStatus("online");
 });
+
+client.on("messageCreate", async message => messageCreate(message));
+
+client.on("warn", info => Log.warn(info));
+
+client.on("error", err => Log.error("Client error.", err));
 
 client.login(config.discord.bot_token)
     .then(() => Log.done("Logged in!"))

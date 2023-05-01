@@ -1,16 +1,19 @@
+import path from "node:path";
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
-// import { config } from "../../../config/config.js";
+import { config } from "../../../config/config.js";
 import { QuickDB } from "quick.db";
 
 // ========================= //
 // = Copyright (c) NullDev = //
 // ========================= //
 
-const db = new QuickDB();
+const db = new QuickDB({
+    filePath: path.resolve("./data/guild_settings.sqlite"),
+});
 
 export default {
     data: new SlashCommandBuilder()
-        .setName("rs-set-language")
+        .setName(`${config.bot_settings.slash_command_prefix}-set-language`)
         .setDescription("Sets the Server Language for the bot.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
