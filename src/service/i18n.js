@@ -16,10 +16,10 @@ const db = new QuickDB({
     filePath: path.resolve("./data/guild_settings.sqlite"),
 });
 
-const __ = (...args) => async guild => {
+const __ = (...args) => async(guild, quantisize = false) => {
     const locale = (await db.get(`guild-${guild}.locale`)) || "en";
     i18n.setLocale(locale);
-    return i18n.__(...args);
+    return quantisize ? i18n.__n(...args) : i18n.__(...args);
 };
 
 export default __;

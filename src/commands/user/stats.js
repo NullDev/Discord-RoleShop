@@ -39,8 +39,15 @@ export default {
         const points = await db.get(pointsKey) || 0;
 
         if (!user?.user?.id){
-            return await interaction.reply(await __("replies.stats_you", points)(interaction.guildId));
+            return await interaction.reply(await __(
+                "replies.stats_you",
+                await __("replies.points", points, points)(interaction.guildId, true),
+            )(interaction.guildId));
         }
-        return await interaction.reply(await __("replies.stats_other", user.user.tag, points)(interaction.guildId));
+        return await interaction.reply(await __(
+            "replies.stats_other",
+            user.user.tag,
+            await __("replies.points", points, points)(interaction.guildId, true),
+        )(interaction.guildId));
     },
 };

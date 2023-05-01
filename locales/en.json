@@ -9,8 +9,13 @@
         "invalid_points": "Invalid amount of points. Must be an integer greater or equal to 0."
     },
     "replies": {
-        "stats_you": "You currently have %s points!",
-        "stats_other": "%s currently has %s points!",
+        "stats_you": "You currently have %s!",
+        "stats_other": "%s currently has %s!",
+        "points": {
+            "zero": "no points",
+            "one": "one point",
+            "many": "%s points"
+        },
         "reset_all": {
             "are_you_sure": "Are you sure you want to reset ALL stats for this server? (y/n)",
             "sucess": "Wiped all stats!",

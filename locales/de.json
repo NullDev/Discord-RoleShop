@@ -9,8 +9,13 @@
         "invalid_points": "Ungültige Anzahl an Punkten. Muss eine Ganzzahl die größer oder gleich 0 ist sein."
     },
     "replies": {
-        "stats_you": "Du hast aktuell %s Punkte!",
-        "stats_other": "%s hat aktuell %s Punkte!",
+        "stats_you": "Du hast aktuell %s!",
+        "stats_other": "%s hat aktuell %s!",
+        "points": {
+            "zero": "keine Punkte",
+            "one": "einen Punkt",
+            "many": "%s Punkte"
+        },
         "reset_all": {
             "are_you_sure": "Bist du sicher, dass du ALLE Stats von diesem Server löschen willst? (y/n)",
             "sucess": "Alle Stats gelöscht!",
