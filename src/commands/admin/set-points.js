@@ -49,7 +49,7 @@ export default {
             ephemeral: true,
         });
 
-        db.set(`guild-${interaction.guildId}.user-${user?.user?.id}.points`, points);
+        await db.set(`guild-${interaction.guildId}.user-${user?.user?.id}.points`, points);
 
         return await interaction.reply({
             content: await __(
