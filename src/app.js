@@ -1,6 +1,8 @@
-import { Client, GatewayIntentBits } from "discord.js";
+import { Client, GatewayIntentBits, Events, ActivityType } from "discord.js";
 import Log from "./util/log.js";
 import { config, meta } from "../config/config.js";
+import registerCommands from "./util/commandRegister.js";
+import interactionCreateHandler from "./events/interactionCreate.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -12,6 +14,10 @@ const client = new Client({
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent,
     ],
+    presence: {
+        status: "dnd",
+        activities: [{ name: "Starting...", type: ActivityType.Playing }],
+    },
 });
 
 const appname = meta.getName();
@@ -28,11 +34,17 @@ console.log(
 
 Log.info("Starting bot...");
 
-client.on("ready", () => {
-    Log.info("Bot is ready!");
-    client.user.setActivity(config.discord.bot_status);
+client.on("ready", async() => {
+    Log.done("Bot is ready!");
+    Log.info("Logged in as '" + client.user.tag + "'! Serving in " + client.guilds.cache.size + " servers.");
+
+    await registerCommands(client)
+        .then(() => client.on(Events.InteractionCreate, async interaction => interactionCreateHandler(interaction)));
+
+    client.user.setActivity({ name: config.discord.bot_status, type: ActivityType.Playing });
+    client.user.setStatus("online");
 });
 
 client.login(config.discord.bot_token)
-    .then(() => Log.info("Logged in!"))
+    .then(() => Log.done("Logged in!"))
     .catch(err => Log.error("Failed to login: " + err));
