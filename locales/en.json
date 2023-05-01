@@ -3,7 +3,10 @@
     "errors": {
         "generic_command_execution_failed": "There was an error while executing this command! =(",
         "command_not_found": "I don't seem to know the command '%s' :/",
-        "stats_on_bot": "Bots don't have stats. :P"
+        "stats_on_bot": "Bots don't have stats. :P",
+        "points_on_bot": "Bots can't have points.",
+        "invalid_user": "Invalid user",
+        "invalid_points": "Invalid amount of points. Must be an integer greater or equal to 0."
     },
     "replies": {
         "stats_you": "You currently have %s points!",
@@ -14,6 +17,7 @@
             "abort": "Aborted.",
             "invalid_input": "Invalid input. Aborted.",
             "timeout": "Time ran out. Aborted."
-        }
+        },
+        "points_set": "Set %s's points to %s!"
     }
 }

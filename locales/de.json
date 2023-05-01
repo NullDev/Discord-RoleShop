@@ -3,7 +3,10 @@
     "errors": {
         "generic_command_execution_failed": "Beim ausführen des Commands ist ein Fehler aufgetreten! =(",
         "command_not_found": "Das Command '%s' kenne ich nicht :/",
-        "stats_on_bot": "Bots haben keine Stats. :P"
+        "stats_on_bot": "Bots haben keine Stats. :P",
+        "points_on_bot": "Bots können keine Punkte haben.",
+        "invalid_user": "Ungültiger Benutzer.",
+        "invalid_points": "Ungültige Anzahl an Punkten. Muss eine Ganzzahl die größer oder gleich 0 ist sein."
     },
     "replies": {
         "stats_you": "Du hast aktuell %s Punkte!",
@@ -14,6 +17,7 @@
             "abort": "Abgebrochen.",
             "invalid_input": "Ungültige Eingabe. Abgebrochen.",
             "timeout": "Zeit abgelaufen. Abgebrochen."
-        }
+        },
+        "points_set": "%s hat jetzt %s Punkte!"
     }
 }
