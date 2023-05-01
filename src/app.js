@@ -14,7 +14,6 @@ const client = new DiscordClient({
     intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent,
     ],
     presence: {
         status: "dnd",
