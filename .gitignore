@@ -13,6 +13,9 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 # Config
 config/config.custom.js
 
+# DB
+json.sqlite
+
 # Runtime data
 pids
 *.pid
