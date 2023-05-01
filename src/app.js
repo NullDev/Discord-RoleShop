@@ -1,7 +1,7 @@
 import { Client, GatewayIntentBits, Events, ActivityType } from "discord.js";
 import Log from "./util/log.js";
 import { config, meta } from "../config/config.js";
-import registerCommands from "./util/commandRegister.js";
+import registerCommands from "./service/commandRegister.js";
 import interactionCreateHandler from "./events/interactionCreate.js";
 
 // ========================= //
