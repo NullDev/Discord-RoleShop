@@ -1,4 +1,6 @@
+import path from "node:path";
 import { GatewayIntentBits, Events, ActivityType } from "discord.js";
+import i18n from "i18n-light";
 import Log from "./util/log.js";
 import { config, meta } from "../config/config.js";
 import DiscordClient from "./service/client.js";
@@ -8,6 +10,12 @@ import interactionCreateHandler from "./events/interactionCreate.js";
 // ========================= //
 // = Copyright (c) NullDev = //
 // ========================= //
+
+i18n.configure({
+    defaultLocale: "en",
+    dir: path.resolve("./locales"),
+    extension: ".json",
+});
 
 const client = new DiscordClient({
     intents: [
