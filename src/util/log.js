@@ -33,39 +33,16 @@ class Log {
     }
 
     /**
-     * Get the StackTrace of the calee function
-     *
-     * @return {string}
-     * @static
-     * @memberof Log
-     */
-    static #getTrace(){
-        const err = new Error();
-        const callerLine = (err.stack && err.stack.split("\n")) || [];
-        const splitArr = callerLine.filter(line => !line.includes("node_modules") && !line.includes("utils/logger.js") && !line.includes("node:internal"));
-
-        let cleanArr = "";
-
-        for (const element of splitArr){
-            if (element.match(/(node_modules)/gi)) break;
-            cleanArr += cleanArr.length ? "                 " : "";
-            cleanArr += element.replace(/(    at )/gi, "") + "\n";
-        }
-
-        return cleanArr.substring(0, cleanArr.lastIndexOf("\n")) + cleanArr.substring(cleanArr.lastIndexOf("\n") + 1);
-    }
-
-    /**
      * Log an error
      *
      * @static
      * @param {string} input
-     * @param {boolean} [trace=false]
+     * @param {*} [trace]
      * @memberof Log
      */
-    static error(input, trace = false){
+    static error(input, trace){
         console.log(" \x1b[41m\x1b[315m x \x1b[0m\x1b[31m [ERROR] " + this.#getDate() + " - " + input + "\x1b[0m");
-        if (trace) console.log(" \x1b[41m\x1b[315m x \x1b[0m\x1b[31m [TRACE] " + this.#getDate() + " - " + this.#getTrace() + "\x1b[0m");
+        if (trace && trace.stack) console.log(" \x1b[41m\x1b[315m x \x1b[0m\x1b[31m [TRACE] " + this.#getDate() + " - " + trace.stack + "\x1b[0m");
     }
 
     /**
