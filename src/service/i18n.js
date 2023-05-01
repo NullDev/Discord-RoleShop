@@ -8,11 +8,12 @@ i18n.configure({
     extension: ".json",
 });
 
-const db = new QuickDB();
+const db = new QuickDB({
+    filePath: path.resolve("./data/guild_settings.sqlite"),
+});
 
 const __ = (...args) => async guild => {
     const locale = (await db.get(`${guild}.locale`)) || "en";
-    console.log(locale);
     i18n.setLocale(locale);
     return i18n.__(...args);
 };
