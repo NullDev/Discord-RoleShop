@@ -41,7 +41,11 @@ console.log(
     " #" + "-".repeat(pad) + "#\n",
 );
 
-Log.info("Starting bot...");
+Log.debug("Node Environment: " + process.env.NODE_ENV, true);
+Log.debug("NodeJS version: " + process.version, true);
+Log.debug("OS: " + process.platform + " " + process.arch, true);
+
+Log.wait("Starting bot...");
 
 client.on("ready", async() => {
     Log.done("Bot is ready!");

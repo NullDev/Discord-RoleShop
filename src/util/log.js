@@ -37,7 +37,7 @@ class Log {
      *
      * @static
      * @param {string} input
-     * @param {*} [trace]
+     * @param {Error} [trace]
      * @memberof Log
      */
     static error(input, trace){
@@ -54,6 +54,31 @@ class Log {
      */
     static warn(input){
         console.log(" \x1b[43m\x1b[30m ! \x1b[0m\x1b[33m [WARN]  " + this.#getDate() + " - " + input + "\x1b[0m");
+    }
+
+    /**
+     * Log a debug message
+     * (only if NODE_ENV is set to development)
+     *
+     * @static
+     * @param {string} input
+     * @param {boolean} [force=false]
+     * @memberof Log
+     */
+    static debug(input, force = false){
+        if (process.env.NODE_ENV !== "development" && !force) return;
+        console.log(" \x1b[45m\x1b[30m d \x1b[0m\x1b[35m [DEBUG] " + this.#getDate() + " - " + input + "\x1b[0m");
+    }
+
+    /**
+     * Log a wait message
+     *
+     * @static
+     * @param {string} input
+     * @memberof Log
+     */
+    static wait(input){
+        console.log(" \x1b[46m\x1b[30m ⧖ \x1b[0m\x1b[36m [WAIT]  " + this.#getDate() + " - " + input + "\x1b[0m");
     }
 
     /**
