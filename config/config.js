@@ -5,6 +5,21 @@ import Log from "../src/util/log.js";
 // = Copyright (c) NullDev = //
 // ========================= //
 
+const isObject = item => item && typeof item === "object" && !Array.isArray(item);
+
+const deepMerge = function(target, source){
+    if (isObject(target) && isObject(source)){
+        for (const key in source){
+            if (isObject(source[key])){
+                if (!target[key]) target[key] = {};
+                deepMerge(target[key], source[key]);
+            }
+            else target[key] = source[key];
+        }
+    }
+    return target;
+};
+
 try {
     await fs.access("./config/config.js");
 }
@@ -35,6 +50,5 @@ export const meta = {
 };
 
 export const config = {
-    ...configBase,
-    ...configCustom,
+    ...deepMerge(configBase, configCustom),
 };

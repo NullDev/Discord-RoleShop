@@ -1,3 +1,7 @@
+// ========================= //
+// = Copyright (c) NullDev = //
+// ========================= //
+
 export default {
     discord: {
         bot_token: "",
