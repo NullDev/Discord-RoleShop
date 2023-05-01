@@ -16,6 +16,17 @@ const db = new QuickDB({
     filePath: path.resolve("./data/guild_settings.sqlite"),
 });
 
+/**
+ * @callback context
+ * @param {string|null} guild
+ * @param {boolean} [quantisize=false]
+ * @returns {Promise<string>}
+ */
+/**
+ * Translate a string
+ * @param {array} args
+ * @returns {context}
+ */
 const __ = (...args) => async(guild, quantisize = false) => {
     const locale = (await db.get(`guild-${guild}.locale`)) || "en";
     i18n.setLocale(locale);
