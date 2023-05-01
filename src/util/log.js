@@ -12,7 +12,6 @@ class Log {
      * Get neatly formatted date
      *
      * @return {string}
-     * @private
      * @static
      * @memberof Log
      */
@@ -25,7 +24,11 @@ class Log {
             timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
         };
 
-        const date = new Intl.DateTimeFormat("en-US", options).format(new Date());
+        const date = new Intl.DateTimeFormat(
+            "en-US",
+            /** @type {Intl.DateTimeFormatOptions} */ (options),
+        ).format(new Date());
+
         return "[" + date + "]";
     }
 
@@ -33,7 +36,6 @@ class Log {
      * Get the StackTrace of the calee function
      *
      * @return {string}
-     * @private
      * @static
      * @memberof Log
      */

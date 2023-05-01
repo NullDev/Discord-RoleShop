@@ -1,6 +1,7 @@
-import { Client, GatewayIntentBits, Events, ActivityType } from "discord.js";
+import { GatewayIntentBits, Events, ActivityType } from "discord.js";
 import Log from "./util/log.js";
 import { config, meta } from "../config/config.js";
+import DiscordClient from "./service/client.js";
 import registerCommands from "./service/commandRegister.js";
 import interactionCreateHandler from "./events/interactionCreate.js";
 
@@ -8,7 +9,7 @@ import interactionCreateHandler from "./events/interactionCreate.js";
 // = Copyright (c) NullDev = //
 // ========================= //
 
-const client = new Client({
+const client = new DiscordClient({
     intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
@@ -36,13 +37,13 @@ Log.info("Starting bot...");
 
 client.on("ready", async() => {
     Log.done("Bot is ready!");
-    Log.info("Logged in as '" + client.user.tag + "'! Serving in " + client.guilds.cache.size + " servers.");
+    Log.info("Logged in as '" + client.user?.tag + "'! Serving in " + client.guilds.cache.size + " servers.");
 
     await registerCommands(client)
         .then(() => client.on(Events.InteractionCreate, async interaction => interactionCreateHandler(interaction)));
 
-    client.user.setActivity({ name: config.discord.bot_status, type: ActivityType.Playing });
-    client.user.setStatus("online");
+    client.user?.setActivity({ name: config.discord.bot_status, type: ActivityType.Playing });
+    client.user?.setStatus("online");
 });
 
 client.login(config.discord.bot_token)

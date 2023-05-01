@@ -10,7 +10,7 @@ import Log from "../util/log.js";
 /**
  * Register all slash commands
  *
- * @param {import("discord.js").Client} client
+ * @param {import("./client.js").default} client
  * @returns {Promise<Collection<string, import("discord.js").ApplicationCommand>>}
  */
 const commandRegister = async function(client){
@@ -37,13 +37,13 @@ const commandRegister = async function(client){
         Log.done(`Registered ${commandFiles.length} commands in ${folder}.`);
     }
 
-    const rest = new REST().setToken(client.token);
+    const rest = new REST().setToken(client.token || "");
     try {
         Log.info("Started refreshing application (/) commands.");
-        const data = await rest.put(Routes.applicationCommands(client.user.id), {
+        const data = await rest.put(Routes.applicationCommands(client.user?.id || ""), {
             body: client.commands.map(command => command.data.toJSON()),
         });
-        Log.done("Successfully reloaded " + data.length + " application (/) commands.");
+        Log.done("Successfully reloaded " + /** @type {Array} */ (data).length + " application (/) commands.");
     }
     catch (error){
         Log.error("Error during registering of application (/) commands: " + error);

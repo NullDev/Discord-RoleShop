@@ -13,7 +13,9 @@ import Log from "../util/log.js";
 const interactionCreateHandler = async function(interaction){
     if (!interaction.isChatInputCommand()) return;
 
-    const command = interaction.client.commands.get(interaction.commandName);
+    const command = /** @type {import("../service/client.js").default} */ (interaction.client)
+        .commands.get(interaction.commandName);
+
     if (!command){
         Log.warn(`No command matching ${interaction.commandName} was found.`);
         await interaction.reply({ content: "I don't seem to know the command '" + interaction.commandName + "' :/", ephemeral: true });
