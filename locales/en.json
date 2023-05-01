@@ -6,7 +6,8 @@
         "stats_on_bot": "Bots don't have stats. :P",
         "points_on_bot": "Bots can't have points.",
         "invalid_user": "Invalid user",
-        "invalid_points": "Invalid amount of points. Must be an integer greater or equal to 0."
+        "invalid_points": "Invalid amount of points. Must be an integer greater or equal to 0.",
+        "no_top_stats": "No stats available yet :("
     },
     "replies": {
         "stats_you": "You currently have %s!",
@@ -23,6 +24,10 @@
             "invalid_input": "Invalid input. Aborted.",
             "timeout": "Time ran out. Aborted."
         },
-        "points_set": "%s now has %s!"
+        "points_set": "%s now has %s!",
+        "top_users": {
+            "title": "Top User on %s",
+            "description": "The Top 10 User with the most amount of points."
+        }
     }
 }

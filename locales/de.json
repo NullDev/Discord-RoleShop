@@ -6,7 +6,8 @@
         "stats_on_bot": "Bots haben keine Stats. :P",
         "points_on_bot": "Bots können keine Punkte haben.",
         "invalid_user": "Ungültiger Benutzer.",
-        "invalid_points": "Ungültige Anzahl an Punkten. Muss eine Ganzzahl die größer oder gleich 0 ist sein."
+        "invalid_points": "Ungültige Anzahl an Punkten. Muss eine Ganzzahl die größer oder gleich 0 ist sein.",
+        "no_top_stats": "Noch keine Stats vorhanden :("
     },
     "replies": {
         "stats_you": "Du hast aktuell %s!",
@@ -23,6 +24,10 @@
             "invalid_input": "Ungültige Eingabe. Abgebrochen.",
             "timeout": "Zeit abgelaufen. Abgebrochen."
         },
-        "points_set": "%s hat jetzt %s!"
+        "points_set": "%s hat jetzt %s!",
+        "top_users": {
+            "title": "Top User auf %s",
+            "description": "Die Top 10 User mit den meisten Punkten."
+        }
     }
 }
