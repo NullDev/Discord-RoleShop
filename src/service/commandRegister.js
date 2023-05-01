@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import os from "node:os";
 import { Collection, REST, Routes } from "discord.js";
 import Log from "../util/log.js";
 
@@ -24,7 +25,8 @@ const commandRegister = async function(client){
 
         for (const file of commandFiles){
             const filePath = path.join(commandsPath, file);
-            const command = (await import(filePath)).default;
+            const prefix = os.platform() === "win32" ? "file://" : "";
+            const command = (await import(prefix + filePath)).default;
 
             if ("data" in command && "execute" in command){
                 client.commands.set(command.data.name, command);
