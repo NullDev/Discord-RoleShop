@@ -10,7 +10,8 @@
     "start:prod": "NODE_ENV=production node src/app.js",
     "start": "npm run start:dev",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "generate-config": "node scripts/generate-config.js"
   },
   "repository": {
     "type": "git",
