@@ -1,5 +1,6 @@
 import { SlashCommandBuilder } from "discord.js";
 import { config } from "../../../config/config.js";
+import __ from "../../service/i18n.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -8,11 +9,12 @@ import { config } from "../../../config/config.js";
 export default {
     data: new SlashCommandBuilder()
         .setName(`${config.bot_settings.slash_command_prefix}-ping`)
-        .setDescription("Replies with Pong!"),
+        .setDescription("Replies with Pong!")
+        .setDMPermission(false),
     /**
      * @param {import("discord.js").CommandInteraction} interaction
      */
     async execute(interaction){
-        await interaction.reply({ content: "Pong! :)", ephemeral: true });
+        await interaction.reply({ content: "Pong! :)\nServer language is: " + await __("__LANG__")(interaction.guildId), ephemeral: true });
     },
 };
