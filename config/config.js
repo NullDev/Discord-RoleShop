@@ -11,6 +11,13 @@ import Log from "../src/util/log.js";
  */
 const isObject = item => item && typeof item === "object" && !Array.isArray(item);
 
+/**
+ * Deep Merge of two objects
+ *
+ * @param {object} target
+ * @param {object} source
+ * @return {import("./config.template.js").default}
+ */
 const deepMerge = function(target, source){
     if (isObject(target) && isObject(source)){
         for (const key in source){
