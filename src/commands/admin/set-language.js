@@ -14,7 +14,7 @@ const db = new QuickDB({
 export default {
     data: new SlashCommandBuilder()
         .setName(`${config.bot_settings.slash_command_prefix}-set-language`)
-        .setDescription("Sets the Server Language for the bot.")
+        .setDescription("Sets the server language for the bot.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
         .addStringOption((option) =>

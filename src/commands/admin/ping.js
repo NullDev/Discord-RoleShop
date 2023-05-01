@@ -9,7 +9,7 @@ import __ from "../../service/i18n.js";
 export default {
     data: new SlashCommandBuilder()
         .setName(`${config.bot_settings.slash_command_prefix}-ping`)
-        .setDescription("Replies with Pong!")
+        .setDescription("Replies with Pong and server Info.")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
     /**
