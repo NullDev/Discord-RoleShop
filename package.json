@@ -28,6 +28,9 @@
     "eslint": "^8.39.0"
   },
   "dependencies": {
-    "discord.js": "^14.9.0"
+    "better-sqlite3": "^8.3.0",
+    "discord.js": "^14.9.0",
+    "i18n-light": "^0.5.4",
+    "quick.db": "^9.1.6"
   }
 }
