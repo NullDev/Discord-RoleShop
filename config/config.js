@@ -5,6 +5,10 @@ import Log from "../src/util/log.js";
 // = Copyright (c) NullDev = //
 // ========================= //
 
+/**
+ * @param {any} item
+ * @returns {item is Record<string, unknown>}
+ */
 const isObject = item => item && typeof item === "object" && !Array.isArray(item);
 
 const deepMerge = function(target, source){
