@@ -52,7 +52,11 @@ export default {
         db.set(`guild-${interaction.guildId}.user-${user?.user?.id}.points`, points);
 
         return await interaction.reply({
-            content: await __("replies.points_set", user?.user?.tag, points)(interaction.guildId),
+            content: await __(
+                "replies.points_set",
+                user?.user?.tag,
+                await __("replies.points", points, points)(interaction.guildId, true),
+            )(interaction.guildId),
             ephemeral: true,
         });
     },

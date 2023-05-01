@@ -23,6 +23,6 @@
             "invalid_input": "Ungültige Eingabe. Abgebrochen.",
             "timeout": "Zeit abgelaufen. Abgebrochen."
         },
-        "points_set": "%s hat jetzt %s Punkte!"
+        "points_set": "%s hat jetzt %s!"
     }
 }

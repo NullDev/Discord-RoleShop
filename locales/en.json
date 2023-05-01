@@ -23,6 +23,6 @@
             "invalid_input": "Invalid input. Aborted.",
             "timeout": "Time ran out. Aborted."
         },
-        "points_set": "Set %s's points to %s!"
+        "points_set": "%s now has %s!"
     }
 }
