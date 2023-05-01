@@ -2,6 +2,10 @@ import path from "node:path";
 import i18n from "i18n-light";
 import { QuickDB } from "quick.db";
 
+// ========================= //
+// = Copyright (c) NullDev = //
+// ========================= //
+
 i18n.configure({
     defaultLocale: "en",
     dir: path.resolve("./locales"),
