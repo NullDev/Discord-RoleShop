@@ -13,7 +13,7 @@ const db = new QuickDB({
 });
 
 const __ = (...args) => async guild => {
-    const locale = (await db.get(`${guild}.locale`)) || "en";
+    const locale = (await db.get(`guild-${guild}.locale`)) || "en";
     i18n.setLocale(locale);
     return i18n.__(...args);
 };

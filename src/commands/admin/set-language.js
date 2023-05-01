@@ -32,7 +32,7 @@ export default {
     async execute(interaction){
         const lang = interaction.options.get("language");
         if (!lang) return await interaction.reply({ content: "Invalid language", ephemeral: true });
-        await db.set(`${interaction.guildId}.locale`, lang.value || "en");
+        await db.set(`guild-${interaction.guildId}.locale`, lang.value || "en");
         return await interaction.reply({ content: "Language set to: " + lang.value, ephemeral: true });
     },
 };
