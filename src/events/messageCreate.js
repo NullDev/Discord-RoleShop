@@ -29,11 +29,9 @@ const messageCreate = async function(message){
     }
 
     const pointsKey = `guild-${guild}.user-${user}.points`;
+    const pointsToAdd = message.member?.premiumSinceTimestamp ? config.bot_settings.booster_multiplier : 1;
 
-    const currentPoints = await db.get(pointsKey) || 0;
-    const boosterMultiplier = message.member?.premiumSinceTimestamp ? config.bot_settings.booster_multiplier : 1;
-
-    await db.set(pointsKey, currentPoints + boosterMultiplier);
+    await db.add(pointsKey, pointsToAdd);
 };
 
 export default messageCreate;
