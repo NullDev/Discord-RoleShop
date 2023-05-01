@@ -9,8 +9,8 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "start:dev": "npm run lint && NODE_ENV=development node src/app.js",
-    "start:prod": "NODE_ENV=production node src/app.js",
+    "start:dev": "npm run lint && cross-env NODE_ENV=development node src/app.js",
+    "start:prod": "cross-env NODE_ENV=production node src/app.js",
     "start": "npm run start:dev",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -29,6 +29,7 @@
   "devDependencies": {
     "@babel/core": "^7.21.5",
     "@babel/eslint-parser": "^7.21.3",
+    "cross-env": "^7.0.3",
     "eslint": "^8.39.0"
   },
   "dependencies": {
