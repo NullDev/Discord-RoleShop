@@ -5,6 +5,9 @@
   "type": "module",
   "description": "Discord Bot for a Roleshop with currency that can be earned by writing messages.",
   "main": "src/app.js",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "start:dev": "npm run lint && NODE_ENV=development node src/app.js",
     "start:prod": "NODE_ENV=production node src/app.js",
@@ -30,6 +33,7 @@
   },
   "dependencies": {
     "better-sqlite3": "^8.3.0",
+    "canvas": "^2.11.2",
     "discord.js": "^14.9.0",
     "i18n-light": "^0.5.4",
     "quick.db": "^9.1.6"

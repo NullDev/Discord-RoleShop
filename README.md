@@ -27,7 +27,7 @@ Feature request or discovered a bug? Please [open an Issue](https://github.com/N
 ## :wrench: Setup
 
 0. Open up your favourite terminal (and navigate somewhere you want to download the repository to). <br><br>
-1. Make sure you have NodeJS installed (at least v19 is recommended!). Test by entering <br>
+1. Make sure you have NodeJS installed (>= v20.0.0). Test by entering <br>
 $ `node -v` <br>
 If this returns a version number, NodeJS is installed. **If not**, get NodeJS <a href="https://nodejs.org/en/download/package-manager/">here</a>. <br><br>
 2. Clone the repository and navigate to it. If you have Git installed, type <br>
