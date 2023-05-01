@@ -2,6 +2,11 @@
     "__LANG__": "en",
     "errors": {
         "generic_command_execution_failed": "There was an error while executing this command! =(",
-        "command_not_found": "I don't seem to know the command '%s' :/"
+        "command_not_found": "I don't seem to know the command '%s' :/",
+        "stats_on_bot": "Bots don't have stats. :P"
+    },
+    "replies": {
+        "stats_you": "You currently have %s points!",
+        "stats_other": "%s currently has %s points!"
     }
 }
