@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from "discord.js";
+import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 // import { config } from "../../../config/config.js";
 import { QuickDB } from "quick.db";
 
@@ -13,6 +13,7 @@ export default {
         .setName("rs-set-language")
         .setDescription("Sets the Server Language for the bot.")
         .setDMPermission(false)
+        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
         .addStringOption((option) =>
             option.setName("language")
                 .setDescription("Server language")
