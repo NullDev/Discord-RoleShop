@@ -7,7 +7,8 @@
         "points_on_bot": "Bots können keine Punkte haben.",
         "invalid_user": "Ungültiger Benutzer.",
         "invalid_points": "Ungültige Anzahl an Punkten. Muss eine Ganzzahl die größer oder gleich 0 ist sein.",
-        "no_top_stats": "Noch keine Stats vorhanden :("
+        "no_top_stats": "Noch keine Stats vorhanden :(",
+        "yn_timeout": "Zeit abgelaufen. Abgebrochen."
     },
     "replies": {
         "stats_you": "Du hast aktuell %s!",
@@ -21,7 +22,6 @@
             "are_you_sure": "Bist du sicher, dass du ALLE Stats von diesem Server löschen willst?",
             "sucess": "Alle Stats gelöscht!",
             "abort": "Abgebrochen.",
-            "timeout": "Zeit abgelaufen. Abgebrochen.",
             "confirm": "JA, ALLES LÖSCHEN",
             "cancel": "Abbrechen"
         },

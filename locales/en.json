@@ -7,7 +7,8 @@
         "points_on_bot": "Bots can't have points.",
         "invalid_user": "Invalid user",
         "invalid_points": "Invalid amount of points. Must be an integer greater or equal to 0.",
-        "no_top_stats": "No stats available yet :("
+        "no_top_stats": "No stats available yet :(",
+        "yn_timeout": "Time ran out. Aborted."
     },
     "replies": {
         "stats_you": "You currently have %s!",
@@ -21,7 +22,6 @@
             "are_you_sure": "Are you sure you want to reset ALL stats for this server?",
             "sucess": "Wiped all stats!",
             "abort": "Aborted.",
-            "timeout": "Time ran out. Aborted.",
             "confirm": "YES, RESET ALL",
             "cancel": "Cancel"
         },

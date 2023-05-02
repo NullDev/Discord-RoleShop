@@ -1,4 +1,5 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
+import __ from "../service/i18n.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -41,12 +42,13 @@ const createYesNoInteraction = async function(interaction, {
 
     const collectorFilter = i => i.user.id === interaction.user.id;
     try {
-        const confirmation = await response.awaitMessageComponent({ filter: collectorFilter, time: 6000 });
+        const confirmation = await response.awaitMessageComponent({ filter: collectorFilter, time: 60000 });
         return [confirmation.customId, confirmation];
     }
     catch (e){
         await response.edit({ components: [] });
-        return Promise.reject();
+        await interaction.followUp({ content: await __("errors.yn_timeout")(interaction.guildId) });
+        return ["timeout", null];
     }
 };
 

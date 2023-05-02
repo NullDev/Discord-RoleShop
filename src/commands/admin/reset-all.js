@@ -28,6 +28,7 @@ export default {
             yesText: await __("replies.reset_all.confirm")(interaction.guildId),
             noText: await __("replies.reset_all.cancel")(interaction.guildId),
             noStyle: ButtonStyle.Secondary,
+            yesStyle: ButtonStyle.Danger,
             showNoFirst: true,
         }).then(async([answer, confirmation]) => {
             if (answer === "yes"){
@@ -35,11 +36,9 @@ export default {
                 if (data) await db.delete(`guild-${interaction.guildId}`);
                 await confirmation?.update({ content: await __("replies.reset_all.sucess")(interaction.guildId), components: [] });
             }
-            else {
+            else if (answer === "no"){
                 await confirmation?.update({ content: await __("replies.reset_all.abort")(interaction.guildId), components: [] });
             }
-        }).catch(async() => {
-            await interaction.followUp({ content: await __("replies.reset_all.timeout")(interaction.guildId) });
         });
     },
 };
