@@ -24,9 +24,9 @@ export default {
      */
     async execute(interaction){
         createYesNoInteraction(interaction, {
-            promtText: await __("replies.reset_all.are_you_sure")(interaction.guildId),
+            promptText: await __("replies.reset_all.are_you_sure")(interaction.guildId),
             yesText: await __("replies.reset_all.confirm")(interaction.guildId),
-            noText: await __("replies.reset_all.cancel")(interaction.guildId),
+            noText: await __("generic.abort")(interaction.guildId),
             noStyle: ButtonStyle.Secondary,
             yesStyle: ButtonStyle.Danger,
             showNoFirst: true,
@@ -37,7 +37,7 @@ export default {
                 await confirmation?.update({ content: await __("replies.reset_all.sucess")(interaction.guildId), components: [] });
             }
             else if (answer === "no"){
-                await confirmation?.update({ content: await __("replies.reset_all.abort")(interaction.guildId), components: [] });
+                await confirmation?.update({ content: await __("generic.aborted")(interaction.guildId), components: [] });
             }
         });
     },

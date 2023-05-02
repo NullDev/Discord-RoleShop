@@ -5,6 +5,8 @@ import __ from "../service/i18n.js";
 // = Copyright (c) NullDev = //
 // ========================= //
 
+/* eslint-disable no-param-reassign */
+
 /**
  * Create a yes/no interaction
  *
@@ -13,13 +15,17 @@ import __ from "../service/i18n.js";
  * @returns {Promise<[string, import("discord.js").MessageComponentInteraction | null]>}
  */
 const createYesNoInteraction = async function(interaction, {
-    promptText = "Are you sure?",
-    yesText = "Yes",
-    noText = "No",
+    promptText = null,
+    yesText = null,
+    noText = null,
     yesStyle = ButtonStyle.Success,
     noStyle = ButtonStyle.Danger,
     showNoFirst = false,
 }){
+    promptText ??= await __("generic.are_you_sure")(interaction.guildId);
+    yesText ??= await __("generic.yes")(interaction.guildId);
+    noText ??= await __("generic.no")(interaction.guildId);
+
     const yes = new ButtonBuilder()
         .setCustomId("yes")
         .setLabel(yesText)

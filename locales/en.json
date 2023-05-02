@@ -10,6 +10,13 @@
         "no_top_stats": "No stats available yet :(",
         "yn_timeout": "Time ran out. Aborted."
     },
+    "generic": {
+        "aborted": "Aborted.",
+        "abort": "Cancel",
+        "yes": "Yes",
+        "no": "No",
+        "are_you_sure": "Are you sure?"
+    },
     "replies": {
         "stats_you": "You currently have %s!",
         "stats_other": "%s currently has %s!",
@@ -21,9 +28,7 @@
         "reset_all": {
             "are_you_sure": "Are you sure you want to reset ALL stats for this server?",
             "sucess": "Wiped all stats!",
-            "abort": "Aborted.",
-            "confirm": "YES, RESET ALL",
-            "cancel": "Cancel"
+            "confirm": "YES, RESET ALL"
         },
         "points_set": "%s now has %s!",
         "top_users": {

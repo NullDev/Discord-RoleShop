@@ -2,6 +2,7 @@ import path from "node:path";
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 import { config } from "../../../config/config.js";
 import { QuickDB } from "quick.db";
+import createYesNoInteraction from "../../events/yesNoInteraction.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -39,10 +40,24 @@ export default {
 
         let role = interaction.guild?.roles.cache.find((r) => r.name === name);
         if (!role){
-            role = await interaction.guild?.roles.create({
-                name,
-                color: "Random",
+            const [answer, confirmation] = await createYesNoInteraction(interaction, {
+                promptText: "This role does not exist on this server. Do you want to create it?",
+                yesText: "Yes",
+                noText: "No",
             });
+
+            if (answer === "yes"){
+                // @ts-ignore
+                role = await interaction.guild?.roles.create({
+                    name,
+                    color: "Random",
+                }).catch(() => {
+                    interaction.followUp({
+                        content: "Failed to create role. Are the bot's permissions correct?",
+                    });
+                });
+            }
+            else if (answer === "no") return await confirmation?.update({ content: "Aborted", components: [] });
         }
 
         await db.set(`guild-${interaction.guildId}.${role?.id}`, price);
