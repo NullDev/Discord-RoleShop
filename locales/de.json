@@ -29,6 +29,7 @@
         "top_users": {
             "title": "Top User auf %s",
             "description": "Die Top 10 User mit den meisten Punkten."
-        }
+        },
+        "bot_info_tagline": "Discord Bot für einen **Rollenshop** mit Währung die man durch schreiben von Nachrichten erhält."
     }
 }

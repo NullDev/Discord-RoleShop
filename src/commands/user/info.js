@@ -1,6 +1,7 @@
 import os from "node:os";
 import { SlashCommandBuilder } from "discord.js";
 import { config } from "../../../config/config.js";
+import __ from "../../service/i18n.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -30,7 +31,7 @@ export default {
 
         const embed = {
             title: "Bot Info",
-            description: "Discord Bot for a **Role shop** with currency that can be earned by writing messages.",
+            description: await __("replies.bot_info_tagline")(interaction.guildId),
             color: 2518621,
             thumbnail: {
                 url: "https://cdn.discordapp.com/avatars/1102551839674740737/3354a0eebe93a021d96e53c271b0316e.webp?size=128",
