@@ -41,12 +41,12 @@ const createYesNoInteraction = async function(interaction, {
 
     const collectorFilter = i => i.user.id === interaction.user.id;
     try {
-        const confirmation = await response.awaitMessageComponent({ filter: collectorFilter, time: 60000 });
+        const confirmation = await response.awaitMessageComponent({ filter: collectorFilter, time: 6000 });
         return [confirmation.customId, confirmation];
     }
     catch (e){
         await response.edit({ components: [] });
-        return ["timeout", null];
+        return Promise.reject();
     }
 };
 
