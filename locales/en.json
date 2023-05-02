@@ -18,11 +18,12 @@
             "many": "%s points"
         },
         "reset_all": {
-            "are_you_sure": "Are you sure you want to reset ALL stats for this server? (y/n)",
+            "are_you_sure": "Are you sure you want to reset ALL stats for this server?",
             "sucess": "Wiped all stats!",
             "abort": "Aborted.",
-            "invalid_input": "Invalid input. Aborted.",
-            "timeout": "Time ran out. Aborted."
+            "timeout": "Time ran out. Aborted.",
+            "confirm": "YES, RESET ALL",
+            "cancel": "Cancel"
         },
         "points_set": "%s now has %s!",
         "top_users": {

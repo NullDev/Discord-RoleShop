@@ -18,11 +18,12 @@
             "many": "%s Punkte"
         },
         "reset_all": {
-            "are_you_sure": "Bist du sicher, dass du ALLE Stats von diesem Server löschen willst? (y/n)",
+            "are_you_sure": "Bist du sicher, dass du ALLE Stats von diesem Server löschen willst?",
             "sucess": "Alle Stats gelöscht!",
             "abort": "Abgebrochen.",
-            "invalid_input": "Ungültige Eingabe. Abgebrochen.",
-            "timeout": "Zeit abgelaufen. Abgebrochen."
+            "timeout": "Zeit abgelaufen. Abgebrochen.",
+            "confirm": "JA, ALLES LÖSCHEN",
+            "cancel": "Abbrechen"
         },
         "points_set": "%s hat jetzt %s!",
         "top_users": {
