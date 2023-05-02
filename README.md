@@ -18,6 +18,19 @@ User earn points by writing messages. With those points, they can purchase speci
 
 <hr>
 
+## :star: Features
+
+- [x] Earn points by writing messages
+- [x] Spend points in a built-in shop
+- [x] Customizable shop
+- [x] Multiplier for server boosters
+- [x] Slash commands
+- [x] Multi-language support (currently English and German)
+- [x] Easy to setup
+- [x] Admin commands
+
+<hr>
+
 ## :diamond_shape_with_a_dot_inside: Feature requests & Issues
 
 Feature request or discovered a bug? Please [open an Issue](https://github.com/NullDev/Discord-RoleShop/issues/new/choose) here on GitHub.
