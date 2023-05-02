@@ -18,6 +18,8 @@ export default {
     async execute(interaction){
         const count = interaction.guild?.memberCount || "N/A";
         const boosts = interaction.guild?.premiumSubscriptionCount || "N/A";
+        const RamInUseMB = Math.floor(process.memoryUsage().heapUsed / 1024 / 1024);
+        const RamTotalGB = Math.floor(os.totalmem() / 1024 / 1024 / 1024);
 
         const created = interaction.guild?.createdAt.toLocaleString("de-DE", {
             day: "2-digit",
@@ -61,12 +63,16 @@ export default {
                 { name: "\u200b", value: "\u200b", inline: true },
                 {
                     name: "Meta :bar_chart:",
-                    value: `PID: \`${process.pid}\`\nUptime: \`${process.uptime().toFixed(4)}s\`\nSystem CPU Time: \`${process.cpuUsage().system}\`\nUser CPU Time: \`${process.cpuUsage().system}\``,
+                    value: `PID: \`${process.pid}\`\nUptime: \`${
+                        process.uptime().toFixed(4)
+                    }s\`\nSystem CPU Time: \`${process.cpuUsage().system}\`\nUser CPU Time: \`${process.cpuUsage().system}\`\nRam Usage: \`${RamInUseMB}MB / ${RamTotalGB}GB\``,
                     inline: true,
                 },
                 {
                     name: "Guild :clipboard:",
-                    value: `User: \`${count}\`\nBoosts: \`${boosts}\`\nCreated: \`${created}\`\nOwner: \`${owner}\``,
+                    value: `User: \`${count}\`\nBoosts: \`${boosts}\`\nCreated: \`${created}\`\nOwner: \`${owner}\`\nGuild Lang: \`${
+                        await __("__LANG__")(interaction.guildId)
+                    }\``,
                     inline: true,
                 },
                 { name: "\u200b", value: "\u200b", inline: true },
