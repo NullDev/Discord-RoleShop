@@ -1,8 +1,9 @@
 import path from "node:path";
-import { SlashCommandBuilder, PermissionFlagsBits, ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
+import { SlashCommandBuilder, PermissionFlagsBits, ButtonStyle } from "discord.js";
 import { QuickDB } from "quick.db";
 import { config } from "../../../config/config.js";
 import __ from "../../service/i18n.js";
+import createYesNoInteraction from "../../events/yesNoInteraction.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -22,41 +23,23 @@ export default {
      * @param {import("discord.js").CommandInteraction} interaction
      */
     async execute(interaction){
-        const confirm = new ButtonBuilder()
-            .setCustomId("confirm")
-            .setLabel(await __("replies.reset_all.confirm")(interaction.guildId))
-            .setStyle(ButtonStyle.Danger);
-
-        const cancel = new ButtonBuilder()
-            .setCustomId("cancel")
-            .setLabel(await __("replies.reset_all.cancel")(interaction.guildId))
-            .setStyle(ButtonStyle.Secondary);
-
-        const row = new ActionRowBuilder().addComponents(cancel, confirm);
-
-        const response = await interaction.reply({
-            content: await __("replies.reset_all.are_you_sure")(interaction.guildId),
-            // @ts-ignore
-            components: [row],
-        });
-
-        const collectorFilter = i => i.user.id === interaction.user.id;
-        try {
-            const confirmation = await response.awaitMessageComponent({ filter: collectorFilter, time: 60000 });
-
-            if (confirmation.customId === "confirm"){
+        createYesNoInteraction(interaction, {
+            promtText: await __("replies.reset_all.are_you_sure")(interaction.guildId),
+            yesText: await __("replies.reset_all.confirm")(interaction.guildId),
+            noText: await __("replies.reset_all.cancel")(interaction.guildId),
+            noStyle: ButtonStyle.Secondary,
+            showNoFirst: true,
+        }).then(async([answer, confirmation]) => {
+            if (answer === "yes"){
                 const data = await db.get(`guild-${interaction.guildId}`);
                 if (data) await db.delete(`guild-${interaction.guildId}`);
-
-                await confirmation.update({ content: await __("replies.reset_all.sucess")(interaction.guildId), components: [] });
+                await confirmation?.update({ content: await __("replies.reset_all.sucess")(interaction.guildId), components: [] });
             }
-            else if (confirmation.customId === "cancel"){
-                await confirmation.update({ content: await __("replies.reset_all.abort")(interaction.guildId), components: [] });
+            else {
+                await confirmation?.update({ content: await __("replies.reset_all.abort")(interaction.guildId), components: [] });
             }
-        }
-        catch (e){
-            await response.edit({ components: [] });
+        }).catch(async() => {
             await interaction.followUp({ content: await __("replies.reset_all.timeout")(interaction.guildId) });
-        }
+        });
     },
 };
