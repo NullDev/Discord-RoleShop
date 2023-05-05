@@ -23,14 +23,12 @@ const db = new QuickDB({
  * @param {Number|null} [balance_after=null]
  */
 const logTransaction = async function(guild, user, role, action, price = null, balance_before = null, balance_after = null){
-    // TABLE GUILD -> TIMESTAMP | USERID | ROLEID | ROLENAME | ACTION | PRICE | BALANCE_BEFORE | BALANCE_AFTER
-    const UTCTimestamp = Date.now();
+    const timestamp = (new Date()).toISOString();
     const userid = user.id;
     const roleid = role.id;
     const rolename = role.name;
-
     await db.push(`guild-${guild.id}`, {
-        timestamp: UTCTimestamp, userid, roleid, rolename, action, price, balance_before, balance_after,
+        timestamp, userid, roleid, rolename, action, price, balance_before, balance_after,
     });
 };
 
