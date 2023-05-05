@@ -23,10 +23,12 @@
   "author": "NullDev // Shadow",
   "contributors": [
     {
-      "name": "NullDev"
+      "name": "NullDev",
+      "url": "https://github.com/NullDev"
     },
     {
-      "name": "arellak"
+      "name": "arellak",
+      "url": "https://github.com/arellak"
     }
   ],
   "license": "Apache-2.0",
