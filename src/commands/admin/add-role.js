@@ -94,7 +94,7 @@ export default {
         return await interaction.reply({
             content: currentRole
                 ? await __("replies.add_role.updated", role.name, currentRole, price)(interaction.guildId)
-                : await __("replies.add_role.same_exists", role.name, price)(interaction.guildId),
+                : await __("replies.add_role.added", role.name, price)(interaction.guildId),
         });
     },
 };
