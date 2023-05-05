@@ -23,7 +23,9 @@ const guildSettingsDb = new QuickDB({
 const messageCreate = async function(message, rateLimiter){
     if (message.author.bot) return;
 
-    if (rateLimiter.shouldFilterMessage(message.author.id, message.createdTimestamp)){
+    const spamFilterEnabled = (await guildSettingsDb.get(`guild-${message.guild?.id}.spam-filter`)) ?? true;
+
+    if (spamFilterEnabled && rateLimiter.shouldFilterMessage(message.author.id, message.createdTimestamp)){
         Log.info(`User ${message.author.tag} is being rate limited. Not counting message...`);
         return;
     }
