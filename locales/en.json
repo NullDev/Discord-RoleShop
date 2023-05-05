@@ -10,7 +10,9 @@
         "no_top_stats": "No stats available yet :(",
         "yn_timeout": "Time ran out. Aborted.",
         "multiplier_too_small": "The value should be at least 1 (= No multiplier).",
-        "multiplier_nan": "The multiplier has to be a number."
+        "multiplier_nan": "The multiplier has to be a number.",
+        "no_roles": "No roles registered.",
+        "role_not_found": "ATTENTION: Role %s with price %s does not exist anymore! Removed it from Database."
     },
     "generic": {
         "aborted": "Aborted.",
