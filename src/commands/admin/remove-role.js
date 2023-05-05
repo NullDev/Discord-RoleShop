@@ -24,7 +24,7 @@ export default {
         ).addBooleanOption((option) =>
             option.setName("delete")
                 .setDescription("Delete the role from the Discord server")
-                .setRequired(false),
+                .setRequired(true),
         ),
 
     /**
@@ -41,7 +41,11 @@ export default {
 
         await db.delete(`guild-${interaction.guildId}.${role?.id}`);
 
-        if (del) await role.delete();
+        if (del){
+            await role.delete().catch(() => {
+                return interaction.reply({ content: "Failed to delete role", ephemeral: true });
+            });
+        }
 
         return await interaction.reply({ content: "Role removed", ephemeral: true });
     },
