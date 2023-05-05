@@ -20,8 +20,13 @@ const guildSettingsDb = new QuickDB({
  * @param {import("discord.js").Message} message
  * @return {Promise<void>}
  */
-const messageCreate = async function(message){
+const messageCreate = async function(message, rateLimiter){
     if (message.author.bot) return;
+
+    if (rateLimiter.shouldFilterMessage(message.author.id, message.createdTimestamp)){
+        Log.info(`User ${message.author.tag} is being rate limited. Not counting message...`);
+        return;
+    }
 
     const guild = message.guild?.id;
     const user = message.author.id;
@@ -33,7 +38,6 @@ const messageCreate = async function(message){
 
     const multiplierKey = `guild-${guild}.boost-multiplier`;
     const multiplier = Number(await guildSettingsDb.get(multiplierKey)) || 1;
-    console.log(multiplier);
     const pointsKey = `guild-${guild}.user-${user}.points`;
     const pointsToAdd = message.member?.premiumSinceTimestamp ? multiplier : 1;
 

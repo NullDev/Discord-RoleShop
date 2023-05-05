@@ -24,7 +24,7 @@ class SpamFilter {
         this.lastMessageTimestamps = new Map();
         this.timeDifferencesBuffer = [];
 
-        Log.info(`Spam filter initialized with alpha=${alpha} and windowSize=${windowSize}`);
+        Log.debug(`Spam filter initialized with alpha=${alpha} and windowSize=${windowSize}`, true);
     }
 
     /**

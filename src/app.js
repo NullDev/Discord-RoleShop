@@ -1,5 +1,6 @@
 import { GatewayIntentBits, Events, ActivityType } from "discord.js";
 import Log from "./util/log.js";
+import RateLimiter from "./util/rateLimiter.js";
 import { config, meta } from "../config/config.js";
 import DiscordClient from "./service/client.js";
 import registerCommands from "./service/commandRegister.js";
@@ -50,7 +51,14 @@ client.on("ready", async() => {
     client.user?.setStatus("online");
 });
 
-client.on("messageCreate", async message => messageCreate(message));
+// Alpha: 0.4 - Smoothing factor
+// Window: 10 - Sliding window size
+const rateLimiter = new RateLimiter(
+    config.bot_settings.spam_filter.alpha,
+    config.bot_settings.spam_filter.window,
+);
+
+client.on("messageCreate", async message => messageCreate(message, rateLimiter));
 
 client.on("warn", info => Log.warn(info));
 
