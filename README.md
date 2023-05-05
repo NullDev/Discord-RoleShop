@@ -23,11 +23,23 @@ User earn points by writing messages. With those points, they can purchase speci
 - [x] Earn points by writing messages
 - [x] Spend points in a built-in shop
 - [x] Customizable shop
-- [x] Multiplier for server boosters
+- [x] Optional multiplier for server boosters
+    - Can be set on every Discord server individually
 - [x] Slash commands
 - [x] Multi-language support (currently English and German)
+    - Can be set on every Discord server individually
 - [x] Easy to setup
+    - No external database needed
+    - Easy configuration system
+    - Install instructions provided [below](#wrench-setup)
 - [x] Admin commands
+- [x] _Smart Spam Filtering™_ via Exponential Smoothing
+    - $S_t = \alpha x_t + (1 - \alpha) S_{t-1}$
+    - Where:
+        - $S_t$ is the smoothed value at time $(t)$,
+        - $x_t$ is the observed value at time $(t)$,
+        - $S_{t-1}$ is the smoothed value at time $t-1$, and
+        - $\alpha$ is the smoothing factor (value between 0 and 1).
 
 <hr>
 
