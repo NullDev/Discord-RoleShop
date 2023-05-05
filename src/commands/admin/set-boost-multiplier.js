@@ -27,12 +27,23 @@ export default {
      * @param {import("discord.js").CommandInteraction} interaction
      */
     async execute(interaction){
-        const value = interaction.options.get("value")?.value;
-        if (isNaN(value)) return await interaction.reply({ content: await __("errors.multiplier_nan")(interaction.guild), ephemeral: true });
-        if (value < 1) return await interaction.reply({ content: await __("errors.multiplier_too_small")(interaction.guildId), ephemeral: true });
+        const value = Number(interaction.options.get("value")?.value);
+        if (isNaN(value)){
+            return await interaction.reply({
+                content: await __("errors.multiplier_nan")(interaction.guildId), ephemeral: true,
+            });
+        }
+
+        if (value < 1){
+            return await interaction.reply({
+                content: await __("errors.multiplier_too_small")(interaction.guildId), ephemeral: true,
+            });
+        }
 
         await db.set(`guild-${interaction.guildId}.boost-multiplier`, value || 1);
+
         return await interaction.reply({
-            content: await __("replies.multiplier_set", value)(interaction.guildId, true), ephemeral: true });
+            content: await __("replies.multiplier_set", value)(interaction.guildId), ephemeral: true,
+        });
     },
 };

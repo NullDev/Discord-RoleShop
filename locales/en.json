@@ -9,8 +9,8 @@
         "invalid_points": "Invalid amount of points. Must be an integer greater or equal to 0.",
         "no_top_stats": "No stats available yet :(",
         "yn_timeout": "Time ran out. Aborted.",
-        "multiplier_too_small": "The value should be at least 1",
-        "multiplier_nan": "You really should put a number in there"
+        "multiplier_too_small": "The value should be at least 1 (= No multiplier).",
+        "multiplier_nan": "The multiplier has to be a number."
     },
     "generic": {
         "aborted": "Aborted.",
@@ -38,6 +38,6 @@
             "description": "The Top 10 User with the most amount of points."
         },
         "bot_info_tagline": "Discord Bot for a **Role shop** with currency that can be earned by writing messages.",
-        "multiplier_set": "The boost multiplier now has a value of %s"
+        "multiplier_set": "The boost multiplier now has a value of %s."
     }
 }
