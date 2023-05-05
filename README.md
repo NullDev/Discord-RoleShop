@@ -14,7 +14,8 @@ User earn points by writing messages. With those points, they can purchase speci
 
 [![Invite](https://img.shields.io/badge/Invite-37a779?style=for-the-badge)](https://discordapp.com/oauth2/authorize?client_id=1102551839674740737&scope=bot&permissions=1099780064256)
 
-<sub>The link above will invite a bot hosted by me that uses the latest version of this repo. Alternatively you can host the bot yourself. Instructions below ⏬ </sub>
+<sub>The link above will invite a bot hosted by me that uses the latest version of this repo. <br>
+Alternatively you can host the bot yourself. Instructions [below ⏬](#wrench-setup) </sub>
 
 <hr>
 
