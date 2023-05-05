@@ -38,6 +38,7 @@
             "description": "Die Top 10 User mit den meisten Punkten."
         },
         "bot_info_tagline": "Discord Bot für einen **Rollenshop** mit Währung die man durch schreiben von Nachrichten erhält.",
-        "multiplier_set": "Der boost multiplier hat jetzt einen Wert von %s."
+        "multiplier_set_none": "Der boost Multiplier wurde entfernt.",
+        "multiplier_set": "Der boost Multiplier hat jetzt einen Wert von %s."
     }
 }

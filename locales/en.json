@@ -38,6 +38,7 @@
             "description": "The Top 10 User with the most amount of points."
         },
         "bot_info_tagline": "Discord Bot for a **Role shop** with currency that can be earned by writing messages.",
+        "multiplier_set_none": "The boost multiplier has been deactivated.",
         "multiplier_set": "The boost multiplier now has a value of %s."
     }
 }

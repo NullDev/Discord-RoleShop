@@ -43,7 +43,10 @@ export default {
         await db.set(`guild-${interaction.guildId}.boost-multiplier`, value || 1);
 
         return await interaction.reply({
-            content: await __("replies.multiplier_set", value)(interaction.guildId), ephemeral: true,
+            content: value === 1
+                ? await __("replies.multiplier_set_none")(interaction.guildId)
+                : await __("replies.multiplier_set", value)(interaction.guildId),
+            ephemeral: true,
         });
     },
 };
