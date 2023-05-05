@@ -52,7 +52,7 @@ export default {
         let role = interaction.guild?.roles.cache.find((r) => r.name === name);
         if (!role){
             const [answer, confirmation] = await createYesNoInteraction(interaction, {
-                promptText: `The role "${name}" does not exist on this server. Do you want me to create it for you?`,
+                promptText: await __("replies.add_role.doesn_exist_prompt", name)(interaction.guildId),
                 yesText: await __("generic.yes")(interaction.guildId),
                 noText: await __("generic.no")(interaction.guildId),
             });
@@ -73,18 +73,19 @@ export default {
                     components: [],
                 });
             }
+            return null;
         }
 
         if (!role){
             return interaction.reply({
-                content: "Failed to create role. Are the bot's permissions correct?",
+                content: await __("replies.add_role.no_perms")(interaction.guildId),
             });
         }
 
         const currentRole = await db.get(`guild-${interaction.guildId}.${role?.id}`);
         if (currentRole && currentRole === price){
             return await interaction.reply({
-                content: `Role ${role.name} already exists with the same price ${price}. Aborting.`,
+                content: await __("replies.add_role.same_exists", name, currentRole)(interaction.guildId),
             });
         }
 
@@ -92,8 +93,8 @@ export default {
 
         return await interaction.reply({
             content: currentRole
-                ? `The role "${role.name}" already exists with a different price (${currentRole}). I updated price to ${price}!`
-                : `Added role "${role.name} "with price ${price}`,
+                ? await __("replies.add_role.updated", role.name, currentRole, price)(interaction.guildId)
+                : await __("replies.add_role.same_exists", role.name, price)(interaction.guildId),
         });
     },
 };

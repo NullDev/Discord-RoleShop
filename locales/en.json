@@ -48,6 +48,13 @@
             "true": "enabled",
             "false": "disabled",
             "set": "The spam filter is now %s."
+        },
+        "add_role": {
+            "doesn_exist_prompt": "The role \"%s\" does not exist on this server. Do you want me to create it for you?",
+            "no_perms": "Failed to create role. Are the bot's permissions correct?",
+            "same_exists": "Role \"%s\" already exists with the same price %s. Aborting.",
+            "added": "Added role \"%s\" with price %s",
+            "updated": "The role \"%s\" already exists with a different price (%s). I updated price to %s!"
         }
     }
 }
