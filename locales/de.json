@@ -39,6 +39,11 @@
         },
         "bot_info_tagline": "Discord Bot für einen **Rollenshop** mit Währung die man durch schreiben von Nachrichten erhält.",
         "multiplier_set_none": "Der boost Multiplier wurde entfernt.",
-        "multiplier_set": "Der boost Multiplier hat jetzt einen Wert von %s."
+        "multiplier_set": "Der boost Multiplier hat jetzt einen Wert von %s.",
+        "spam_filter": {
+            "true": "aktiviert",
+            "false": "deaktiviert",
+            "set": "Der Spam Filter ist nun %s."
+        }
     }
 }
