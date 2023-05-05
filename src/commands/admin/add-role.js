@@ -41,7 +41,7 @@ export default {
         let role = interaction.guild?.roles.cache.find((r) => r.name === name);
         if (!role){
             const [answer, confirmation] = await createYesNoInteraction(interaction, {
-                promptText: "This role does not exist on this server. Do you want to create it?",
+                promptText: `The role "${name}" does not exist on this server. Do you want me to create it for you?`,
                 yesText: "Yes",
                 noText: "No",
             });
@@ -51,17 +51,38 @@ export default {
                 role = await interaction.guild?.roles.create({
                     name,
                     color: "Random",
+                    permissions: [],
                 }).catch(() => {
-                    interaction.followUp({
-                        content: "Failed to create role. Are the bot's permissions correct?",
-                    });
+                    return null;
                 });
             }
-            else if (answer === "no") return await confirmation?.update({ content: "Aborted", components: [] });
+            else if (answer === "no"){
+                return await confirmation?.update({
+                    content: "Aborted",
+                    components: [],
+                });
+            }
+        }
+
+        if (!role){
+            return interaction.reply({
+                content: "Failed to create role. Are the bot's permissions correct?",
+            });
+        }
+
+        const currentRole = await db.get(`guild-${interaction.guildId}.${role?.id}`);
+        if (currentRole && currentRole === price){
+            return await interaction.reply({
+                content: `Role ${role.name} already exists with the same price ${price}. Aborting.`,
+            });
         }
 
         await db.set(`guild-${interaction.guildId}.${role?.id}`, price);
 
-        return await interaction.reply({ content: "Role added", ephemeral: true });
+        return await interaction.reply({
+            content: currentRole
+                ? `The role "${role.name}" already exists with a different price (${currentRole}). I updated price to ${price}!`
+                : `Added role "${role.name} "with price ${price}`,
+        });
     },
 };
