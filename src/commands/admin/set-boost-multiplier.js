@@ -15,12 +15,12 @@ const db = new QuickDB({
 export default {
     data: new SlashCommandBuilder()
         .setName(`${config.bot_settings.slash_command_prefix}-set-boost-mulitplier`)
-        .setDescription("Sets the boost multiplier for this server.")
+        .setDescription("Set multiplier for Server Boosters (1 to deactivate)")
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
         .addIntegerOption((option) =>
             option.setName("value")
-                .setDescription("Server language")
+                .setDescription("Multiplier value (>=1; =1 to deactivate)")
                 .setRequired(true)),
 
     /**
