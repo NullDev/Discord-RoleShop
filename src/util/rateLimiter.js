@@ -25,6 +25,8 @@ class SpamFilter {
         this.timeDifferencesBuffer = [];
 
         Log.debug(`Spam filter initialized with alpha=${alpha} and windowSize=${windowSize}`, true);
+
+        setInterval(() => this.#removeOldEntries(), 10 * 60 * 1000);
     }
 
     /**
@@ -41,6 +43,21 @@ class SpamFilter {
         }
         const sum = this.timeDifferencesBuffer.reduce((a, b) => a + b, 0);
         return sum / this.timeDifferencesBuffer.length;
+    }
+
+    /**
+     * Wipe old entries
+     *
+     * @memberof SpamFilter
+     */
+    #removeOldEntries(){
+        const currentTimestamp = Math.floor(Date.now() / 1000);
+        for (const [userId, lastMessageTimestamp] of this.lastMessageTimestamps.entries()){
+            if (currentTimestamp - lastMessageTimestamp > (5 * 1000 * 60)){
+                this.lastMessageTimestamps.delete(userId);
+                this.smoothedTimeDifferences.delete(userId);
+            }
+        }
     }
 
     /**
