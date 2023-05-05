@@ -21,6 +21,14 @@
     "url": "git+https://github.com/NullDev/Discord-RoleShop.git"
   },
   "author": "NullDev // Shadow",
+  "contributors": [
+    {
+      "name": "NullDev"
+    },
+    {
+      "name": "arellak"
+    }
+  ],
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/NullDev/Discord-RoleShop/issues"
