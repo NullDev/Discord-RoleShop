@@ -3,6 +3,7 @@ import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 import { config } from "../../../config/config.js";
 import { QuickDB } from "quick.db";
 import createYesNoInteraction from "../../events/yesNoInteraction.js";
+import __ from "../../service/i18n.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -33,17 +34,27 @@ export default {
      */
     async execute(interaction){
         const name = String(interaction.options.get("name")?.value);
-        if (!name) return await interaction.reply({ content: "Invalid name", ephemeral: true });
+        if (!name){
+            return await interaction.reply({
+                content: await __("errors.invalid_name")(interaction.guildId),
+                ephemeral: true,
+            });
+        }
 
         const price = Number(interaction.options.get("price")?.value);
-        if (isNaN(price) || price <= 0) return await interaction.reply({ content: "Invalid price", ephemeral: true });
+        if (isNaN(price) || price <= 0){
+            return await interaction.reply({
+                content: await __("errors.invalid_price")(interaction.guildId),
+                ephemeral: true,
+            });
+        }
 
         let role = interaction.guild?.roles.cache.find((r) => r.name === name);
         if (!role){
             const [answer, confirmation] = await createYesNoInteraction(interaction, {
                 promptText: `The role "${name}" does not exist on this server. Do you want me to create it for you?`,
-                yesText: "Yes",
-                noText: "No",
+                yesText: await __("generic.yes")(interaction.guildId),
+                noText: await __("generic.no")(interaction.guildId),
             });
 
             if (answer === "yes"){
@@ -58,7 +69,7 @@ export default {
             }
             else if (answer === "no"){
                 return await confirmation?.update({
-                    content: "Aborted",
+                    content: await __("generic.aborted")(interaction.guildId),
                     components: [],
                 });
             }

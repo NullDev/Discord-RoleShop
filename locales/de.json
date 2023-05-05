@@ -12,7 +12,9 @@
         "multiplier_too_small": "Der Wert muss mindestens 1 (= kein Multiplier) betragen.",
         "multiplier_nan": "Der Multiplier muss eine Zahl sein.",
         "no_roles": "Keine Rollen registriert.",
-        "role_not_found": "ACHTUNG: Rolle %s mit Preis %s existiert nicht mehr! Aus Datenbank entfernt."
+        "role_not_found": "ACHTUNG: Rolle %s mit Preis %s existiert nicht mehr! Aus Datenbank entfernt.",
+        "invalid_name": "Ungültiger Name.",
+        "invalid_price": "Ungültiger Preis. Muss eine Ganzzahl sein, die grö0er als 0 ist."
     },
     "generic": {
         "aborted": "Abgebrochen.",
