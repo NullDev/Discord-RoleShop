@@ -79,7 +79,9 @@ Once the config has been copied like described in [Step 4](#wrench-setup), it ca
 | ---------- | --------- | ------------------ | ------------ |
 | discord: <br> `bot_token` | Auth Token of the Discord bot. Can be created [here](https://discordapp.com/developers/). | String | N/A |
 | discord: <br> `bot_status` | Bot activity ala "Is playing...". | String | "Usage: /rs-help"
-| bot_settings: <br> `slash_command_prefix` | Prefix for all slash commands. e.g. `/rs-foo`, `/rs-bar` | String | "rs" |
+| bot_settings: <br> `slash_command_prefix` | Prefix for all slash commands. e.g. `/rs-foo`, `/rs-bar`. | String | "rs" |
+| bot_settings.spam_filter: <br> `alpha` | The smoothing factor for the expavg spam filter. | Number | 0.4 |
+| bot_settings.spam_filter: <br> `window` | The window for the moving average (last `n` messages) for calculation. | Number | 10 |
 
 <hr>
 
