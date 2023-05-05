@@ -8,7 +8,9 @@
         "invalid_user": "Ungültiger Benutzer.",
         "invalid_points": "Ungültige Anzahl an Punkten. Muss eine Ganzzahl die größer oder gleich 0 ist sein.",
         "no_top_stats": "Noch keine Stats vorhanden :(",
-        "yn_timeout": "Zeit abgelaufen. Abgebrochen."
+        "yn_timeout": "Zeit abgelaufen. Abgebrochen.",
+        "multiplier_too_small": "Der Wert muss mindestens 1 (= kein Multiplier) betragen.",
+        "multiplier_nan": "Der Multiplier muss eine Zahl sein."
     },
     "generic": {
         "aborted": "Abgebrochen.",
@@ -35,6 +37,8 @@
             "title": "Top User auf %s",
             "description": "Die Top 10 User mit den meisten Punkten."
         },
-        "bot_info_tagline": "Discord Bot für einen **Rollenshop** mit Währung die man durch schreiben von Nachrichten erhält."
+        "bot_info_tagline": "Discord Bot für einen **Rollenshop** mit Währung die man durch schreiben von Nachrichten erhält.",
+        "multiplier_set_none": "Der boost Multiplier wurde entfernt.",
+        "multiplier_set": "Der boost Multiplier hat jetzt einen Wert von %s."
     }
 }

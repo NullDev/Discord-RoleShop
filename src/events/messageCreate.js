@@ -1,14 +1,17 @@
 import path from "node:path";
 import { QuickDB } from "quick.db";
-import { config } from "../../config/config.js";
 import Log from "../util/log.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
 // ========================= //
 
-const db = new QuickDB({
+const usersDb = new QuickDB({
     filePath: path.resolve("./data/users.sqlite"),
+});
+
+const guildSettingsDb = new QuickDB({
+    filePath: path.resolve("./data/guild_settings.sqlite"),
 });
 
 /**
@@ -28,10 +31,13 @@ const messageCreate = async function(message){
         return;
     }
 
+    const multiplierKey = `guild-${guild}.boost-multiplier`;
+    const multiplier = Number(await guildSettingsDb.get(multiplierKey)) || 1;
+    console.log(multiplier);
     const pointsKey = `guild-${guild}.user-${user}.points`;
-    const pointsToAdd = message.member?.premiumSinceTimestamp ? config.bot_settings.booster_multiplier : 1;
+    const pointsToAdd = message.member?.premiumSinceTimestamp ? multiplier : 1;
 
-    await db.add(pointsKey, pointsToAdd);
+    await usersDb.add(pointsKey, pointsToAdd);
 };
 
 export default messageCreate;
