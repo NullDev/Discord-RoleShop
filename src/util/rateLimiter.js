@@ -53,7 +53,7 @@ class SpamFilter {
     #removeOldEntries(){
         const currentTimestamp = Math.floor(Date.now() / 1000);
         for (const [userId, lastMessageTimestamp] of this.lastMessageTimestamps.entries()){
-            if (currentTimestamp - lastMessageTimestamp > (5 * 1000 * 60)){
+            if (currentTimestamp - lastMessageTimestamp > (5 * 60 * 1000)){
                 this.lastMessageTimestamps.delete(userId);
                 this.smoothedTimeDifferences.delete(userId);
             }
