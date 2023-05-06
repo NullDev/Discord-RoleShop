@@ -34,13 +34,7 @@ Alternatively you can host the bot yourself. Instructions [below ⏬](#wrench-se
     - Easy configuration system
     - Install instructions provided [below](#wrench-setup)
 - [x] Admin commands
-- [x] _Smart Spam Filtering™_ via Exponential Smoothing
-    - $S_t = \alpha x_t + (1 - \alpha) S_{t-1}$
-    - Where:
-        - $S_t$ is the smoothed value at time $t$,
-        - $x_t$ is the observed value at time $t$,
-        - $S_{t-1}$ is the smoothed value at time $t-1$, and
-        - $\alpha$ is the smoothing factor (value between 0 and 1).
+- [x] _Smart Spam Filtering™_ via Exponential Smoothing & Moving Average
 
 <hr>
 
