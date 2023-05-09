@@ -51,7 +51,7 @@ export default {
 
         let role = interaction.guild?.roles.cache.find((r) => r.name === name);
         if (!role){
-            const [answer, confirmation] = await createYesNoInteraction(interaction, {
+            const answer = await createYesNoInteraction(interaction, {
                 promptText: await __("replies.add_role.doesn_exist_prompt", name)(interaction.guildId),
                 yesText: await __("generic.yes")(interaction.guildId),
                 noText: await __("generic.no")(interaction.guildId),
@@ -63,17 +63,15 @@ export default {
                     name,
                     color: "Random",
                     permissions: [],
-                }).catch(() => {
-                    return null;
-                });
+                }).catch(() => null);
             }
             else if (answer === "no"){
-                return await confirmation?.update({
+                return await interaction.followUp({
                     content: await __("generic.aborted")(interaction.guildId),
                     components: [],
                 });
             }
-            return null;
+            else if (answer === "timeout") return null;
         }
 
         if (!role){
@@ -84,17 +82,21 @@ export default {
 
         const currentRole = await db.get(`guild-${interaction.guildId}.${role?.id}`);
         if (currentRole && currentRole === price){
-            return await interaction.reply({
-                content: await __("replies.add_role.same_exists", name, currentRole)(interaction.guildId),
-            });
+            const content = await __("replies.add_role.same_exists", name, currentRole)(interaction.guildId);
+
+            if (interaction.replied || interaction.deferred) return interaction.followUp({ content });
+
+            return await interaction.reply({ content });
         }
 
         await db.set(`guild-${interaction.guildId}.${role?.id}`, price);
 
-        return await interaction.reply({
-            content: currentRole
-                ? await __("replies.add_role.updated", role.name, currentRole, price)(interaction.guildId)
-                : await __("replies.add_role.added", role.name, price)(interaction.guildId),
-        });
+        const content = currentRole
+            ? await __("replies.add_role.updated", role.name, currentRole, price)(interaction.guildId)
+            : await __("replies.add_role.added", role.name, price)(interaction.guildId);
+
+        if (interaction.replied || interaction.deferred) return interaction.followUp({ content });
+
+        return await interaction.reply({ content });
     },
 };

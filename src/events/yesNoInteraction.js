@@ -12,7 +12,7 @@ import __ from "../service/i18n.js";
  *
  * @param {import("discord.js").CommandInteraction} interaction
  * @param {object} options
- * @returns {Promise<[string, import("discord.js").MessageComponentInteraction | null]>}
+ * @returns {Promise<string>}
  */
 const createYesNoInteraction = async function(interaction, {
     promptText = null,
@@ -40,7 +40,9 @@ const createYesNoInteraction = async function(interaction, {
         ? new ActionRowBuilder().addComponents(no, yes)
         : new ActionRowBuilder().addComponents(yes, no);
 
-    const response = await interaction.reply({
+    await interaction.deferReply();
+
+    const response = await interaction.followUp({
         content: promptText,
         // @ts-ignore
         components: [row],
@@ -52,14 +54,15 @@ const createYesNoInteraction = async function(interaction, {
             filter: collectorFilter,
             time: 60000,
         });
-        return [confirmation.customId, confirmation];
+        await response.edit({ components: [] });
+        return confirmation.customId;
     }
     catch (e){
         await response.edit({ components: [] });
         await interaction.followUp({
             content: await __("errors.yn_timeout")(interaction.guildId),
         });
-        return ["timeout", null];
+        return "timeout";
     }
 };
 

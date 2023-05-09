@@ -30,14 +30,14 @@ export default {
             noStyle: ButtonStyle.Secondary,
             yesStyle: ButtonStyle.Danger,
             showNoFirst: true,
-        }).then(async([answer, confirmation]) => {
+        }).then(async(answer) => {
             if (answer === "yes"){
                 const data = await db.get(`guild-${interaction.guildId}`);
                 if (data) await db.delete(`guild-${interaction.guildId}`);
-                await confirmation?.update({ content: await __("replies.reset_all.sucess")(interaction.guildId), components: [] });
+                await interaction.followUp({ content: await __("replies.reset_all.sucess")(interaction.guildId) });
             }
             else if (answer === "no"){
-                await confirmation?.update({ content: await __("generic.aborted")(interaction.guildId), components: [] });
+                await interaction.followUp({ content: await __("generic.aborted")(interaction.guildId) });
             }
         });
     },
