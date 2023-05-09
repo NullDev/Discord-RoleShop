@@ -66,6 +66,8 @@ client.on("error", err => Log.error("Client error.", err));
 
 client.login(config.discord.bot_token)
     .then(() => Log.done("Logged in!"))
-    .catch(err => Log.error("Failed to login: " + err));
+    .catch(err => Log.error("Failed to login: ", err));
 
-process.on("unhandledRejection", (promise, reason) => Log.error("Unhandled promise rejection: " + promise + " reason: " + reason));
+process.on("unhandledRejection", (
+    /** @type {Error} */ err,
+) => Log.error("Unhandled promise rejection: ", err));
