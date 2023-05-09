@@ -55,6 +55,13 @@
             "same_exists": "Die Rolle \"%s\" existiert bereits mit dem selben Preis %s. Breche ab.",
             "added": "Rolle \"%s\" mit Preis %s hinzugefügt.",
             "updated": "Die Rolle \"%s\" existiert bereits mit einem anderen Preis (%s). Ich habe den Preis zu %s geändert!"
+        },
+        "remove_role": {
+            "invalid_role_name": "Ungültiger Rollenname.",
+            "role_not_found": "Rolle \"%s\" nicht gefunden.",
+            "failed_to_remove": "Konnte Rolle \"%s\" nicht vom Server entfernen. Hat der Bot die Berechtigung?",
+            "removed": "Rolle \"%s\" aus dem System gelöscht.",
+            "removed_server": "Rolle \"%s\" aus dem System und vom Server gelöscht."
         }
     }
 }

@@ -55,6 +55,13 @@
             "same_exists": "Role \"%s\" already exists with the same price %s. Aborting.",
             "added": "Added role \"%s\" with price %s",
             "updated": "The role \"%s\" already exists with a different price (%s). I updated price to %s!"
+        },
+        "remove_role": {
+            "invalid_role_name": "Invalid role name.",
+            "role_not_found": "Role \"%s\" not found.",
+            "failed_to_remove": "Failed to remove role \"%s\" from Server. Does the Bot have permission?",
+            "removed": "Removed role \"%s\" from system.",
+            "removed_server": "Removed role \"%s\" from system and deleted it from Server."
         }
     }
 }
