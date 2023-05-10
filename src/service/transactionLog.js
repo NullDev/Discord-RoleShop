@@ -14,21 +14,17 @@ const db = new QuickDB({
 /**
  * Log a transaction to the database
  *
- * @param {import("discord.js").Guild} guild
- * @param {import("discord.js").GuildMember} user
- * @param {import("discord.js").Role} role
+ * @param {String|null} guildid
+ * @param {String} userid
+ * @param {String} roleid
+ * @param {String} rolename
  * @param {String} action
  * @param {Number|null} [price=null]
- * @param {Number|null} [balance_before=null]
- * @param {Number|null} [balance_after=null]
  */
-const logTransaction = async function(guild, user, role, action, price = null, balance_before = null, balance_after = null){
+const logTransaction = async function(guildid, userid, roleid, rolename, action, price = null){
     const timestamp = (new Date()).toISOString();
-    const userid = user.id;
-    const roleid = role.id;
-    const rolename = role.name;
-    await db.push(`guild-${guild.id}`, {
-        timestamp, userid, roleid, rolename, action, price, balance_before, balance_after,
+    await db.push(`guild-${guildid}`, {
+        timestamp, userid, roleid, rolename, action, price,
     });
 };
 
