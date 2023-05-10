@@ -82,7 +82,7 @@ export default {
                 .filter(([, , , userOwnsRole]) => !userOwnsRole)
                 .map(([role, roleid, price]) => ({
                     label: role,
-                    value: roleid,
+                    value: JSON.stringify({ role, roleid, price }),
                     description: `Price: ${price} points`,
                 })),
         };
