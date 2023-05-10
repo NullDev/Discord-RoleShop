@@ -34,6 +34,8 @@ Alternatively you can host the bot yourself. Instructions [below ⏬](#wrench-se
     - Easy configuration system
     - Install instructions provided [below](#wrench-setup)
 - [x] Admin commands
+- [x] Fail-safes to prevent point loss on error
+- [x] Automatic Syncing to keep up with DB and Discord states 
 - [x] _Smart Spam Filtering™_ via Exponential Smoothing & Moving Average
 
 <hr>
