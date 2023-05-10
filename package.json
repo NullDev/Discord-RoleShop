@@ -45,7 +45,7 @@
   "dependencies": {
     "better-sqlite3": "^8.3.0",
     "canvas": "^2.11.2",
-    "discord.js": "^14.9.0",
+    "discord.js": "^14.11.0",
     "i18n-light": "^0.5.4",
     "quick.db": "^9.1.6"
   }
