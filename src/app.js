@@ -4,8 +4,9 @@ import RateLimiter from "./util/rateLimiter.js";
 import { config, meta } from "../config/config.js";
 import DiscordClient from "./service/client.js";
 import registerCommands from "./service/commandRegister.js";
-import interactionCreateHandler from "./events/interactionCreate.js";
+import interactionCreateHandler from "./events/commandInteractionCreate.js";
 import messageCreate from "./events/messageCreate.js";
+import generalInteractionCreateHandler from "./events/generalInteractionCreate.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -59,6 +60,8 @@ const rateLimiter = new RateLimiter(
 );
 
 client.on("messageCreate", async message => messageCreate(message, rateLimiter));
+
+client.on("interactionCreate", async interaction => generalInteractionCreateHandler(interaction));
 
 client.on("warn", info => Log.warn(info));
 

@@ -10,7 +10,7 @@ import __ from "../service/i18n.js";
 /**
  * Create a yes/no interaction
  *
- * @param {import("discord.js").CommandInteraction} interaction
+ * @param {import("discord.js").CommandInteraction | import("discord.js").StringSelectMenuInteraction} interaction
  * @param {object} options
  * @returns {Promise<string>}
  */
