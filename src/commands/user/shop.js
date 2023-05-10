@@ -41,7 +41,7 @@ export default {
                 return null;
             }
 
-            const roleColor = roleObj?.color.toString(16);
+            const roleColor = String(roleObj?.hexColor ?? "#000000");
             const userOwnsRole = /** @type {import("discord.js").GuildMemberRoleManager} */ (interaction.member?.roles)?.cache.has(roleid);
             return [role, roleid, price, userOwnsRole, roleColor];
         });
@@ -56,7 +56,7 @@ export default {
 
         // @ts-ignore
         const fields = roleArray.map(async([role, , price, userOwnsRole, roleColor]) => {
-            const color = roleColor ? `[#${roleColor}](https://www.color-hex.com/color/${roleColor})` : "None";
+            const color = roleColor !== "#000000" ? `[${roleColor}](https://v1.cx/color/${roleColor})` : "None";
             return {
                 name: role,
                 value: `Price: ${price} points.\nOwned: ${userOwnsRole ? "✅" : "❌"}\nColor: ${color}`,
