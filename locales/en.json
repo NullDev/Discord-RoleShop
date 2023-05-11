@@ -72,7 +72,7 @@
             "already_owned": "You already own this role",
             "buy_confirmation": "So you want to buy %s for %s points?",
             "success": "You bought %s for %s points. You now have %s points."
-        }
+        },
         "return": {
             "select_role": "Select a role to return",
             "return_role": "Return this role. The original price was %s points.",
