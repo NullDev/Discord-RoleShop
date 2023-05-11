@@ -66,7 +66,10 @@
         "return": {
             "select_role": "Select a role to return",
             "return_role": "Return this role. The original price was %s points.",
-            "which_role": "Which role would you like to to return?"
+            "which_role": "Which role would you like to to return?",
+            "are_you_sure": "Are you sure you want to return the role \"%s\"? You will **NOT** get back the points you paid (%s)!",
+            "return_failed": "Failed to remove your role. Please contact an admin to make sure the bot has the correct permissions.",
+            "return_success": "The role \"%s\" has been returned."
         }
     }
 }

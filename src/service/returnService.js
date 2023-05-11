@@ -16,7 +16,7 @@ const returnEventHandler = async function(interaction){
     const { role, roleid, price } = JSON.parse(interaction.values[0]);
 
     createYesNoInteraction(interaction, {
-        promptText: `so u wanna return ${role}? You will NOT get the ${price} points back?`,
+        promptText: await __("replies.return.are_you_sure", role, price)(interaction.guildId),
     }).then(async(answer) => {
         if (answer === "yes"){
             const rObj = /** @type {import("discord.js").GuildMemberRoleManager} */ (interaction.member?.roles);
@@ -25,14 +25,20 @@ const returnEventHandler = async function(interaction){
                 await rObj.remove(roleid);
             }
             catch (e){
-                return await interaction.channel?.send({ content: "went wrong." });
+                return await interaction.channel?.send({
+                    content: await __("replies.return.return_failed")(interaction.guildId),
+                });
             }
 
             await logTransaction(interaction.guildId, interaction.user.id, roleid, role, "RETURN");
-            return await interaction.channel?.send({ content: "u returned thingy" });
+            return await interaction.channel?.send({
+                content: await __("replies.return.return_success", role)(interaction.guildId),
+            });
         }
         else if (answer === "no"){
-            return await interaction.channel?.send({ content: await __("generic.aborted")(interaction.guildId) });
+            return await interaction.channel?.send({
+                content: await __("generic.aborted")(interaction.guildId),
+            });
         }
 
         return null;
