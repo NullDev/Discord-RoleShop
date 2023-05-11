@@ -28,7 +28,7 @@ const buyEventHandler = async function(interaction){
             const rObj = /** @type {import("discord.js").GuildMemberRoleManager} */ (interaction.member?.roles);
             const hasRole = rObj.cache.find((r) => r.id === roleid);
             if (hasRole){
-                return await interaction.channel?.send({ content: "u already got dem role" });
+                return await interaction.channel?.send({ content: await __("replies.shop.already_owned")(interaction.guildId) });
             }
 
             const userData = await userDb.get(`guild-${interaction.guildId}.user-${interaction.user.id}`);
