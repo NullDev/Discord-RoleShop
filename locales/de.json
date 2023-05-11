@@ -14,7 +14,9 @@
         "no_roles": "Keine Rollen registriert.",
         "role_not_found": "ACHTUNG: Rolle %s mit Preis %s existiert nicht mehr! Aus Datenbank entfernt.",
         "invalid_name": "Ungültiger Name.",
-        "invalid_price": "Ungültiger Preis. Muss eine Ganzzahl sein, die grö0er als 0 ist."
+        "invalid_price": "Ungültiger Preis. Muss eine Ganzzahl sein, die grö0er als 0 ist.",
+        "not_enough_points": "Du hast nicht genug Punkte.",
+        "buy_fail": "Irgendwas ist schief gelaufen. Es wurden keine Punkte abgezogen."
     },
     "generic": {
         "aborted": "Abgebrochen.",
@@ -67,7 +69,9 @@
             "description": "Zeigt den Rollenshop an.",
             "price": "Preis: %s punkte",
             "buy_dialogue": "Preis: %s punkte. \nBereits gekauft: %s\nFarbe: %s",
-            "already_owned": "Du hast diese Rolle bereits"
+            "already_owned": "Du hast diese Rolle bereits",
+            "buy_confirmation": "Du willst also %s für %s Punkte kaufen?",
+            "success": "Du hast %s für %s Punkte gekauft. Du hast jetzt %s Punkte."
         }
     }
 }

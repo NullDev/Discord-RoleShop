@@ -22,7 +22,7 @@ const buyEventHandler = async function(interaction){
     const { role, roleid, price } = JSON.parse(interaction.values[0]);
 
     createYesNoInteraction(interaction, {
-        promptText: `so u wanna buy ${role} for ${price} points?`,
+        promptText: await __("replies.shop.buy_confirmation", role, price)(interaction.guildId),
     }).then(async(answer) => {
         if (answer === "yes"){
             const rObj = /** @type {import("discord.js").GuildMemberRoleManager} */ (interaction.member?.roles);
@@ -33,7 +33,7 @@ const buyEventHandler = async function(interaction){
 
             const userData = await userDb.get(`guild-${interaction.guildId}.user-${interaction.user.id}`);
             if (!userData || userData.points < price){
-                return await interaction.channel?.send({ content: "u poor" });
+                return await interaction.channel?.send({ content: await __("errors.not_enough_points")(interaction.guildId) });
             }
 
             try {
@@ -43,12 +43,12 @@ const buyEventHandler = async function(interaction){
                 }
             }
             catch (e){
-                return await interaction.channel?.send({ content: "went wrong. no points removed" });
+                return await interaction.channel?.send({ content: await __("errors.buy_fail")(interaction.guildId) });
             }
 
             const newBalance = await userDb.sub(`guild-${interaction.guildId}.user-${interaction.user.id}.points`, price);
             await logTransaction(interaction.guildId, interaction.user.id, roleid, role, "BUY", price);
-            return await interaction.channel?.send({ content: "u bought thingy for " + price + " points. u now have " + newBalance + " points" });
+            return await interaction.channel?.send({ content: await __("replies.shop.success", role, price, newBalance)(interaction.guildId) });
         }
         else if (answer === "no"){
             return await interaction.channel?.send({ content: await __("generic.aborted")(interaction.guildId) });

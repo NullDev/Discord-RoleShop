@@ -14,7 +14,9 @@
         "no_roles": "No roles registered.",
         "role_not_found": "ATTENTION: Role %s with price %s does not exist anymore! Removed it from Database.",
         "invalid_name": "Invalid name.",
-        "invalid_price": "Invalid price. Must be an integer greater than 0."
+        "invalid_price": "Invalid price. Must be an integer greater than 0.",
+        "not_enough_points": "You don't have enough points",
+        "buy_fail": "Something went wrong. No points removed."
     },
     "generic": {
         "aborted": "Aborted.",
@@ -64,10 +66,12 @@
             "removed_server": "Removed role \"%s\" from system and deleted it from Server."
         },
         "shop": {
-            "description": "Zeigt den Rollenshop an.",
-            "price": "Preis: %s punkte",
-            "buy_dialogue": "Preis: %s punkte. \nBereits gekauft: %s\nFarbe: %s",
-            "already_owned": "You already own this role"
+            "description": "Shows the role shop.",
+            "price": "Price: %s points",
+            "buy_dialogue": "Price: %s points. \nAlready bought: %s\nColor: %s",
+            "already_owned": "You already own this role",
+            "buy_confirmation": "So you want to buy %s for %s points?",
+            "success": "You bought %s for %s points. You now have %s points."
         }
     }
 }
