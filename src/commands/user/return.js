@@ -49,18 +49,20 @@ export default {
             return [role, roleid, price];
         });
 
+        const options = rolesToReturn.map(async([role, roleid, price]) => ({
+            label: role,
+            value: JSON.stringify({ role, roleid, price }),
+            description: await __("replies.return.return_role", price)(interaction.guildId),
+        }));
+
         const selectMenu = {
             customId: "role_return",
-            placeholder: "Select a role to return",
-            options: rolesToReturn.map(([role, roleid, price]) => ({
-                label: role,
-                value: JSON.stringify({ role, roleid, price }),
-                description: `Return this role. The original price was ${price} points.`,
-            })),
+            placeholder: await __("replies.return.select_role")(interaction.guildId),
+            options: await Promise.all(options),
         };
 
         return await interaction.followUp({
-            content: "Which role would you like to return?",
+            content: await __("replies.return.which_role")(interaction.guildId),
             components: [{
                 type: ComponentType.ActionRow,
                 components: [{

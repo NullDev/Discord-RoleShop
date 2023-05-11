@@ -62,6 +62,11 @@
             "failed_to_remove": "Failed to remove role \"%s\" from Server. Does the Bot have permission?",
             "removed": "Removed role \"%s\" from system.",
             "removed_server": "Removed role \"%s\" from system and deleted it from Server."
+        },
+        "return": {
+            "select_role": "Select a role to return",
+            "return_role": "Return this role. The original price was %s points.",
+            "which_role": "Which role would you like to to return?"
         }
     }
 }
