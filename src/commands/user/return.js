@@ -26,7 +26,7 @@ export default {
 
         const roles = await roleDb.get(`guild-${interaction.guildId}`);
         if (!roles || Object.keys(roles).length === 0){
-            return await interaction.reply({
+            return await interaction.followUp({
                 content: await __("errors.no_roles")(interaction.guildId),
                 ephemeral: true,
             });
@@ -36,8 +36,8 @@ export default {
         const commonRoles = Object.keys(roles).filter(roleid => userRoles.has(roleid));
 
         if (commonRoles.length === 0){
-            return await interaction.reply({
-                content: await __("errors.no_roles")(interaction.guildId),
+            return await interaction.followUp({
+                content: await __("replies.return.none_owned")(interaction.guildId),
                 ephemeral: true,
             });
         }
