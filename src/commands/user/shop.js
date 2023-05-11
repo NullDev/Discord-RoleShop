@@ -26,7 +26,7 @@ export default {
 
         const roles = await roleDb.get(`guild-${interaction.guildId}`);
         if (!roles || Object.keys(roles).length === 0){
-            return await interaction.reply({
+            return await interaction.followUp({
                 content: await __("errors.no_roles")(interaction.guildId),
                 ephemeral: true,
             });
@@ -48,7 +48,7 @@ export default {
 
         const roleArray = (await Promise.all(promises)).filter(x => x !== null);
         if (roleArray.length === 0){
-            return await interaction.reply({
+            return await interaction.followUp({
                 content: await __("errors.no_roles")(interaction.guildId),
                 ephemeral: true,
             });
@@ -84,6 +84,8 @@ export default {
                 description: String(await __("replies.shop.price", price)(interaction.guildId)),
             }));
 
+        const userAlreadyOwnsAllRoles = roleArray.every(([, , , userOwnsRole]) => userOwnsRole);
+
         const selectMenu = {
             customId: "role_buy",
             placeholder: "Select a role to buy",
@@ -92,7 +94,7 @@ export default {
 
         return await interaction.followUp({
             embeds: [embed],
-            components: [{
+            components: userAlreadyOwnsAllRoles ? [] : [{
                 type: ComponentType.ActionRow,
                 components: [{
                     type: ComponentType.StringSelect,
