@@ -68,7 +68,7 @@
         "shop": {
             "description": "Kaufe Rollen mit deinen Punkten hier",
             "price": "Preis: %s Punkte",
-            "buy_dialogue": "Preis: %s punkte. \nBereits gekauft: %s\nFarbe: %s",
+            "buy_dialogue": "Preis: %s Punkte. \nBereits gekauft: %s\nFarbe: %s",
             "already_owned": "Du hast diese Rolle bereits",
             "buy_confirmation": "Du willst also %s für %s Punkte kaufen?",
             "success": "Du hast %s für %s Punkte gekauft. Du hast jetzt %s Punkte."
