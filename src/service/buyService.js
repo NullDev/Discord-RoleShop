@@ -47,7 +47,7 @@ const buyEventHandler = async function(interaction){
             }
 
             const newBalance = await userDb.sub(`guild-${interaction.guildId}.user-${interaction.user.id}.points`, price);
-            await logTransaction();
+            await logTransaction(interaction.guildId, interaction.user.id, roleid, role, "BUY", price);
             return await interaction.channel?.send({ content: "u bought thingy for " + price + " points. u now have " + newBalance + " points" });
         }
         else if (answer === "no"){
