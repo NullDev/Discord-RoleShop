@@ -62,6 +62,11 @@
             "failed_to_remove": "Konnte Rolle \"%s\" nicht vom Server entfernen. Hat der Bot die Berechtigung?",
             "removed": "Rolle \"%s\" aus dem System gelöscht.",
             "removed_server": "Rolle \"%s\" aus dem System und vom Server gelöscht."
+        },
+        "shop": {
+            "description": "Zeigt den Rollenshop an.",
+            "price": "Preis: %s punkte",
+            "buy_dialogue": "Preis: %s punkte. \nBereits gekauft: %s\nFarbe: %s"
         }
     }
 }

@@ -62,6 +62,11 @@
             "failed_to_remove": "Failed to remove role \"%s\" from Server. Does the Bot have permission?",
             "removed": "Removed role \"%s\" from system.",
             "removed_server": "Removed role \"%s\" from system and deleted it from Server."
+        },
+        "shop": {
+            "description": "Zeigt den Rollenshop an.",
+            "price": "Preis: %s punkte",
+            "buy_dialogue": "Preis: %s punkte. \nBereits gekauft: %s\nFarbe: %s"
         }
     }
 }
