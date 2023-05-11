@@ -14,7 +14,9 @@
         "no_roles": "Keine Rollen registriert.",
         "role_not_found": "ACHTUNG: Rolle %s mit Preis %s existiert nicht mehr! Aus Datenbank entfernt.",
         "invalid_name": "Ungültiger Name.",
-        "invalid_price": "Ungültiger Preis. Muss eine Ganzzahl sein, die grö0er als 0 ist."
+        "invalid_price": "Ungültiger Preis. Muss eine Ganzzahl sein, die grö0er als 0 ist.",
+        "not_enough_points": "Du hast nicht genügend Punkte.",
+        "buy_fail": "Irgendwas ist schief gelaufen. Es wurden keine Punkte abgezogen."
     },
     "generic": {
         "aborted": "Abgebrochen.",
@@ -62,6 +64,14 @@
             "failed_to_remove": "Konnte Rolle \"%s\" nicht vom Server entfernen. Hat der Bot die Berechtigung?",
             "removed": "Rolle \"%s\" aus dem System gelöscht.",
             "removed_server": "Rolle \"%s\" aus dem System und vom Server gelöscht."
+        },
+        "shop": {
+            "description": "Kaufe Rollen mit deinen Punkten hier",
+            "price": "Preis: %s Punkte",
+            "buy_dialogue": "Preis: %s Punkte. \nBereits gekauft: %s\nFarbe: %s",
+            "already_owned": "Du hast diese Rolle bereits",
+            "buy_confirmation": "Du willst also %s für %s Punkte kaufen?",
+            "success": "Du hast %s für %s Punkte gekauft. Du hast jetzt %s Punkte."
         },
         "return": {
             "select_role": "Wähle eine Rolle zum zurückgeben aus.",

@@ -59,7 +59,7 @@ export default {
             const color = roleColor !== "#000000" ? `[${roleColor}](https://v1.cx/color/${roleColor})` : "None";
             return {
                 name: role,
-                value: `Price: ${price} points.\nOwned: ${userOwnsRole ? "✅" : "❌"}\nColor: ${color}`,
+                value: String(await __("replies.shop.buy_dialogue", price, userOwnsRole ? "✅" : "❌", color)(interaction.guildId)),
                 inline: false,
             };
         });
@@ -67,7 +67,7 @@ export default {
         const guildServerImg = interaction.guild?.iconURL({ extension: "png" }) ?? "https://cdn.discordapp.com/embed/avatars/0.png";
         const embed = {
             title: `${interaction.guild?.name}'s Role Shop`,
-            description: "Buy roles with your points here",
+            description: String(await __("replies.shop.description")(interaction.guildId)),
             color: 2518621,
             thumbnail: {
                 url: guildServerImg,
@@ -75,16 +75,19 @@ export default {
             fields: await Promise.all(fields),
         };
 
+
+        const selectMenuOptions = roleArray
+            .filter(([, , , userOwnsRole]) => !userOwnsRole)
+            .map(async([role, roleid, price]) => ({
+                label: role,
+                value: JSON.stringify({ role, roleid, price }),
+                description: String(await __("replies.shop.price", price)(interaction.guildId)),
+            }));
+
         const selectMenu = {
             customId: "role_buy",
             placeholder: "Select a role to buy",
-            options: roleArray
-                .filter(([, , , userOwnsRole]) => !userOwnsRole)
-                .map(([role, roleid, price]) => ({
-                    label: role,
-                    value: JSON.stringify({ role, roleid, price }),
-                    description: `Price: ${price} points`,
-                })),
+            options: await Promise.all(selectMenuOptions),
         };
 
         return await interaction.followUp({
