@@ -16,7 +16,8 @@
         "invalid_name": "Ungültiger Name.",
         "invalid_price": "Ungültiger Preis. Muss eine Ganzzahl sein, die grö0er als 0 ist.",
         "not_enough_points": "Du hast nicht genügend Punkte.",
-        "buy_fail": "Irgendwas ist schief gelaufen. Es wurden keine Punkte abgezogen."
+        "buy_fail": "Irgendwas ist schief gelaufen. Es wurden keine Punkte abgezogen.",
+        "transaction_log_empty": "Kein Transaktionslog für diesen Server gefunden."
     },
     "generic": {
         "aborted": "Abgebrochen.",

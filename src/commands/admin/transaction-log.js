@@ -1,7 +1,8 @@
 import path from "node:path";
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
-import { config } from "../../../config/config.js";
 import { QuickDB } from "quick.db";
+import { config } from "../../../config/config.js";
+import __ from "../../service/i18n.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -27,7 +28,7 @@ export default {
         const log = await db.get(`guild-${interaction.guildId}`);
         if (!log || !log.length){
             return await interaction.followUp({
-                content: "No transaction log found for this guild.",
+                content: await __("errors.transaction_log_empty")(interaction.guildId),
             });
         }
 
