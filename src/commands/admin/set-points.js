@@ -2,6 +2,7 @@ import path from "node:path";
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 import { QuickDB } from "quick.db";
 import { config } from "../../../config/config.js";
+import logTransaction from "../../service/transactionLog.js";
 import __ from "../../service/i18n.js";
 
 // ========================= //
@@ -49,7 +50,10 @@ export default {
             ephemeral: true,
         });
 
+        const oldBalance = await db.get(`guild-${interaction.guildId}.user-${user?.user?.id}.points`);
         await db.set(`guild-${interaction.guildId}.user-${user?.user?.id}.points`, points);
+
+        await logTransaction(interaction.guildId, interaction.user.id, "SET-POINTS", null, null, null, oldBalance || 0, points);
 
         return await interaction.reply({
             content: await __(

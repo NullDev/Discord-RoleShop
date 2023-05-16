@@ -4,6 +4,7 @@ import { QuickDB } from "quick.db";
 import { config } from "../../../config/config.js";
 import __ from "../../service/i18n.js";
 import createYesNoInteraction from "../../events/yesNoInteraction.js";
+import logTransaction from "../../service/transactionLog.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -34,6 +35,9 @@ export default {
             if (answer === "yes"){
                 const data = await db.get(`guild-${interaction.guildId}`);
                 if (data) await db.delete(`guild-${interaction.guildId}`);
+
+                await logTransaction(interaction.guildId, interaction.user.id, "RESET-GUILD");
+
                 await interaction.followUp({ content: await __("replies.reset_all.sucess")(interaction.guildId) });
             }
             else if (answer === "no"){

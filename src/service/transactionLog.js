@@ -16,15 +16,17 @@ const db = new QuickDB({
  *
  * @param {String|null} guildid
  * @param {String} userid
- * @param {String} roleid
- * @param {String} rolename
- * @param {String} action
+ * @param {String|null} [action=null]
+ * @param {String|null} [roleid=null]
+ * @param {String|null} [rolename=null]
  * @param {Number|null} [price=null]
+ * @param {Number|null} [oldBalance=null]
+ * @param {Number|null} [newBalance=null]
  */
-const logTransaction = async function(guildid, userid, roleid, rolename, action, price = null){
+const logTransaction = async function(guildid, userid, action, roleid = null, rolename = null, price = null, oldBalance = null, newBalance = null){
     const timestamp = (new Date()).toISOString();
     await db.push(`guild-${guildid}`, {
-        timestamp, userid, roleid, rolename, action, price,
+        timestamp, userid, action, roleid, rolename, price, oldBalance, newBalance,
     });
 };
 

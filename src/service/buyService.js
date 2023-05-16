@@ -46,8 +46,11 @@ const buyEventHandler = async function(interaction){
                 return await interaction.channel?.send({ content: await __("errors.buy_fail")(interaction.guildId) });
             }
 
+            const oldBalance = userData.points;
             const newBalance = await userDb.sub(`guild-${interaction.guildId}.user-${interaction.user.id}.points`, price);
-            await logTransaction(interaction.guildId, interaction.user.id, roleid, role, "BUY", price);
+
+            await logTransaction(interaction.guildId, interaction.user.id, "BUY", roleid, role, price, oldBalance, newBalance);
+
             return await interaction.channel?.send({ content: await __("replies.shop.success", role, price, newBalance)(interaction.guildId) });
         }
         else if (answer === "no"){

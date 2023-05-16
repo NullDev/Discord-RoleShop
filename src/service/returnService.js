@@ -30,7 +30,8 @@ const returnEventHandler = async function(interaction){
                 });
             }
 
-            await logTransaction(interaction.guildId, interaction.user.id, roleid, role, "RETURN");
+            await logTransaction(interaction.guildId, interaction.user.id, "RETURN", roleid, role);
+
             return await interaction.channel?.send({
                 content: await __("replies.return.return_success", role)(interaction.guildId),
             });
