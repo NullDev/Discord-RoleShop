@@ -7,6 +7,7 @@ import DiscordClient from "./service/client.js";
 import registerCommands from "./service/commandRegister.js";
 import interactionCreateHandler from "./events/interactionCreate.js";
 import messageCreate from "./events/messageCreate.js";
+import scheduleCrons from "./service/cronScheduler.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -54,6 +55,8 @@ client.on("ready", async() => {
 
     await registerCommands(client)
         .then(() => client.on(Events.InteractionCreate, async interaction => interactionCreateHandler(interaction)));
+
+    scheduleCrons(client);
 
     client.user?.setActivity({ name: config.discord.bot_status, type: ActivityType.Playing });
     client.user?.setStatus("online");
