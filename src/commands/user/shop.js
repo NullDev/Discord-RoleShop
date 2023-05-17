@@ -12,6 +12,10 @@ const roleDb = new QuickDB({
     filePath: path.resolve("./data/roles.sqlite"),
 });
 
+const userDb = new QuickDB({
+    filePath: path.resolve("./data/users.sqlite"),
+});
+
 export default {
     data: new SlashCommandBuilder()
         .setName(`${config.bot_settings.slash_command_prefix}-shop`)
@@ -65,9 +69,14 @@ export default {
         });
 
         const guildServerImg = interaction.guild?.iconURL({ extension: "png" }) ?? "https://cdn.discordapp.com/embed/avatars/0.png";
+        const userPoints = await userDb.get(`guild-${interaction.guildId}.user-${interaction.user.id}.points`) || 0;
         const embed = {
             title: `${interaction.guild?.name}'s Role Shop`,
-            description: String(await __("replies.shop.description")(interaction.guildId)),
+            description: String(await __("replies.shop.description")(interaction.guildId))
+                + "\n" + await __(
+                "replies.stats_you",
+                await __("replies.points", userPoints, userPoints)(interaction.guildId, true),
+            )(interaction.guildId),
             color: 2518621,
             thumbnail: {
                 url: guildServerImg,
