@@ -51,6 +51,10 @@ const buyEventHandler = async function(interaction){
 
             await logTransaction(interaction.guildId, interaction.user.id, "BUY", roleid, role, price, oldBalance, newBalance);
 
+            await interaction.message.edit({
+                components: [],
+            });
+
             return await interaction.channel?.send({ content: await __("replies.shop.success", role, price, newBalance)(interaction.guildId) });
         }
         else if (answer === "no"){

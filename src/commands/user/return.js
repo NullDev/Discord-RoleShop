@@ -12,6 +12,29 @@ const roleDb = new QuickDB({
     filePath: path.resolve("./data/roles.sqlite"),
 });
 
+/**
+ * Generate the role menu
+ *
+ * @param {Array} rolesToReturn
+ * @param {import("discord.js").CommandInteraction} interaction
+ * @return {Promise<Object>}
+ */
+const generateRoleMenu = async function(rolesToReturn, interaction){
+    const options = rolesToReturn.map(async([role, roleid, price]) => ({
+        label: role,
+        value: JSON.stringify({ role, roleid, price }),
+        description: await __("replies.return.return_role", price)(interaction.guildId),
+    }));
+
+    const selectMenu = {
+        customId: "role_return",
+        placeholder: await __("replies.return.select_role")(interaction.guildId),
+        options: await Promise.all(options),
+    };
+
+    return selectMenu;
+};
+
 export default {
     data: new SlashCommandBuilder()
         .setName(`${config.bot_settings.slash_command_prefix}-return`)
@@ -49,17 +72,7 @@ export default {
             return [role, roleid, price];
         });
 
-        const options = rolesToReturn.map(async([role, roleid, price]) => ({
-            label: role,
-            value: JSON.stringify({ role, roleid, price }),
-            description: await __("replies.return.return_role", price)(interaction.guildId),
-        }));
-
-        const selectMenu = {
-            customId: "role_return",
-            placeholder: await __("replies.return.select_role")(interaction.guildId),
-            options: await Promise.all(options),
-        };
+        const selectMenu = await generateRoleMenu(rolesToReturn, interaction);
 
         return await interaction.followUp({
             content: await __("replies.return.which_role")(interaction.guildId),
