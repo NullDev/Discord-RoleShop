@@ -28,6 +28,9 @@ const logTransaction = async function(guildid, userid, action, roleid = null, ro
     await db.push(`guild-${guildid}`, {
         timestamp, userid, action, roleid, rolename, price, oldBalance, newBalance,
     });
+
+    const log = await db.get(`guild-${guildid}`);
+    if (log.length > 100) await db.set(`guild-${guildid}`, log.slice(1));
 };
 
 export default logTransaction;
