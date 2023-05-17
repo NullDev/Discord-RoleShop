@@ -10,6 +10,14 @@ const rolesDb = new QuickDB({
     filePath: path.resolve("./data/roles.sqlite"),
 });
 
+const usersDb = new QuickDB({
+    filePath: path.resolve("./data/users.sqlite"),
+});
+
+const guildSettingsDb = new QuickDB({
+    filePath: path.resolve("./data/guild_settings.sqlite"),
+});
+
 /**
  * Schedule all crons
  *
@@ -32,6 +40,8 @@ const syncRolesAndShop = async(client) => {
             const guild = await client.guilds.fetch(guildId);
             if (!guild){
                 await rolesDb.delete(`guild-${guildId}`);
+                await usersDb.delete(`guild-${guildId}`);
+                await guildSettingsDb.delete(`guild-${guildId}`);
                 Log.info(`[CRON] Guild ${guildId} not found. Deleting from DB...`);
                 ++removedGuilds;
                 continue;
