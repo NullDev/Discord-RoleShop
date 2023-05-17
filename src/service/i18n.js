@@ -7,7 +7,7 @@ import { QuickDB } from "quick.db";
 // ========================= //
 
 i18n.configure({
-    defaultLocale: "en",
+    defaultLocale: "English_en",
     dir: path.resolve("./locales"),
     extension: ".json",
 });
