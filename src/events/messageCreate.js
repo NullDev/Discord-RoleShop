@@ -18,6 +18,7 @@ const guildSettingsDb = new QuickDB({
  * Handle messageCreate event
  *
  * @param {import("discord.js").Message} message
+ * @param {import("../util/rateLimiter.js").default} rateLimiter
  * @return {Promise<void>}
  */
 const messageCreate = async function(message, rateLimiter){
