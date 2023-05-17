@@ -47,6 +47,7 @@
     "canvas": "^2.11.2",
     "discord.js": "^14.11.0",
     "i18n-light": "^0.5.4",
+    "node-cron": "^3.0.2",
     "quick.db": "^9.1.6"
   }
 }
