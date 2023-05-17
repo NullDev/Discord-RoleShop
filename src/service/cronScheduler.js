@@ -1,19 +1,20 @@
 import cron from "node-cron";
 import Log from "../util/log.js";
-import removeInteractionComponents from "../crons/removeInteractionComponents.js";
+import syncRolesAndShop from "../crons/syncRolesAndShop.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
 // ========================= //
 
+/**
+ * Schedule all crons
+ *
+ * @param {import("../service/client.js").default} client
+ */
 const scheduleCrons = function(client){
-    // 10 minutes cron
-    cron.schedule("*/10 * * * *", () => {
-        removeInteractionComponents(client);
-    });
-
     // hourly cron
     cron.schedule("0 * * * *", () => {
+        syncRolesAndShop(client);
     });
 
     const cronCount = cron.getTasks().size;
