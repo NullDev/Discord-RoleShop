@@ -1,0 +1,87 @@
+{
+    "__LANG__": "es",
+    "errors": {
+        "generic_command_execution_failed": "¡Hubo un error al ejecutar este comando! =(",
+        "command_not_found": "Parece que no conozco el comando '%s' :/",
+        "stats_on_bot": "Los bots no tienen estadísticas. :P",
+        "points_on_bot": "Los bots no pueden tener puntos.",
+        "invalid_user": "Usuario inválido",
+        "invalid_points": "Cantidad de puntos inválida. Debe ser un entero mayor o igual a 0.",
+        "no_top_stats": "No hay estadísticas disponibles todavía :(",
+        "yn_timeout": "Se acabó el tiempo. Abortado.",
+        "multiplier_too_small": "El valor debe ser al menos 1 (= Sin multiplicador).",
+        "multiplier_nan": "El multiplicador debe ser un número.",
+        "no_roles": "No hay roles registrados.",
+        "role_not_found": "ATENCIÓN: El rol %s con precio %s ya no existe! Lo eliminé de la base de datos.",
+        "invalid_name": "Nombre inválido.",
+        "invalid_price": "Precio inválido. Debe ser un entero mayor que 0.",
+        "not_enough_points": "No tienes suficientes puntos",
+        "buy_fail": "Algo salió mal. No se eliminaron puntos.",
+        "transaction_log_empty": "No se encontró registro de transacciones para esta guild."
+    },
+    "generic": {
+        "aborted": "Abortado.",
+        "abort": "Cancelar",
+        "yes": "Sí",
+        "no": "No",
+        "are_you_sure": "¿Estás seguro?"
+    },
+    "replies": {
+        "stats_you": "¡Actualmente tienes %s!",
+        "stats_other": "¡%s actualmente tiene %s!",
+        "points": {
+            "zero": "sin puntos",
+            "one": "un punto",
+            "many": "%s puntos"
+        },
+        "reset_all": {
+            "are_you_sure": "¿Estás seguro de que quieres restablecer TODAS las estadísticas para este servidor?",
+            "sucess": "¡Se borraron todas las estadísticas!",
+            "confirm": "SÍ, REINICIAR TODO"
+        },
+        "points_set": "¡%s ahora tiene %s!",
+        "top_users": {
+            "title": "Usuario superior en %s",
+            "description": "Los 10 usuarios con mayor cantidad de puntos."
+        },
+        "bot_info_tagline": "Bot de Discord para una **tienda de roles** con moneda que se puede ganar escribiendo mensajes.",
+        "multiplier_set_none": "El multiplicador de impulso ha sido desactivado.",
+        "multiplier_set": "El multiplicador de impulso ahora tiene un valor de %s.",
+        "spam_filter": {
+            "true": "habilitado",
+            "false": "deshabilitado",
+            "set": "El filtro de spam ahora está %s."
+        },
+        "add_role": {
+            "doesn_exist_prompt": "El rol \"%s\" no existe en este servidor. ¿Quieres que lo cree para ti?",
+            "no_perms": "Falló la creación del rol. ¿Son correctos los permisos del bot?",
+            "same_exists": "El rol \"%s\" ya existe con el mismo precio %s. Abortando.",
+            "added": "Se agregó el rol \"%s\" con el precio %s",
+            "updated": "¡El rol \"%s\" ya existe con un precio diferente (%s)! Actualicé el precio a %s!"
+        },
+        "remove_role": {
+            "invalid_role_name": "Nombre de rol inválido.",
+            "role_not_found": "No se encontró el rol \"%s\".",
+            "failed_to_remove": "No se pudo eliminar el rol \"%s\" del servidor. ¿El bot tiene permiso?",
+            "removed": "Se eliminó el rol \"%s\" del sistema.",
+            "removed_server": "Se eliminó el rol \"%s\" del sistema y se borró del servidor."
+        },
+        "shop": {
+            "description": "Compra roles con tus puntos aquí",
+            "price": "Precio: %s puntos",
+            "buy_dialogue": "Precio: %s puntos. \nYa comprado: %s\nColor: %s",
+            "already_owned": "Ya posees este rol",
+            "buy_confirmation": "¿Quieres comprar %s por %s puntos?",
+            "success": "Compraste %s por %s puntos. Ahora tienes %s puntos."
+        },
+        "return": {
+            "select_role": "Selecciona un rol para devolver",
+            "return_role": "Devuelve este rol. El precio original era de %s puntos.",
+            "which_role": "¿Qué rol te gustaría devolver?",
+            "are_you_sure": "¿Estás seguro de que quieres devolver el rol \"%s\"? ¡NO recibirás de vuelta los puntos que pagaste (%s)!",
+            "return_failed": "No se pudo eliminar tu rol. Por favor, contacta con un administrador para asegurarte de que el bot tiene los permisos correctos.",
+            "return_success": "El rol \"%s\" ha sido devuelto.",
+            "none_owned": "No posees ningún rol que puedas devolver."
+        }
+    }
+}
