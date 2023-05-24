@@ -41,15 +41,20 @@ const handleCommandInteraction = async function(interaction){
  * Handle select menu Interaction events
  *
  * @param {import("discord.js").StringSelectMenuInteraction} interaction
- * @return {Promise<void>}
+ * @return {Promise<any>}
  */
 const handleSelectMenuInteraction = async function(interaction){
-    if (interaction.isStringSelectMenu()){
-        if (interaction.customId === "role_buy") await buyEventHandler(interaction);
-        else if (interaction.customId === "role_return") await returnEventHandler(interaction);
-
-        else Log.warn(`No select menu matching ${interaction.customId} was found.`);
+    if (interaction.user.id !== interaction.message.interaction?.user.id){
+        return await interaction.reply({
+            content: await __("errors.interaction_not_yours")(interaction.guildId),
+            ephemeral: true,
+        });
     }
+
+    if (interaction.customId === "role_buy") return await buyEventHandler(interaction);
+    else if (interaction.customId === "role_return") return await returnEventHandler(interaction);
+
+    return Log.warn(`No select menu matching ${interaction.customId} was found.`);
 };
 
 /**

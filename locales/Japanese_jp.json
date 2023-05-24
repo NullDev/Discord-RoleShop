@@ -17,7 +17,8 @@
         "invalid_price": "無効な価格。0より大きい整数でなければなりません。",
         "not_enough_points": "ポイントが足りません",
         "buy_fail": "何か問題が発生しました。ポイントは削除されませんでした。",
-        "transaction_log_empty": "このギルドの取引ログは見つかりませんでした。"
+        "transaction_log_empty": "このギルドの取引ログは見つかりませんでした。",
+        "interaction_not_yours": "他のユーザーのボタン、プロンプト、またはメニューを使用することはできません。"
     },
     "generic": {
         "aborted": "中断しました。",

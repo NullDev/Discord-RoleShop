@@ -17,7 +17,8 @@
         "invalid_price": "Precio inválido. Debe ser un entero mayor que 0.",
         "not_enough_points": "No tienes suficientes puntos",
         "buy_fail": "Algo salió mal. No se eliminaron puntos.",
-        "transaction_log_empty": "No se encontró registro de transacciones para esta guild."
+        "transaction_log_empty": "No se encontró registro de transacciones para esta guild.",
+        "interaction_not_yours": "No puedes usar los botones, prompts o menús de otro usuario."
     },
     "generic": {
         "aborted": "Abortado.",
