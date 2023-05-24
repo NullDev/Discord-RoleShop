@@ -19,7 +19,7 @@ export default {
         .setName(`${config.bot_settings.slash_command_prefix}-reset-all`)
         .setDescription("Resets ALL stats for this server.")
         .setDMPermission(false)
-        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
     /**
      * @param {import("discord.js").CommandInteraction} interaction
      */

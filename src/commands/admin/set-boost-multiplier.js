@@ -17,7 +17,7 @@ export default {
         .setName(`${config.bot_settings.slash_command_prefix}-set-boost-mulitplier`)
         .setDescription("Set multiplier for Server Boosters (1 to deactivate)")
         .setDMPermission(false)
-        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addIntegerOption((option) =>
             option.setName("value")
                 .setDescription("Multiplier value (>=1; =1 to deactivate)")

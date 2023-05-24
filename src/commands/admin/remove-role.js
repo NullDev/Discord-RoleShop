@@ -17,7 +17,7 @@ export default {
         .setName(`${config.bot_settings.slash_command_prefix}-remove-role`)
         .setDescription("Removed a role from the Shop.")
         .setDMPermission(false)
-        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addStringOption((option) =>
             option.setName("name")
                 .setDescription("Name of the role")

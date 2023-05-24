@@ -18,7 +18,7 @@ export default {
         .setName(`${config.bot_settings.slash_command_prefix}-add-role`)
         .setDescription("Adds a new role to the shop (either an existing one on the server or creates a new one).")
         .setDMPermission(false)
-        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addStringOption((option) =>
             option.setName("name")
                 .setDescription("Name of the role")

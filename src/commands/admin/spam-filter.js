@@ -17,7 +17,7 @@ export default {
         .setName(`${config.bot_settings.slash_command_prefix}-spam-filter`)
         .setDescription("Enables or disables the spam filter server wide.")
         .setDMPermission(false)
-        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addBooleanOption((option) =>
             option.setName("enabled")
                 .setDescription("Enable or disable the spam filter")

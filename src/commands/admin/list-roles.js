@@ -17,7 +17,7 @@ export default {
         .setName(`${config.bot_settings.slash_command_prefix}-list-roles`)
         .setDescription("List all registered roles.")
         .setDMPermission(false)
-        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
 
     /**
      * @param {import("discord.js").CommandInteraction} interaction

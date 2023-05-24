@@ -20,7 +20,7 @@ export default {
         .setName(`${config.bot_settings.slash_command_prefix}-set-points`)
         .setDescription("Set the points of a user.")
         .setDMPermission(false)
-        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addUserOption((option) =>
             option.setName("user")
                 .setDescription("The user to set the points for")

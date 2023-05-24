@@ -10,7 +10,7 @@ export default {
         .setName(`${config.bot_settings.slash_command_prefix}-admin-help`)
         .setDescription("Shows an overview of all admin commands.")
         .setDMPermission(false)
-        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
     /**
      * @param {import("discord.js").CommandInteraction} interaction
      */

@@ -26,7 +26,7 @@ export default {
         .setName(`${config.bot_settings.slash_command_prefix}-set-language`)
         .setDescription("Sets the server language for the bot.")
         .setDMPermission(false)
-        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addStringOption((option) =>
             option.setName("language")
                 .setDescription("Server language")

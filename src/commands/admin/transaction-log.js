@@ -17,7 +17,7 @@ export default {
         .setName(`${config.bot_settings.slash_command_prefix}-transaction-log`)
         .setDescription("Send the current transaction log for this guild.")
         .setDMPermission(false)
-        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
 
     /**
      * @param {import("discord.js").CommandInteraction} interaction
