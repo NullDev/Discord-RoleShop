@@ -80,7 +80,7 @@
             "which_role": "Welche Rolle möchtest du zurückgeben?",
             "are_you_sure": "Bist du sicher, dass du die Rolle \"%s\" zurückgeben möchtest? Du wirst die Punkte die du dafür gezahlt hast (%s) **NICHT** zurückerhalten!",
             "return_failed": "Entfernen der Rolle fehlgeschlagen. Bitte kontaktiere einen Admin um sicherzustellen, dass der Bot die richtigen Berechtigungen hat.",
-            "return_success": "Die Rolle \"%s\" wurde zurückgegeben.",
+            "return_success": "Du hast die Rolle \"%s\" zurückgegeben.",
             "none_owned": "Du besitzt keine Rollen die du zurückgeben kannst."
         }
     }

@@ -80,7 +80,7 @@
             "which_role": "Which role would you like to to return?",
             "are_you_sure": "Are you sure you want to return the role \"%s\"? You will **NOT** get back the points you paid (%s)!",
             "return_failed": "Failed to remove your role. Please contact an admin to make sure the bot has the correct permissions.",
-            "return_success": "The role \"%s\" has been returned.",
+            "return_success": "You returned the role \"%s\".",
             "none_owned": "You don't own any roles that you can return."
         }
     }
