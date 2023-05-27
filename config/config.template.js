@@ -9,5 +9,6 @@ export default {
             alpha: 0.4,
             window: 10,
         },
+        emote_server_id: "",
     },
 };
