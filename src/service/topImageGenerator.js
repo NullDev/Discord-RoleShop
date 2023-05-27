@@ -1,3 +1,4 @@
+import fs from "node:fs/promises";
 import { createCanvas, loadImage } from "canvas";
 
 // ========================= //
@@ -37,19 +38,37 @@ const generateImage = async function(users){
     ctx.font = "20px sans-serif";
     ctx.fillStyle = "black";
 
+    const crownBuffer = await fs.readFile("assets/crown.png");
+    const crownImage = await loadImage(crownBuffer);
+
+    const defaultImgBuff = await fs.readFile("assets/default.png");
+    const defaultImg = await loadImage(defaultImgBuff);
+
     for (let i = 0; i < users.length; i++){
         const user = users[i];
         const rank = user[0];
         const info = user[1];
         const score = user[2];
 
-        const buffer = await fetch(info.pic).then((res) => res.arrayBuffer());
-
-        const profilePic = await loadImage(toBuffer(buffer));
+        let profilePic;
+        if (!info.pic) profilePic = defaultImg;
+        else {
+            const buffer = await fetch(info.pic).then((res) => res.arrayBuffer());
+            profilePic = await loadImage(toBuffer(buffer));
+        }
 
         ctx.drawImage(profilePic, 10, i * lineHeight, 50, 50);
-        ctx.fillText(`${rank}. ${info.tag}`, 70, i * lineHeight + 30);
-        ctx.fillText(`${score}`, 500, i * lineHeight + 30);
+        const text = `${rank}. ${info.tag}`;
+        ctx.fillText(text, 70, i * lineHeight + 30);
+
+        const scoreText = `${score}`;
+        const scoreWidth = ctx.measureText(scoreText).width;
+        ctx.fillText(scoreText, canvasWidth - scoreWidth - 10, i * lineHeight + 30);
+
+        if (i === 0){
+            const textWidth = ctx.measureText(text).width;
+            ctx.drawImage(crownImage, 70 + textWidth + 10, i * lineHeight + 13, 20, 20);
+        }
 
         if (i < users.length - 1){
             ctx.beginPath();
