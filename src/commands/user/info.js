@@ -47,7 +47,7 @@ export default {
 
         const embed = {
             title: "Bot Info",
-            description: await __("replies.bot_info_tagline")(interaction.guildId),
+            description: await __("replies.bot_info_tagline")(interaction.guildId) + "\n[» Bot Invite «](https://discordapp.com/oauth2/authorize?client_id=1102551839674740737&scope=bot&permissions=1099780064256)",
             color: 2518621,
             thumbnail: {
                 url: botAvatar,
