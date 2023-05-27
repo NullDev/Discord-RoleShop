@@ -19,7 +19,7 @@ const guildSettingsDb = new QuickDB({
 });
 
 /**
- * Schedule all crons
+ * Make sure database roles and guild roles are in sync
  *
  * @param {import("../service/client.js").default} client
  */

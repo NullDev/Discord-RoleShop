@@ -1,6 +1,7 @@
 import cron from "node-cron";
 import Log from "../util/log.js";
 import syncRolesAndShop from "../crons/syncRolesAndShop.js";
+import removeOldLogs from "../crons/removeOldLogs.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -17,8 +18,17 @@ const scheduleCrons = function(client){
         syncRolesAndShop(client);
     });
 
+    // daily cron
+    cron.schedule("0 0 * * *", () => {
+        removeOldLogs();
+    });
+
     const cronCount = cron.getTasks().size;
     Log.done("Scheduled " + cronCount + " Crons.");
+
+    // start jobs on init
+    syncRolesAndShop(client);
+    removeOldLogs();
 };
 
 export default scheduleCrons;
