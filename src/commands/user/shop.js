@@ -65,7 +65,7 @@ export default {
         }
 
         // @ts-ignore
-        const fields = roleArray.map(async([role, roleid, price, userOwnsRole, roleColor]) => {
+        const fields = roleArray.sort((a, b) => a?.[2] - b?.[2]).map(async([role, roleid, price, userOwnsRole, roleColor]) => {
             const color = roleColor !== "#000000" ? `[${roleColor}](https://v1.cx/color/${roleColor})` : null;
             const roleIconId = await roleEmoteDb.get(`guild-${interaction.guildId}.${roleid}`);
             let roleIcon = null;
