@@ -31,12 +31,26 @@ export default {
         let owner = "N/A";
         if (guildOwner) owner = (await interaction.client.users.fetch(guildOwner)).tag;
 
+        const promises = [
+            interaction.client.shard?.fetchClientValues("guilds.cache.size"),
+            interaction.client.shard?.broadcastEval(c => c.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)),
+        ];
+        const shardCount = interaction.client.shard?.count || 0;
+        const isBotVerified = interaction.client.user?.flags?.has("VerifiedBot") || false;
+
+        const [guilds, members] = await Promise.all(promises);
+        const totalGuilds = guilds?.reduce((acc, guildCount) => Number(acc) + Number(guildCount), 0);
+        const totalMembers = members?.reduce((acc, memberCount) => Number(acc) + Number(memberCount), 0);
+
+        const botAvatar = interaction.client.user?.displayAvatarURL({ extension: "png" })
+            || "https://raw.githubusercontent.com/NullDev/Discord-RoleShop/master/assets/logo.png";
+
         const embed = {
             title: "Bot Info",
             description: await __("replies.bot_info_tagline")(interaction.guildId),
             color: 2518621,
             thumbnail: {
-                url: "https://cdn.discordapp.com/avatars/1102551839674740737/3354a0eebe93a021d96e53c271b0316e.webp?size=128",
+                url: botAvatar,
             },
             fields: [
                 {
@@ -65,14 +79,14 @@ export default {
                     name: "Meta :bar_chart:",
                     value: `PID: \`${process.pid}\`\nUptime: \`${
                         process.uptime().toFixed(4)
-                    }s\`\nSystem CPU Time: \`${process.cpuUsage().system}\`\nUser CPU Time: \`${process.cpuUsage().system}\`\nRam Usage: \`${RamInUseMB}MB / ${RamTotalGB}GB\``,
+                    }s\`\nSystem CPU Time: \`${process.cpuUsage().system}\`\nUser CPU Time: \`${process.cpuUsage().system}\`\nRam Usage: \`${RamInUseMB}MB / ${RamTotalGB}GB\`\nShard Count: \`${shardCount}\`\nBot Verified: \`${isBotVerified}\``,
                     inline: true,
                 },
                 {
                     name: "Guild :clipboard:",
                     value: `User: \`${count}\`\nBoosts: \`${boosts}\`\nCreated: \`${created}\`\nOwner: \`${owner}\`\nGuild Lang: \`${
                         await __("__LANG__")(interaction.guildId)
-                    }\``,
+                    }\`\nServer count: \`${totalGuilds}\`\nMember count: \`${totalMembers}\``,
                     inline: true,
                 },
                 { name: "\u200b", value: "\u200b", inline: true },

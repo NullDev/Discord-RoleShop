@@ -2,7 +2,7 @@ import { GatewayIntentBits, Events, ActivityType } from "discord.js";
 import Log from "./util/log.js";
 import RateLimiter from "./util/rateLimiter.js";
 import translationCheck from "./util/translationCheck.js";
-import { config, meta } from "../config/config.js";
+import { config } from "../config/config.js";
 import DiscordClient from "./service/client.js";
 import registerCommands from "./service/commandRegister.js";
 import interactionCreateHandler from "./events/interactionCreate.js";
@@ -24,22 +24,6 @@ const client = new DiscordClient({
     },
 });
 
-const appname = meta.getName();
-const version = meta.getVersion();
-const author = meta.getAuthor();
-const pad = 16 + appname.length + version.toString().length + author.length;
-
-console.log(
-    "\n" +
-    " #" + "-".repeat(pad) + "#\n" +
-    " # Started " + appname + " v" + version + " by " + author + " #\n" +
-    " #" + "-".repeat(pad) + "#\n",
-);
-
-Log.debug("Node Environment: " + process.env.NODE_ENV, true);
-Log.debug("NodeJS version: " + process.version, true);
-Log.debug("OS: " + process.platform + " " + process.arch, true);
-
 Log.wait("Starting bot...");
 
 Log.wait("Checking locales...");
@@ -49,7 +33,7 @@ else {
     process.exit(1);
 }
 
-client.on("ready", async() => {
+client.on(Events.ClientReady, async() => {
     Log.done("Bot is ready!");
     Log.info("Logged in as '" + client.user?.tag + "'! Serving in " + client.guilds.cache.size + " servers.");
 
@@ -69,11 +53,11 @@ const rateLimiter = new RateLimiter(
     config.bot_settings.spam_filter.window,
 );
 
-client.on("messageCreate", async message => messageCreate(message, rateLimiter));
+client.on(Events.MessageCreate, async message => messageCreate(message, rateLimiter));
 
-client.on("warn", info => Log.warn(info));
+client.on(Events.Warn, info => Log.warn(info));
 
-client.on("error", err => Log.error("Client error.", err));
+client.on(Events.Error, err => Log.error("Client error.", err));
 
 client.login(config.discord.bot_token)
     .then(() => Log.done("Logged in!"))
