@@ -55,6 +55,12 @@ const rateLimiter = new RateLimiter(
 
 client.on(Events.MessageCreate, async message => messageCreate(message, rateLimiter));
 
+client.on(Events.GuildCreate, guild => Log.info("Joined guild: " + guild.name));
+
+client.on(Events.GuildDelete, guild => Log.info("Left guild: " + guild.name));
+
+client.on(Events.GuildUnavailable, guild => Log.warn("Guild is unavailable: " + guild.name));
+
 client.on(Events.Warn, info => Log.warn(info));
 
 client.on(Events.Error, err => Log.error("Client error.", err));
