@@ -2,6 +2,7 @@ import path from "node:path";
 import { ComponentType, SlashCommandBuilder } from "discord.js";
 import { QuickDB } from "quick.db";
 import { config } from "../../../config/config.js";
+import Log from "../../util/log.js";
 import __ from "../../service/i18n.js";
 
 // ========================= //
@@ -10,6 +11,10 @@ import __ from "../../service/i18n.js";
 
 const roleDb = new QuickDB({
     filePath: path.resolve("./data/roles.sqlite"),
+});
+
+const roleEmoteDb = new QuickDB({
+    filePath: path.resolve("./data/role_emotes.sqlite"),
 });
 
 const userDb = new QuickDB({
@@ -37,7 +42,7 @@ export default {
         }
 
         const promises = Object.entries(roles).map(async([roleid, price]) => {
-            const roleObj = await interaction.guild?.roles.fetch(roleid);
+            const roleObj = await interaction.guild?.roles.fetch(roleid).catch(() => null);
             const role = roleObj?.name;
 
             if (!role){
@@ -46,6 +51,7 @@ export default {
             }
 
             const roleColor = String(roleObj?.hexColor ?? "#000000");
+
             const userOwnsRole = /** @type {import("discord.js").GuildMemberRoleManager} */ (interaction.member?.roles)?.cache.has(roleid);
             return [role, roleid, price, userOwnsRole, roleColor];
         });
@@ -59,11 +65,29 @@ export default {
         }
 
         // @ts-ignore
-        const fields = roleArray.map(async([role, , price, userOwnsRole, roleColor]) => {
-            const color = roleColor !== "#000000" ? `[${roleColor}](https://v1.cx/color/${roleColor})` : "None";
+        const fields = roleArray.map(async([role, roleid, price, userOwnsRole, roleColor]) => {
+            const color = roleColor !== "#000000" ? `[${roleColor}](https://v1.cx/color/${roleColor})` : null;
+            const roleIconId = await roleEmoteDb.get(`guild-${interaction.guildId}.${roleid}`);
+            let roleIcon = null;
+            if (roleIconId){
+                const emojiGuildId = config.bot_settings.emote_server_id;
+                const emojiGuild = await interaction.client.guilds.fetch(emojiGuildId);
+                const ico = await emojiGuild?.emojis?.fetch(roleIconId).catch(() => null);
+
+                if (!ico){
+                    Log.warn(`Role emoji ${roleIconId} not found on Emoji Server. Removing from database...`);
+                    await roleEmoteDb.delete(`guild-${interaction.guildId}.${roleid}`);
+                    roleIcon = null;
+                }
+                else roleIcon = ico;
+            }
+
+            let value = `Price: ${price} points. \nAlready bought: ${userOwnsRole ? "✅" : "❌"}`;
+            if (!!color) value += `\nRole Color: ${color}`;
+
             return {
-                name: role,
-                value: String(await __("replies.shop.buy_dialogue", price, userOwnsRole ? "✅" : "❌", color)(interaction.guildId)),
+                name: !!roleIcon ? `${role} ${roleIcon.toString()}` : role,
+                value,
                 inline: false,
             };
         });
@@ -84,7 +108,6 @@ export default {
             fields: await Promise.all(fields),
         };
 
-
         const selectMenuOptions = roleArray
             .filter(([, , , userOwnsRole]) => !userOwnsRole)
             .map(async([role, roleid, price]) => ({
@@ -101,7 +124,9 @@ export default {
             options: await Promise.all(selectMenuOptions),
         };
 
-        return await interaction.followUp({
+        await interaction.followUp("Shop:");
+
+        return await interaction.channel?.send({
             embeds: [embed],
             components: userAlreadyOwnsAllRoles ? [] : [{
                 type: ComponentType.ActionRow,
