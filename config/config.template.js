@@ -7,7 +7,7 @@ export default {
         slash_command_prefix: "rs",
         spam_filter: {
             alpha: 0.4,
-            window: 5,
+            window: 6,
         },
         emote_server_id: "",
     },
