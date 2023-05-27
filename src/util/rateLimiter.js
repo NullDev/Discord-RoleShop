@@ -13,8 +13,8 @@ class SpamFilter {
     /**
      *  Creates an instance of SpamFilter.
      *
-     * @param {Number} alpha
-     * @param {Number} windowSize
+     * @param {Number} alpha - smoothing factor (less is more strict)
+     * @param {Number} windowSize - last n messages to consider
      * @memberof SpamFilter
      */
     constructor(alpha, windowSize){
