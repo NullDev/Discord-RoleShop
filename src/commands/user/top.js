@@ -24,10 +24,12 @@ export default {
      * @param {import("discord.js").CommandInteraction} interaction
      */
     async execute(interaction){
+        await interaction.deferReply();
+
         const guildkey = `guild-${interaction.guildId}`;
         const users = await db.get(guildkey);
 
-        if (!users) return await interaction.reply(await __("errors.no_top_stats")(interaction.guildId));
+        if (!users) return await interaction.followUp(await __("errors.no_top_stats")(interaction.guildId));
 
         const top10 = Object.entries(users)
             .filter((user) => user[1].points > 0)
@@ -35,7 +37,7 @@ export default {
             .slice(0, 10)
             .map((user, index) => ([index + 1, user[0].split("-")[1], user[1].points]));
 
-        if (!top10.length) return await interaction.reply(await __("errors.no_top_stats")(interaction.guildId));
+        if (!top10.length) return await interaction.followUp(await __("errors.no_top_stats")(interaction.guildId));
 
         const top10WithNames = await Promise.all(top10.map(async(user) => {
             const [index, userid, points] = user;
@@ -64,6 +66,6 @@ export default {
             embeds: [embed],
         };
 
-        return await interaction.reply(messageOptions);
+        return await interaction.followUp(messageOptions);
     },
 };
