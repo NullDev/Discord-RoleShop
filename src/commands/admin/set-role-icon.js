@@ -2,7 +2,7 @@ import path from "node:path";
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 import { QuickDB } from "quick.db";
 import { config } from "../../../config/config.js";
-// import __ from "../../service/i18n.js";
+import __ from "../../service/i18n.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -40,11 +40,19 @@ export default {
         interaction.deferReply({ ephemeral: true});
 
         const roleId = interaction.options.get("role", true).role?.id;
-        if (!roleId) return await interaction.followUp({ content: "Invalid role!", ephemeral: true });
+        if (!roleId){
+            return await interaction.followUp({
+                content: await __("errors.invalid_role")(interaction.guildId),
+                ephemeral: true,
+            });
+        }
 
         const roles = await roleDb.get(`guild-${interaction.guildId}`);
         if (!roles || Object.keys(roles).length === 0 || !Object.keys(roles).includes(roleId)){
-            return await interaction.followUp({ content: "This role is not in the shop!", ephemeral: true });
+            return await interaction.followUp({
+                content: await __("errors.not_in_shop")(interaction.guildId),
+                ephemeral: true,
+            });
         }
 
         const {attachment} = interaction.options.get("icon", true);
@@ -53,14 +61,27 @@ export default {
         const type = attachment?.name?.split(".").pop()?.toLowerCase() ?? "x";
 
         if (!attachment || !attachment.contentType?.startsWith("image/") || (!type || !validTypes.includes(type))){
-            return await interaction.followUp({ content: "Invalid attachment! Supported: JPG, PNG & GIF", ephemeral: true });
+            return await interaction.followUp({
+                content: await __("errors.unsupported_format")(interaction.guildId),
+                ephemeral: true,
+            });
         }
 
         const emoteServerId = config.bot_settings.emote_server_id;
-        if (!emoteServerId) return await interaction.followUp({ content: "Emote server not configured!", ephemeral: true });
+        if (!emoteServerId){
+            return await interaction.followUp({
+                content: await __("errors.no_emote_server")(interaction.guildId),
+                ephemeral: true,
+            });
+        }
 
         const emoteServer = await interaction.client.guilds.fetch(emoteServerId).catch(() => null);
-        if (!emoteServer) return await interaction.followUp({ content: "Emote server not found!", ephemeral: true });
+        if (!emoteServer){
+            return await interaction.followUp({
+                content: await __("errors.emote_server_not_found")(interaction.guildId),
+                ephemeral: true,
+            });
+        }
 
         const emoteExists = await emoteServer.emojis.cache.find((emote) => emote.name === roleId);
         if (emoteExists) await emoteExists.delete().catch(() => null);
@@ -70,10 +91,18 @@ export default {
             attachment: attachment.url,
         }).catch(() => null);
 
-        if (!emote || !emote.id) return await interaction.followUp({ content: "Failed to upload emote!", ephemeral: true });
+        if (!emote || !emote.id){
+            return await interaction.followUp({
+                content: await __("errors.failed_to_upload_emote")(interaction.guildId),
+                ephemeral: true,
+            });
+        }
 
         await roleEmoteDb.set(`guild-${interaction.guildId}.${roleId}`, emote.id);
 
-        return await interaction.followUp({ content: "Successfully set role icon!", ephemeral: true });
+        return await interaction.followUp({
+            content: await __("replies.role_icon_set")(interaction.guildId),
+            ephemeral: true,
+        });
     },
 };

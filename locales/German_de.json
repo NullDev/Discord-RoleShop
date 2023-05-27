@@ -15,10 +15,16 @@
         "role_not_found": "ACHTUNG: Rolle %s mit Preis %s existiert nicht mehr! Aus Datenbank entfernt.",
         "invalid_name": "Ungültiger Name.",
         "invalid_price": "Ungültiger Preis. Muss eine Ganzzahl sein, die grö0er als 0 ist.",
+        "invalid_role": "Ungültige Rolle.",
         "not_enough_points": "Du hast nicht genügend Punkte.",
         "buy_fail": "Irgendwas ist schief gelaufen. Es wurden keine Punkte abgezogen.",
         "transaction_log_empty": "Kein Transaktionslog für diesen Server gefunden.",
-        "interaction_not_yours": "Du kannst nicht die Buttons, Prompts oder Menus eines anderen Users benutzen."
+        "interaction_not_yours": "Du kannst nicht die Buttons, Prompts oder Menus eines anderen Users benutzen.",
+        "not_in_shop": "Diese Rolle ist nicht im Shop!",
+        "unsupported_format": "Ungültiger Anhang! Unterstützt: JPG, PNG & GIF",
+        "no_emote_server": "Kein Emote server konfiguriert!",
+        "emote_server_not_found": "Emote Server nicht gefunden!",
+        "failed_to_upload_emote": "Konnte EMote nicht auf den Emote Server hochladen."
     },
     "generic": {
         "aborted": "Abgebrochen.",
@@ -86,6 +92,7 @@
             "return_failed": "Entfernen der Rolle fehlgeschlagen. Bitte kontaktiere einen Admin um sicherzustellen, dass der Bot die richtigen Berechtigungen hat.",
             "return_success": "Du hast die Rolle \"%s\" zurückgegeben.",
             "none_owned": "Du besitzt keine Rollen die du zurückgeben kannst."
-        }
+        },
+        "role_icon_set": "Rollen Icon erfolgreich gesetzt!"
     }
 }

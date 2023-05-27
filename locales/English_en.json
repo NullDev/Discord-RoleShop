@@ -15,10 +15,16 @@
         "role_not_found": "ATTENTION: Role %s with price %s does not exist anymore! Removed it from Database.",
         "invalid_name": "Invalid name.",
         "invalid_price": "Invalid price. Must be an integer greater than 0.",
+        "invalid_role": "Invalid role.",
         "not_enough_points": "You don't have enough points",
         "buy_fail": "Something went wrong. No points removed.",
         "transaction_log_empty": "No transaction log found for this guild.",
-        "interaction_not_yours": "You can't use another user's Buttons, Prompts or Menus."
+        "interaction_not_yours": "You can't use another user's Buttons, Prompts or Menus.",
+        "not_in_shop": "This role is not in the shop!",
+        "unsupported_format": "Invalid attachment! Supported: JPG, PNG & GIF",
+        "no_emote_server": "Emote server not configured!",
+        "emote_server_not_found": "Emote server not found!",
+        "failed_to_upload_emote": "Failed to upload emote to emote server!"
     },
     "generic": {
         "aborted": "Aborted.",
@@ -86,6 +92,7 @@
             "return_failed": "Failed to remove your role. Please contact an admin to make sure the bot has the correct permissions.",
             "return_success": "You returned the role \"%s\".",
             "none_owned": "You don't own any roles that you can return."
-        }
+        },
+        "role_icon_set": "Successfully set role icon!"
     }
 }
