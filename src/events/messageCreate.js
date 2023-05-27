@@ -40,7 +40,7 @@ const messageCreate = async function(message, rateLimiter){
     }
 
     const multiplierKey = `guild-${guild}.boost-multiplier`;
-    const multiplier = Number(await guildSettingsDb.get(multiplierKey)) || 1;
+    const multiplier = Number(await guildSettingsDb.get(multiplierKey)) || 2;
     const pointsKey = `guild-${guild}.user-${user}.points`;
     const pointsToAdd = message.member?.premiumSinceTimestamp ? multiplier : 1;
 
