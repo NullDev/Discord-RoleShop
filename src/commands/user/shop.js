@@ -82,8 +82,13 @@ export default {
                 else roleIcon = ico;
             }
 
-            let value = `Price: ${price} points. \nAlready bought: ${userOwnsRole ? "✅" : "❌"}`;
-            if (!!color) value += `\nRole Color: ${color}`;
+            const pointsStr = await __("replies.points", price, price)(interaction.guildId, true);
+            const priceStr = await __("generic.price")(interaction.guildId);
+            const boughtStr = await __("generic.bought")(interaction.guildId);
+            const colorStr = await __("generic.color")(interaction.guildId);
+
+            let value = `${priceStr}: ${pointsStr}. \n${boughtStr}: ${userOwnsRole ? "✅" : "❌"}`;
+            if (!!color) value += `\n${colorStr}: ${color}`;
 
             return {
                 name: !!roleIcon ? `${role} ${roleIcon.toString()}` : role,
@@ -95,7 +100,7 @@ export default {
         const guildServerImg = interaction.guild?.iconURL({ extension: "png" }) ?? "https://cdn.discordapp.com/embed/avatars/0.png";
         const userPoints = await userDb.get(`guild-${interaction.guildId}.user-${interaction.user.id}.points`) || 0;
         const embed = {
-            title: `${interaction.guild?.name}'s Role Shop`,
+            title: `${interaction.guild?.name}'s ${await __("generic.role_shop")(interaction.guildId)}`,
             description: String(await __("replies.shop.description")(interaction.guildId))
                 + "\n" + await __(
                 "replies.stats_you",
@@ -126,7 +131,7 @@ export default {
 
         await interaction.followUp("Shop:");
 
-        return await interaction.channel?.send({
+        return await interaction.followUp({
             embeds: [embed],
             components: userAlreadyOwnsAllRoles ? [] : [{
                 type: ComponentType.ActionRow,

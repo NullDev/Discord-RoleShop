@@ -25,7 +25,11 @@
         "abort": "Abbrechen",
         "yes": "Ja",
         "no": "Nein",
-        "are_you_sure": "Bist du sicher?"
+        "are_you_sure": "Bist du sicher?",
+        "role_shop": "Rollen Shop",
+        "price": "Preis",
+        "bought": "Bereits gekauft",
+        "color": "Rollenfarbe"
     },
     "replies": {
         "stats_you": "Du hast aktuell %s!",
@@ -70,7 +74,6 @@
         "shop": {
             "description": "Kaufe Rollen mit deinen Punkten hier",
             "price": "Preis: %s Punkte",
-            "buy_dialogue": "Preis: %s Punkte. \nBereits gekauft: %s\nFarbe: %s",
             "already_owned": "Du hast diese Rolle bereits",
             "buy_confirmation": "Du willst also %s für %s Punkte kaufen?",
             "success": "Du hast %s für %s Punkte gekauft. Du hast jetzt %s Punkte."
