@@ -32,7 +32,7 @@ client.on(Events.ClientReady, async() => {
     await registerCommands(client)
         .then(() => client.on(Events.InteractionCreate, async interaction => interactionCreateHandler(interaction)));
 
-    scheduleCrons(client);
+    await scheduleCrons(client);
 
     client.user?.setActivity({ name: config.discord.bot_status, type: ActivityType.Playing });
     client.user?.setStatus("online");

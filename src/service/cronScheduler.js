@@ -12,7 +12,7 @@ import removeOldLogs from "../crons/removeOldLogs.js";
  *
  * @param {import("../service/client.js").default} client
  */
-const scheduleCrons = function(client){
+const scheduleCrons = async function(client){
     // hourly cron
     cron.schedule("0 * * * *", () => {
         syncRolesAndShop(client);
@@ -27,8 +27,8 @@ const scheduleCrons = function(client){
     Log.done("Scheduled " + cronCount + " Crons.");
 
     // start jobs on init
-    syncRolesAndShop(client);
-    removeOldLogs();
+    await syncRolesAndShop(client);
+    await removeOldLogs();
 };
 
 export default scheduleCrons;
