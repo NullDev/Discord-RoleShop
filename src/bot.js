@@ -1,7 +1,6 @@
 import { GatewayIntentBits, Events, ActivityType } from "discord.js";
 import Log from "./util/log.js";
 import RateLimiter from "./util/rateLimiter.js";
-import translationCheck from "./util/translationCheck.js";
 import { config } from "../config/config.js";
 import DiscordClient from "./service/client.js";
 import registerCommands from "./service/commandRegister.js";
@@ -25,13 +24,6 @@ const client = new DiscordClient({
 });
 
 Log.wait("Starting bot...");
-
-Log.wait("Checking locales...");
-if (await translationCheck()) Log.done("Locales are in sync!");
-else {
-    Log.error("Locales are not in sync!");
-    process.exit(1);
-}
 
 client.on(Events.ClientReady, async() => {
     Log.done("Bot is ready!");
