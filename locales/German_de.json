@@ -96,7 +96,7 @@
             "none_owned": "Du besitzt keine Rollen die du zurückgeben kannst."
         },
         "role_icon_set": "Rollen Icon erfolgreich gesetzt!",
-        "gift_set": "Geschenke sind nun %s. Cooldown: %s, Chance: %s%",
+        "gift_set": "Geschenke sind nun %s. Cooldown: %s, Chance: %s%%",
         "gifts": {
             "claim": "Schnappen",
             "gift": "Geschenk",

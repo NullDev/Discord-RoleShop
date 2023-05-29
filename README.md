@@ -25,14 +25,16 @@ Alternatively you can host the bot yourself. Instructions [below ⏬](#wrench-se
 - [x] Earn points by writing messages
 - [x] Spend points in a built-in shop
 - [x] Customizable shop
+- [x] Random gifts
+    - Can be disabled
+    - Cooldown can be set
+    - Chance can be set
 - [x] Optional multiplier for server boosters [Default: 2x]
     - Can be set on every Discord server individually
 - [x] Slash commands
 - [x] Multi-language support (Can be set on every Discord server individually)
     - English (Peer reviewed ✅)
     - German (Peer reviewed ✅)
-    - Japanese
-    - Spanish
 - [x] Easy to set up
     - Invite bot
     - Add roles to the shop (`/rs-add-role`)
@@ -40,6 +42,7 @@ Alternatively you can host the bot yourself. Instructions [below ⏬](#wrench-se
     - [OPTIONAL] Set server language (`/rs-set-language`) [Default: English]
     - [OPTIONAL] Set or disable booster multiplier (`/rs-set-multiplier`) [Default: 2x]
     - [OPTIONAL] Toggle the spam filter (`/rs-spam-filter`) [Default: Enabled]
+    - [OPTIONAL] Toggle and configure random gifts (`/rs-random-gift`) [Default: Enabled, Cooldown: 4hours, Chance: 5%]
 - [x] Easy to self-host
     - No external database needed
     - Easy configuration system

@@ -96,7 +96,7 @@
             "none_owned": "You don't own any roles that you can return."
         },
         "role_icon_set": "Successfully set role icon!",
-        "gift_set": "Gifts are now %s. Cooldown: %s, Chance: %s%",
+        "gift_set": "Gifts are now %s. Cooldown: %s, Chance: %s%%",
         "gifts": {
             "claim": "Claim",
             "gift": "Gift",
