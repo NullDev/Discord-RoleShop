@@ -52,7 +52,7 @@ const generateImage = async function(users){
         const rank = user[0];
         const info = user[1];
         const score = user[2];
-        const premiumSince = user[3];
+        const premiumSince = !!user[3];
 
         let profilePic;
         if (!info.pic) profilePic = defaultImg;
@@ -74,12 +74,7 @@ const generateImage = async function(users){
 
         if (i === 0){
             const textWidth = ctx.measureText(text).width;
-            if(premiumSince){
-                ctx.drawImage(crownImage, 70 + textWidth + 40, i * lineHeight + 13, 20, 20);
-            }
-            else{
-                ctx.drawImage(crownImage, 70 + textWidth + 10, i * lineHeight + 13, 20, 20);
-            }
+            ctx.drawImage(crownImage, 70 + textWidth + (premiumSince ? 40 : 10), i * lineHeight + 13, 20, 20);
         }
 
         if (i < users.length - 1){
