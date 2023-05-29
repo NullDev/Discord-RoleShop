@@ -2,6 +2,7 @@ import Log from "../util/log.js";
 import __ from "../service/i18n.js";
 import buyEventHandler from "../service/buyService.js";
 import returnEventHandler from "../service/returnService.js";
+import claimRandomGift from "../service/claimRandomGift.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -58,6 +59,17 @@ const handleSelectMenuInteraction = async function(interaction){
 };
 
 /**
+ * Handle button Interaction events
+ *
+ * @param {import("discord.js").ButtonInteraction} interaction
+ * @return {Promise<any>}
+ */
+const handleButtonInteraction = async function(interaction){
+    if (interaction.customId === "claim_gift") return await claimRandomGift(interaction);
+    return Log.warn(`No button matching ${interaction.customId} was found.`);
+};
+
+/**
  * Handle interactionCreate event
  *
  * @param {import("discord.js").Interaction} interaction
@@ -66,6 +78,7 @@ const handleSelectMenuInteraction = async function(interaction){
 const interactionCreateHandler = async function(interaction){
     if (interaction.isStringSelectMenu()) await handleSelectMenuInteraction(interaction);
     if (interaction.isChatInputCommand()) await handleCommandInteraction(interaction);
+    if (interaction.isButton()) await handleButtonInteraction(interaction);
 };
 
 export default interactionCreateHandler;

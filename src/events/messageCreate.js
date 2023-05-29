@@ -1,5 +1,6 @@
 import path from "node:path";
 import { QuickDB } from "quick.db";
+import sendRandomGift from "../service/sendRandomGift.js";
 import Log from "../util/log.js";
 
 // ========================= //
@@ -23,6 +24,8 @@ const guildSettingsDb = new QuickDB({
  */
 const messageCreate = async function(message, rateLimiter){
     if (message.author.bot) return;
+
+    sendRandomGift(message);
 
     const spamFilterEnabled = (await guildSettingsDb.get(`guild-${message.guild?.id}.spam-filter`)) ?? true;
 
