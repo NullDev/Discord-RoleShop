@@ -28,9 +28,9 @@ export default {
      */
     async execute(interaction){
         const isEnabled = Boolean(interaction.options.get("enabled")?.value);
-        db.set(`guild-${interaction.guildId}.spam-filter`, isEnabled);
+        await db.set(`guild-${interaction.guildId}.spam-filter`, isEnabled);
 
-        const state = await __(`replies.spam_filter.${String(isEnabled).toLowerCase()}`)(interaction.guildId);
+        const state = await __(`generic.set.${String(isEnabled).toLowerCase()}`)(interaction.guildId);
         return await interaction.reply({
             content: await __("replies.spam_filter.set", state)(interaction.guildId),
             ephemeral: true,
