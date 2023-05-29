@@ -1,5 +1,6 @@
 import path from "node:path";
 import { QuickDB } from "quick.db";
+import Log from "../util/log.js";
 import __ from "./i18n.js";
 
 // ========================= //
@@ -36,6 +37,7 @@ const claimRandomGift = async function(interaction){
         timestamp: "",
     };
 
+    Log.info(`User ${user.tag} claimed a random gift and got ${coins} coins`);
     await interaction.editReply({ embeds: [newEmbed], attachments: [] });
 };
 

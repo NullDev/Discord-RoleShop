@@ -69,6 +69,7 @@ const sendRandomGift = async function(message){
         return;
     }
 
+    Log.info(`Sent gift in ${message.guild?.name} (${message.guild?.id})`);
     await guildSettingsDb.set(`guild-${guildId}.gift.last_sent`, now);
 
     setTimeout(async() => {
@@ -93,6 +94,7 @@ const sendRandomGift = async function(message){
             timestamp: "",
         };
 
+        Log.info(`Gift in ${message.guild?.name} (${message.guild?.id}) expired`);
         await updatedMsg.edit({ embeds: [newEmbed], attachments: [], components: [] });
     }, 2 * 60 * 1000);
 };
