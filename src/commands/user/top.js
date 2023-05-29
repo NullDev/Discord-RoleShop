@@ -47,7 +47,7 @@ export default {
 
             return [index, { tag: member.user.tag, pic: member.displayAvatarURL({
                 extension: "png",
-            }) }, points];
+            }) }, points, member.premiumSinceTimestamp];
         }));
 
         const buffer = await generateImage(top10WithNames);

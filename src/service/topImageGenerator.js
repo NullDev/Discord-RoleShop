@@ -38,6 +38,9 @@ const generateImage = async function(users){
     ctx.font = "20px sans-serif";
     ctx.fillStyle = "black";
 
+    const boosterBuffer = await fs.readFile("assets/booster.png");
+    const boosterImage = await loadImage(boosterBuffer);
+
     const crownBuffer = await fs.readFile("assets/crown.png");
     const crownImage = await loadImage(crownBuffer);
 
@@ -49,6 +52,7 @@ const generateImage = async function(users){
         const rank = user[0];
         const info = user[1];
         const score = user[2];
+        const premiumSince = !!user[3];
 
         let profilePic;
         if (!info.pic) profilePic = defaultImg;
@@ -65,9 +69,12 @@ const generateImage = async function(users){
         const scoreWidth = ctx.measureText(scoreText).width;
         ctx.fillText(scoreText, canvasWidth - scoreWidth - 10, i * lineHeight + 30);
 
+        const nameWidth = ctx.measureText(text).width;
+        if (premiumSince) ctx.drawImage(boosterImage, 70 + nameWidth + 10, i * lineHeight + 13, 20, 20);
+
         if (i === 0){
             const textWidth = ctx.measureText(text).width;
-            ctx.drawImage(crownImage, 70 + textWidth + 10, i * lineHeight + 13, 20, 20);
+            ctx.drawImage(crownImage, 70 + textWidth + (premiumSince ? 40 : 10), i * lineHeight + 13, 20, 20);
         }
 
         if (i < users.length - 1){
