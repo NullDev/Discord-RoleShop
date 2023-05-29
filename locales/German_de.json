@@ -35,7 +35,11 @@
         "role_shop": "Rollen Shop",
         "price": "Preis",
         "bought": "Bereits gekauft",
-        "color": "Rollenfarbe"
+        "color": "Rollenfarbe",
+        "set": {
+            "true": "aktiviert",
+            "false": "deaktiviert"
+        }
     },
     "replies": {
         "stats_you": "Du hast aktuell %s!",
@@ -59,8 +63,6 @@
         "multiplier_set_none": "Der boost Multiplier wurde entfernt.",
         "multiplier_set": "Der boost Multiplier hat jetzt einen Wert von %s.",
         "spam_filter": {
-            "true": "aktiviert",
-            "false": "deaktiviert",
             "set": "Der Spam Filter ist nun %s."
         },
         "add_role": {
@@ -93,6 +95,16 @@
             "return_success": "Du hast die Rolle \"%s\" zurückgegeben.",
             "none_owned": "Du besitzt keine Rollen die du zurückgeben kannst."
         },
-        "role_icon_set": "Rollen Icon erfolgreich gesetzt!"
+        "role_icon_set": "Rollen Icon erfolgreich gesetzt!",
+        "gift_set": "Geschenke sind nun %s. Cooldown: %s, Chance: %s%",
+        "gifts": {
+            "claim": "Schnappen",
+            "gift": "Geschenk",
+            "gift_appeard": "Ein Geschenk ist aufgetaucht! Sei der erste, der es sich schnappt",
+            "user_claimed_gift": "Ein Geschenk ist aufgetaucht!\n%s hat es sich geschnappt und %s Punkte erhalten!",
+            "user_claimed_gift_footer": "🎁 %s hat %s Punkte erhalten!",
+            "too_late": "Ein Geschenk ist aufgetaucht!\nKeiner war schnell genug, um es sich zu schnappen :(",
+            "too_late_footer": "❌ Niemand war schnell genug..."
+        }
     }
 }

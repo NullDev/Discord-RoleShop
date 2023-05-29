@@ -35,7 +35,11 @@
         "role_shop": "Role Shop",
         "price": "Price",
         "bought": "Already bought",
-        "color": "Role Color"
+        "color": "Role Color",
+        "set": {
+            "true": "enabled",
+            "false": "disabled"
+        }
     },
     "replies": {
         "stats_you": "You currently have %s!",
@@ -59,8 +63,6 @@
         "multiplier_set_none": "The boost multiplier has been deactivated.",
         "multiplier_set": "The boost multiplier now has a value of %s.",
         "spam_filter": {
-            "true": "enabled",
-            "false": "disabled",
             "set": "The spam filter is now %s."
         },
         "add_role": {
@@ -93,6 +95,16 @@
             "return_success": "You returned the role \"%s\".",
             "none_owned": "You don't own any roles that you can return."
         },
-        "role_icon_set": "Successfully set role icon!"
+        "role_icon_set": "Successfully set role icon!",
+        "gift_set": "Gifts are now %s. Cooldown: %s, Chance: %s%",
+        "gifts": {
+            "claim": "Claim",
+            "gift": "Gift",
+            "gift_appeard": "A gift appeared! Be the first to claim it",
+            "user_claimed_gift": "A gift appeared!\n%s claimed it and received %s points!",
+            "user_claimed_gift_footer": "🎁 %s received %s points!",
+            "too_late": "A gift appeared!\nNo one was fast enough to claim it :(",
+            "too_late_footer": "❌ Nobody was fast enough..."
+        }
     }
 }
