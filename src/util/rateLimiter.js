@@ -76,6 +76,8 @@ class SpamFilter {
         }
 
         const timeDifference = currentTimestamp - lastMessageTimestamp;
+        if (timeDifference > 10000) return false;
+
         this.lastMessageTimestamps.set(userId, currentTimestamp);
 
         const smoothedTimeDifference = this.smoothedTimeDifferences.get(userId) || timeDifference;
