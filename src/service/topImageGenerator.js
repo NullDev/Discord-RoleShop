@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import { createCanvas, loadImage } from "canvas";
+import Log from "../util/log.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -57,8 +58,24 @@ const generateImage = async function(users){
         let profilePic;
         if (!info.pic) profilePic = defaultImg;
         else {
-            const buffer = await fetch(info.pic).then((res) => res.arrayBuffer());
-            profilePic = await loadImage(toBuffer(buffer));
+            let buffer;
+            let status;
+            try {
+                buffer = await fetch(info.pic).then((res) => {
+                    // eslint-disable-next-line prefer-destructuring
+                    status = res.status;
+                    return res.arrayBuffer();
+                });
+                profilePic = await loadImage(toBuffer(buffer));
+            }
+            catch (e){
+                Log.error("[top10img] Failed to load profile picture for user " + info.tag + ": ");
+                Log.error("[top10img] URL: " + info.pic);
+                Log.error("[top10img] Status: " + status);
+                Log.error("[top10img] Buffer: " + buffer);
+                Log.error("[top10img] Exception: ", e);
+                profilePic = defaultImg;
+            }
         }
 
         ctx.drawImage(profilePic, 10, i * lineHeight, 50, 50);
