@@ -7,6 +7,29 @@ import Log from "../util/log.js";
 // ========================= //
 
 /**
+ * Get date from filename
+ *
+ * @param {string} filename
+ * @return {Date | null}
+ */
+const getDateFromFilename = function(filename){
+    // Format: roleshop-DD-MM-YYYY-output.log and roleshop-DD-MM-YYYY-errors.log
+    const regex = /(\d{2})-(\d{2})-(\d{4})/;
+    const match = filename.match(regex);
+
+    if (match){
+        const day = Number(match[1]);
+        const month = Number(match[2]);
+        const year = Number(match[3]);
+
+        const date = new Date(year, month - 1, day);
+
+        return date;
+    }
+    return null;
+};
+
+/**
  * Remove logs that are older than 7 days
  */
 const removeOldLogs = async() => {
@@ -26,10 +49,10 @@ const removeOldLogs = async() => {
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
     await Promise.all(allLogs.map(async f => {
-        // Format: roleshop-DD-MM-YYYY-output.log and roleshop-DD-MM-YYYY-errors.log
-        const fileDateFromName = new Date(f.split("-").slice(1, 4).join("-").split(".")[0]);
-        if (fileDateFromName < sevenDaysAgo){
-            await fs.unlink(f).catch(e => Log.error(`[CRON] Could not remove old log ${f}`, e));
+        const fileDateFromName = getDateFromFilename(f);
+
+        if (!fileDateFromName || fileDateFromName < sevenDaysAgo){
+            // await fs.unlink(f).catch(e => Log.error(`[CRON] Could not remove old log ${f}`, e));
             Log.done(`[CRON] Removed old log ${f}.`);
             ++deletedLogs;
         }
