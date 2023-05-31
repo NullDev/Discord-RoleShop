@@ -25,7 +25,7 @@ const removeOldLogs = async() => {
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
-    allLogs.forEach(async f => {
+    await Promise.all(allLogs.map(async f => {
         // Format: roleshop-DD-MM-YYYY-output.log and roleshop-DD-MM-YYYY-errors.log
         const fileDateFromName = new Date(f.split("-").slice(1, 4).join("-").split(".")[0]);
         if (fileDateFromName < sevenDaysAgo){
@@ -33,7 +33,7 @@ const removeOldLogs = async() => {
             Log.done(`[CRON] Removed old log ${f}.`);
             ++deletedLogs;
         }
-    });
+    }));
 
     Log.done(`[CRON] Removed ${deletedLogs} old log${deletedLogs === 1 ? "" : "s"}.`);
 };
