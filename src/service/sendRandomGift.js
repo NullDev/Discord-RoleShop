@@ -1,7 +1,6 @@
 import path from "node:path";
-import fs from "node:fs/promises";
 import { QuickDB } from "quick.db";
-import { EmbedBuilder, AttachmentBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle  } from "discord.js";
+import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle  } from "discord.js";
 import Log from "../util/log.js";
 import __ from "./i18n.js";
 
@@ -36,10 +35,6 @@ const sendRandomGift = async function(message){
     const now = Date.now();
     if (!!lastSent && (now - lastSent) < cooldown * 60 * 60 * 1000) return;
 
-    const buffer = await fs.readFile(path.resolve("./assets/gift.gif"));
-    const giftImage = new AttachmentBuilder(buffer)
-        .setName("gift.gif");
-
     const claim = new ButtonBuilder()
         .setCustomId("claim_gift")
         .setLabel(await __("replies.gifts.claim")(guildId))
@@ -53,12 +48,11 @@ const sendRandomGift = async function(message){
         .setTimestamp(now)
         .setTitle(await __("replies.gifts.gift")(guildId))
         .setDescription(await __("replies.gifts.gift_appeard")(guildId))
-        .setImage("attachment://gift.gif");
+        .setImage("https://cdn.discordapp.com/attachments/1113567657921355866/1113569384787611668/gift_1.gif");
 
     let msg;
     try {
         msg = await message.channel.send({
-            files: [giftImage],
             embeds: [embed],
             // @ts-ignore
             components: [actionRow],
