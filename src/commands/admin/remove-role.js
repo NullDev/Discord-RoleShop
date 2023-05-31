@@ -2,6 +2,7 @@ import path from "node:path";
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 import { config } from "../../../config/config.js";
 import { QuickDB } from "quick.db";
+import translations from "../../../locales/commands/translations.js";
 import __ from "../../service/i18n.js";
 
 // ========================= //
@@ -15,16 +16,19 @@ const db = new QuickDB({
 export default {
     data: new SlashCommandBuilder()
         .setName(`${config.bot_settings.slash_command_prefix}-remove-role`)
-        .setDescription("Removed a role from the Shop.")
+        .setDescription(translations.remove_role.desc)
+        .setDescriptionLocalizations(translations.remove_role.translations)
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addStringOption((option) =>
             option.setName("name")
-                .setDescription("Name of the role")
+                .setDescription(translations.remove_role.options.name.desc)
+                .setDescriptionLocalizations(translations.remove_role.options.name.translations)
                 .setRequired(true),
         ).addBooleanOption((option) =>
             option.setName("delete")
-                .setDescription("Delete the role from the Discord server")
+                .setDescription(translations.remove_role.options.delete.desc)
+                .setDescriptionLocalizations(translations.remove_role.options.delete.translations)
                 .setRequired(true),
         ),
 

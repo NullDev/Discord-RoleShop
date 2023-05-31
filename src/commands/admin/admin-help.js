@@ -1,5 +1,6 @@
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 import { config } from "../../../config/config.js";
+import translations from "../../../locales/commands/translations.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -8,7 +9,8 @@ import { config } from "../../../config/config.js";
 export default {
     data: new SlashCommandBuilder()
         .setName(`${config.bot_settings.slash_command_prefix}-admin-help`)
-        .setDescription("Shows an overview of all admin commands.")
+        .setDescription(translations.admin_help.desc)
+        .setDescriptionLocalizations(translations.admin_help.translations)
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
     /**

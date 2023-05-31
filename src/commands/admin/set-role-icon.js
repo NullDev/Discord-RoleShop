@@ -2,6 +2,7 @@ import path from "node:path";
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 import { QuickDB } from "quick.db";
 import { config } from "../../../config/config.js";
+import translations from "../../../locales/commands/translations.js";
 import __ from "../../service/i18n.js";
 
 // ========================= //
@@ -19,19 +20,20 @@ const roleEmoteDb = new QuickDB({
 export default {
     data: new SlashCommandBuilder()
         .setName(`${config.bot_settings.slash_command_prefix}-set-role-icon`)
-        .setDescription("Sets the icon of a role.")
+        .setDescription(translations.set_role_icon.desc)
+        .setDescriptionLocalizations(translations.set_role_icon.translations)
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addRoleOption((option) => option
             .setName("role")
-            .setDescription("The role to set the icon for.")
-            .setRequired(true),
-        )
+            .setDescription(translations.set_role_icon.options.role.desc)
+            .setDescriptionLocalizations(translations.set_role_icon.options.role.translations)
+            .setRequired(true))
         .addAttachmentOption((option) => option
             .setName("icon")
-            .setDescription("The icon to set.")
-            .setRequired(true),
-        ),
+            .setDescription(translations.set_role_icon.options.icon.desc)
+            .setDescriptionLocalizations(translations.set_role_icon.options.icon.translations)
+            .setRequired(true)),
 
     /**
      * @param {import("discord.js").CommandInteraction} interaction

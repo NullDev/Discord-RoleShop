@@ -2,6 +2,7 @@ import path from "node:path";
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 import { QuickDB } from "quick.db";
 import { config } from "../../../config/config.js";
+import translations from "../../../locales/commands/translations.js";
 import __ from "../../service/i18n.js";
 
 // ========================= //
@@ -15,7 +16,8 @@ const db = new QuickDB({
 export default {
     data: new SlashCommandBuilder()
         .setName(`${config.bot_settings.slash_command_prefix}-transaction-log`)
-        .setDescription("Send the current transaction log for this guild.")
+        .setDescription(translations.transaction_log.desc)
+        .setDescriptionLocalizations(translations.transaction_log.translations)
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
 

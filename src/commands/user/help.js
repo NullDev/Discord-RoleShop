@@ -1,5 +1,6 @@
 import { SlashCommandBuilder } from "discord.js";
 import { config } from "../../../config/config.js";
+import translations from "../../../locales/commands/translations.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -8,7 +9,8 @@ import { config } from "../../../config/config.js";
 export default {
     data: new SlashCommandBuilder()
         .setName(`${config.bot_settings.slash_command_prefix}-help`)
-        .setDescription("Shows an overview of commands.")
+        .setDescription(translations.help.desc)
+        .setDescriptionLocalizations(translations.help.translations)
         .setDMPermission(false),
     /**
      * @param {import("discord.js").CommandInteraction} interaction

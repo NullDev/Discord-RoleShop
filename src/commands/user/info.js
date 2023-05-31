@@ -1,6 +1,7 @@
 import os from "node:os";
 import { SlashCommandBuilder } from "discord.js";
 import { config } from "../../../config/config.js";
+import translations from "../../../locales/commands/translations.js";
 import __ from "../../service/i18n.js";
 
 // ========================= //
@@ -10,7 +11,8 @@ import __ from "../../service/i18n.js";
 export default {
     data: new SlashCommandBuilder()
         .setName(`${config.bot_settings.slash_command_prefix}-info`)
-        .setDescription("Shows Info about this bot.")
+        .setDescription(translations.info.desc)
+        .setDescriptionLocalizations(translations.info.translations)
         .setDMPermission(false),
     /**
      * @param {import("discord.js").CommandInteraction} interaction

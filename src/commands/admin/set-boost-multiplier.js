@@ -2,6 +2,7 @@ import path from "node:path";
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 import { config } from "../../../config/config.js";
 import { QuickDB } from "quick.db";
+import translations from "../../../locales/commands/translations.js";
 import __ from "../../service/i18n.js";
 
 // ========================= //
@@ -15,12 +16,14 @@ const db = new QuickDB({
 export default {
     data: new SlashCommandBuilder()
         .setName(`${config.bot_settings.slash_command_prefix}-set-boost-mulitplier`)
-        .setDescription("Set multiplier for Server Boosters (1 to deactivate)")
+        .setDescription(translations.set_boost_multiplier.desc)
+        .setDescriptionLocalizations(translations.set_boost_multiplier.translations)
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addIntegerOption((option) =>
             option.setName("value")
-                .setDescription("Multiplier value (>=1; =1 to deactivate)")
+                .setDescription(translations.set_boost_multiplier.options.value.desc)
+                .setDescriptionLocalizations(translations.set_boost_multiplier.options.value.translations)
                 .setRequired(true)),
 
     /**

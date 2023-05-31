@@ -3,6 +3,7 @@ import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 import { config } from "../../../config/config.js";
 import { QuickDB } from "quick.db";
 import createYesNoInteraction from "../../events/yesNoInteraction.js";
+import translations from "../../../locales/commands/translations.js";
 import __ from "../../service/i18n.js";
 
 // ========================= //
@@ -16,16 +17,19 @@ const db = new QuickDB({
 export default {
     data: new SlashCommandBuilder()
         .setName(`${config.bot_settings.slash_command_prefix}-add-role`)
-        .setDescription("Adds a new role to the shop (either an existing one on the server or creates a new one).")
+        .setDescription(translations.add_role.desc)
+        .setDescriptionLocalizations(translations.add_role.translations)
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addStringOption((option) =>
             option.setName("name")
-                .setDescription("Name of the role")
+                .setDescription(translations.add_role.options.name.desc)
+                .setDescriptionLocalizations(translations.add_role.options.name.translations)
                 .setRequired(true),
         ).addIntegerOption((option) =>
             option.setName("price")
-                .setDescription("Price of the role")
+                .setDescription(translations.add_role.options.price.desc)
+                .setDescriptionLocalizations(translations.add_role.options.price.translations)
                 .setRequired(true),
         ),
 

@@ -2,8 +2,9 @@ import path from "node:path";
 import { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } from "discord.js";
 import { QuickDB } from "quick.db";
 import { config } from "../../../config/config.js";
-import __ from "../../service/i18n.js";
 import generateImage from "../../service/topImageGenerator.js";
+import translations from "../../../locales/commands/translations.js";
+import __ from "../../service/i18n.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -18,7 +19,8 @@ const db = new QuickDB({
 export default {
     data: new SlashCommandBuilder()
         .setName(`${config.bot_settings.slash_command_prefix}-top`)
-        .setDescription("Shows the top 10 users with most points.")
+        .setDescription(translations.top.desc)
+        .setDescriptionLocalizations(translations.top.translations)
         .setDMPermission(false),
     /**
      * @param {import("discord.js").CommandInteraction} interaction

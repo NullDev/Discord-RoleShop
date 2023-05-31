@@ -2,6 +2,7 @@ import path from "node:path";
 import { ComponentType, SlashCommandBuilder } from "discord.js";
 import { QuickDB } from "quick.db";
 import { config } from "../../../config/config.js";
+import translations from "../../../locales/commands/translations.js";
 import __ from "../../service/i18n.js";
 
 // ========================= //
@@ -38,7 +39,8 @@ const generateRoleMenu = async function(rolesToReturn, interaction){
 export default {
     data: new SlashCommandBuilder()
         .setName(`${config.bot_settings.slash_command_prefix}-return`)
-        .setDescription("Return a Role")
+        .setDescription(translations.return.desc)
+        .setDescriptionLocalizations(translations.return.translations)
         .setDMPermission(false),
 
     /**

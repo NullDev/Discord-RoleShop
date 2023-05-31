@@ -2,6 +2,7 @@ import path from "node:path";
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 import { config } from "../../../config/config.js";
 import { QuickDB } from "quick.db";
+import translations from "../../../locales/commands/translations.js";
 import __ from "../../service/i18n.js";
 
 // ========================= //
@@ -15,20 +16,24 @@ const db = new QuickDB({
 export default {
     data: new SlashCommandBuilder()
         .setName(`${config.bot_settings.slash_command_prefix}-random-gift`)
-        .setDescription("Enables or disables random gifts.")
+        .setDescription(translations.random_gift.desc)
+        .setDescriptionLocalizations(translations.random_gift.translations)
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addBooleanOption((option) =>
             option.setName("enabled")
-                .setDescription("Enable or disable random gifts")
+                .setDescription(translations.random_gift.options.enabled.desc)
+                .setDescriptionLocalizations(translations.random_gift.options.enabled.translations)
                 .setRequired(true))
         .addIntegerOption((option) =>
             option.setName("cooldown")
-                .setDescription("Cooldown between gifts in hours (default: 4h)")
+                .setDescription(translations.random_gift.options.cooldown.desc)
+                .setDescriptionLocalizations(translations.random_gift.options.cooldown.translations)
                 .setRequired(true))
         .addIntegerOption((option) =>
             option.setName("chance")
-                .setDescription("Chance of a gift being sent in percent (default: 5%)")
+                .setDescription(translations.random_gift.options.chance.desc)
+                .setDescriptionLocalizations(translations.random_gift.options.chance.translations)
                 .setRequired(true)),
 
     /**

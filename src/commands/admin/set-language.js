@@ -3,6 +3,7 @@ import fs from "node:fs";
 import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 import { config } from "../../../config/config.js";
 import { QuickDB } from "quick.db";
+import translations from "../../../locales/commands/translations.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -15,7 +16,7 @@ const db = new QuickDB({
 const getLanguages = function(){
     const languages = fs.readdirSync(path.resolve("./locales"));
 
-    return languages.map((lang) => ({
+    return languages.filter((lang) => lang.endsWith(".json")).map((lang) => ({
         name: lang.split("_")[0],
         value: lang.split(".")[0],
     }));
@@ -24,12 +25,14 @@ const getLanguages = function(){
 export default {
     data: new SlashCommandBuilder()
         .setName(`${config.bot_settings.slash_command_prefix}-set-language`)
-        .setDescription("Sets the server language for the bot.")
+        .setDescription(translations.set_language.desc)
+        .setDescriptionLocalizations(translations.set_language.translations)
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addStringOption((option) =>
             option.setName("language")
-                .setDescription("Server language")
+                .setDescription(translations.set_language.options.language.desc)
+                .setDescriptionLocalizations(translations.set_language.options.language.translations)
                 .setRequired(true)
                 .addChoices(...getLanguages())),
 

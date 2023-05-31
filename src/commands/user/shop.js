@@ -3,6 +3,7 @@ import { ComponentType, SlashCommandBuilder } from "discord.js";
 import { QuickDB } from "quick.db";
 import { config } from "../../../config/config.js";
 import Log from "../../util/log.js";
+import translations from "../../../locales/commands/translations.js";
 import __ from "../../service/i18n.js";
 
 // ========================= //
@@ -24,7 +25,8 @@ const userDb = new QuickDB({
 export default {
     data: new SlashCommandBuilder()
         .setName(`${config.bot_settings.slash_command_prefix}-shop`)
-        .setDescription("Shop for new roles.")
+        .setDescription(translations.shop.desc)
+        .setDescriptionLocalizations(translations.shop.translations)
         .setDMPermission(false),
 
     /**

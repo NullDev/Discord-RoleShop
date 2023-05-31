@@ -3,6 +3,7 @@ import { SlashCommandBuilder, PermissionFlagsBits } from "discord.js";
 import { QuickDB } from "quick.db";
 import { config } from "../../../config/config.js";
 import logTransaction from "../../service/transactionLog.js";
+import translations from "../../../locales/commands/translations.js";
 import __ from "../../service/i18n.js";
 
 // ========================= //
@@ -18,16 +19,19 @@ const db = new QuickDB({
 export default {
     data: new SlashCommandBuilder()
         .setName(`${config.bot_settings.slash_command_prefix}-set-points`)
-        .setDescription("Set the points of a user.")
+        .setDescription(translations.set_points.desc)
+        .setDescriptionLocalizations(translations.set_points.translations)
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addUserOption((option) =>
             option.setName("user")
-                .setDescription("The user to set the points for")
+                .setDescription(translations.set_points.options.user.desc)
+                .setDescriptionLocalizations(translations.set_points.options.user.translations)
                 .setRequired(true))
         .addIntegerOption((option) =>
             option.setName("points")
-                .setDescription("The points to set")
+                .setDescription(translations.set_points.options.points.desc)
+                .setDescriptionLocalizations(translations.set_points.options.points.translations)
                 .setRequired(true)),
     /**
      * @param {import("discord.js").CommandInteraction} interaction
