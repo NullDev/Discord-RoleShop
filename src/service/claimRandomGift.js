@@ -7,8 +7,12 @@ import __ from "./i18n.js";
 // = Copyright (c) NullDev = //
 // ========================= //
 
-const db = new QuickDB({
+const userDb = new QuickDB({
     filePath: path.resolve("./data/users.sqlite"),
+});
+
+const guildSettingsDb = new QuickDB({
+    filePath: path.resolve("./data/guild_settings.sqlite"),
 });
 
 /**
@@ -20,12 +24,17 @@ const db = new QuickDB({
 const claimRandomGift = async function(interaction){
     if (interaction.replied) return;
 
+    const isClaimed = await guildSettingsDb.get(`guild-${interaction.guild?.id}.gift.last_gift_claimed`);
+    if (isClaimed) return;
+
+    await guildSettingsDb.set(`guild-${interaction.guild?.id}.gift.last_gift_claimed`, true);
+
     await interaction.update({ components: [] });
 
     const { user } = interaction;
     const coins = Math.floor(Math.random() * 70) + 10;
 
-    await db.add(`guild-${interaction.guild?.id}.user-${user.id}.points`, coins);
+    await userDb.add(`guild-${interaction.guild?.id}.user-${user.id}.points`, coins);
 
     const embed = interaction.message.embeds[0];
     const newEmbed = {

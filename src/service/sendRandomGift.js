@@ -71,6 +71,7 @@ const sendRandomGift = async function(message){
 
     Log.info(`Sent gift in ${message.guild?.name} (${message.guild?.id})`);
     await guildSettingsDb.set(`guild-${guildId}.gift.last_sent`, now);
+    await guildSettingsDb.set(`guild-${guildId}.gift.last_gift_claimed`, false);
 
     setTimeout(async() => {
         const updatedMsg = await message.channel.messages.fetch(msg.id);
