@@ -1,5 +1,5 @@
 # Discord-RoleShop
-[![cd](https://github.com/NullDev/Discord-RoleShop/actions/workflows/cd.yml/badge.svg)](https://github.com/NullDev/Discord-RoleShop/actions/workflows/cd.yml) [![License](https://img.shields.io/github/license/NullDev/Discord-RoleShop?label=License&logo=Creative%20Commons)](https://github.com/NullDev/Discord-RoleShop/blob/master/LICENSE)
+[![cd](https://github.com/NullDev/Discord-RoleShop/actions/workflows/cd.yml/badge.svg)](https://github.com/NullDev/Discord-RoleShop/actions/workflows/cd.yml) [![License](https://img.shields.io/github/license/NullDev/Discord-RoleShop?label=License&logo=Creative%20Commons)](https://github.com/NullDev/Discord-RoleShop/blob/master/LICENSE) [![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/NullDev/Discord-RoleShop?logo=Cachet)](https://github.com/NullDev/Discord-RoleShop/issues?q=is%3Aissue+is%3Aclosed)
 
 <p align="center"><img height="150" width="auto" src="https://cdn.discordapp.com/avatars/1102551839674740737/3354a0eebe93a021d96e53c271b0316e.webp?size=128" /></p>
 <p align="center"><b>Discord Bot for a Roleshop with currency that can be earned by writing messages.</b></p>
