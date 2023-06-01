@@ -32,13 +32,17 @@ Alternatively you can host the bot yourself. Instructions [below ⏬](#wrench-se
 - [x] Optional multiplier for server boosters [Default: 2x]
     - Can be set on every Discord server individually
 - [x] Slash commands
+    - [x] Admin commands
+    - [x] User commands
+    - [x] Translations
 - [x] Multi-language support (Can be set on every Discord server individually)
     - English (Peer reviewed ✅)
     - German (Peer reviewed ✅)
-- [x] Easy to set up
+- [x] Easy to set up (Check [below](#wrench-discord-bot-setup-for-server-admins))
     - Invite bot
     - Add roles to the shop (`/rs-add-role`)
     - Remove roles from the shop (`/rs-remove-role`)
+    - Add role icons to the shop (`/rs-set-role-icon`)
     - [OPTIONAL] Set server language (`/rs-set-language`) [Default: English]
     - [OPTIONAL] Set or disable booster multiplier (`/rs-set-multiplier`) [Default: 2x]
     - [OPTIONAL] Toggle the spam filter (`/rs-spam-filter`) [Default: Enabled]
@@ -46,7 +50,7 @@ Alternatively you can host the bot yourself. Instructions [below ⏬](#wrench-se
 - [x] Easy to self-host
     - No external database needed
     - Easy configuration system
-    - Install instructions provided [below](#wrench-setup)
+    - Install instructions provided [below](#wrench-dev-setup)
 - [x] Admin commands
 - [x] Fail-safes to prevent point loss on error
 - [x] Automatic Syncing to keep up with DB and Discord states 
@@ -60,7 +64,40 @@ Feature request or discovered a bug? Please [open an Issue](https://github.com/N
 
 <hr>
 
-## :wrench: Setup
+## :wrench: Discord Bot Setup for server admins
+
+**Setup**:
+
+- [Invite](https://img.shields.io/badge/Invite-37a779?style=for-the-badge) the bot.
+- Add roles to the shop (`/rs-add-role`)
+    - ATTENTION: Make sure the bots role `roleshop` is above the roles you added to the shop! (Server Settings -> Roles -> Drag the bots role above the roles you added to the shop)
+- Remove roles from the shop (`/rs-remove-role`)
+
+**Admin Commands**:
+
+- Set a role icon which will be displayed in the shop (`/rs-set-role-icon`)
+- Set server language (`/rs-set-language`) [Default: English]
+- Set or disable booster multiplier (`/rs-set-multiplier`) [Default: 2x]
+- Toggle the spam filter (`/rs-spam-filter`) [Default: Enabled]
+- Toggle and configure random gifts (`/rs-random-gift`) [Default: Enabled, Cooldown: 4hours, Chance: 5%]
+- Reset ALL server stats (`/rs-reset-all`)
+- Set the points of a user (`/rs-set-points`)
+- View the current transaction log (`/rs-transaction-log`)
+- List all registered roles (`/rs-list-roles`)
+- Show admin help (`/rs-admin-help`)
+
+**User Commands**:
+
+- View the shop (`/rs-shop`)
+- View your or another users points (`/rs-stats`)
+- Show the top 10 users with most points (`/rs-top`)
+- Return a role you bought from the shop (`/rs-return`)
+- Show user help (`/rs-help`)
+- Shop bot info (`/rs-info`)
+
+<hr>
+
+## :wrench: Dev Setup
 
 0. Open up your favourite terminal (and navigate somewhere you want to download the repository to). <br><br>
 1. Make sure you have NodeJS installed (>= v20.0.0). Test by entering <br>
@@ -106,6 +143,10 @@ Once the config has been copied like described in [Step 4](#wrench-setup), it ca
 
 ## :octocat: Contributors
 
-- [arellak](https://github.com/arellak)
+<a href="https://github.com/NullDev/Discord-RoleShop/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=NullDev/Discord-RoleShop" />
+</a>
+
+<sub>Made with [contrib.rocks](https://contrib.rocks).</sub>
 
 <hr>
