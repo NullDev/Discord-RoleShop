@@ -22,7 +22,7 @@ export default {
 
         const str = await Promise.all(userCommands.map(async(cmd) => {
             const serverLang = await __("__LANG__")(interaction.guildId);
-            const desc = cmd.data.description_localizations[serverLang] || cmd.data.description;
+            const desc = cmd.data.description_localizations?.[serverLang] || cmd.data.description;
             return `**/${cmd.data.name}** - ${desc}`;
         }));
 
