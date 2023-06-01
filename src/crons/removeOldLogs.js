@@ -10,7 +10,7 @@ import Log from "../util/log.js";
  * Get date from filename
  *
  * @param {string} filename
- * @return {Date | null}
+ * @return {Number | null}
  */
 const getDateFromFilename = function(filename){
     // Format: roleshop-DD-MM-YYYY-output.log and roleshop-DD-MM-YYYY-errors.log
@@ -22,9 +22,10 @@ const getDateFromFilename = function(filename){
         const month = Number(match[2]);
         const year = Number(match[3]);
 
-        const date = new Date(year, month - 1, day);
+        const dateX = new Date(year, month - 1, day);
+        const date = new Date(dateX.getTime() + Math.abs(dateX.getTimezoneOffset() * 60000));
 
-        return date;
+        return date.getTime();
     }
     return null;
 };
@@ -45,14 +46,15 @@ const removeOldLogs = async() => {
 
     const allLogs = [...logs, ...eLogs];
 
-    const sevenDaysAgo = new Date();
-    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+    const sevenDaysAgoX = new Date();
+    sevenDaysAgoX.setDate(sevenDaysAgoX.getDate() - 7);
+
+    const sevenDaysAgo = (new Date(sevenDaysAgoX.getTime() + Math.abs(sevenDaysAgoX.getTimezoneOffset() * 60000))).getTime();
 
     await Promise.all(allLogs.map(async f => {
         const fileDateFromName = getDateFromFilename(f);
-
         if (!fileDateFromName || fileDateFromName < sevenDaysAgo){
-            // await fs.unlink(f).catch(e => Log.error(`[CRON] Could not remove old log ${f}`, e));
+            await fs.unlink(f).catch(e => Log.error(`[CRON] Could not remove old log ${f}`, e));
             Log.done(`[CRON] Removed old log ${f}.`);
             ++deletedLogs;
         }
