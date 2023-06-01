@@ -13,6 +13,11 @@ const db = new QuickDB({
     filePath: path.resolve("./data/guild_settings.sqlite"),
 });
 
+/**
+ * Get all available languages
+ *
+ * @return {Array<{ name: string, value: string }>}
+ */
 const getLanguages = function(){
     const languages = fs.readdirSync(path.resolve("./locales"));
 

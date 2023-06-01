@@ -66,5 +66,4 @@ const translationCheck = async function(){
     return result;
 };
 
-
 export default translationCheck;
