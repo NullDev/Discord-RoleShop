@@ -1,5 +1,6 @@
 import createYesNoInteraction from "../events/yesNoInteraction.js";
 import logTransaction from "./transactionLog.js";
+import Log from "../util/log.js";
 import __ from "./i18n.js";
 
 // ========================= //
@@ -25,6 +26,7 @@ const returnEventHandler = async function(interaction){
                 await rObj.remove(roleid);
             }
             catch (e){
+                Log.error("Failed to remove role from user: ", e);
                 return await interaction.channel?.send({
                     content: await __("replies.return.return_failed")(interaction.guildId),
                 });
