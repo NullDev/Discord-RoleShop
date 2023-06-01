@@ -2,6 +2,7 @@ import path from "node:path";
 import { QuickDB } from "quick.db";
 import createYesNoInteraction from "../events/yesNoInteraction.js";
 import logTransaction from "./transactionLog.js";
+import Log from "../util/log.js";
 import __ from "./i18n.js";
 
 // ========================= //
@@ -43,6 +44,7 @@ const buyEventHandler = async function(interaction){
                 }
             }
             catch (e){
+                Log.error("Failed to add role to user: ", e);
                 return await interaction.channel?.send({ content: await __("errors.buy_fail")(interaction.guildId) });
             }
 
