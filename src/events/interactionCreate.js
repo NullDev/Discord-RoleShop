@@ -45,7 +45,13 @@ const handleCommandInteraction = async function(interaction){
  * @return {Promise<any>}
  */
 const handleSelectMenuInteraction = async function(interaction){
-    if (interaction.user.id !== interaction.message.interaction?.user.id){
+    let target = interaction.message.interaction?.user.id;
+    if (!target){
+        const message = await interaction.channel?.messages.fetch(String(interaction.message.reference?.messageId ?? ""));
+        target = message?.interaction?.user.id;
+    }
+
+    if (interaction.user.id !== target){
         return await interaction.reply({
             content: await __("errors.interaction_not_yours")(interaction.guildId),
             ephemeral: true,
@@ -66,6 +72,7 @@ const handleSelectMenuInteraction = async function(interaction){
  */
 const handleButtonInteraction = async function(interaction){
     if (interaction.customId === "claim_gift") return await claimRandomGift(interaction);
+    if (interaction.customId === "yes" || interaction.customId === "no") return null;
     return Log.warn(`No button matching ${interaction.customId} was found.`);
 };
 
