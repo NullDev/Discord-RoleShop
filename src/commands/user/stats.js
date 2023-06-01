@@ -15,6 +15,23 @@ const db = new QuickDB({
     filePath: path.resolve("./data/users.sqlite"),
 });
 
+/**
+ * Don't ask
+ *
+ * @param {number} points
+ * @return {string}
+ */
+const getAdditionalContext = function(points){
+    switch (points){
+        case 0: return " :sob:";
+        case 69: return " Nice. :smirk:";
+        case 420: return " <:420:1113774775203012689>";
+        case 666: return " :smiling_imp:";
+        case 1337: return " N1C3 0N3 :sunglasses:";
+        default: return "";
+    }
+};
+
 export default {
     data: new SlashCommandBuilder()
         .setName(`${config.bot_settings.slash_command_prefix}-stats`)
@@ -40,17 +57,18 @@ export default {
         const pointsKey = `guild-${interaction.guildId}.user-${userid}.points`;
 
         const points = await db.get(pointsKey) || 0;
+        const context = getAdditionalContext(points);
 
         if (!user?.user?.id){
             return await interaction.reply(await __(
                 "replies.stats_you",
                 await __("replies.points", points, points)(interaction.guildId, true),
-            )(interaction.guildId));
+            )(interaction.guildId) + context);
         }
         return await interaction.reply(await __(
             "replies.stats_other",
             user.user.tag,
             await __("replies.points", points, points)(interaction.guildId, true),
-        )(interaction.guildId));
+        )(interaction.guildId) + context);
     },
 };
