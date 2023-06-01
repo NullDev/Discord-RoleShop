@@ -17,7 +17,7 @@
         "invalid_price": "Invalid price. Must be an integer greater than 0.",
         "invalid_role": "Invalid role.",
         "not_enough_points": "You don't have enough points",
-        "buy_fail": "Something went wrong. No points removed.\nPlease cpntact an admin. The bot might not have the correct permissions to add roles.\nATTENTION: In the server role overview the role of the bot must be ABOVE the shop roles!",
+        "buy_fail": "Something went wrong. No points removed.\nPlease contact an admin. The bot might not have the correct permissions to manage roles.\nATTENTION: In the server role overview, the role of the bot must be ABOVE the shop roles!",
         "transaction_log_empty": "No transaction log found for this guild.",
         "interaction_not_yours": "You can't use another user's Buttons, Prompts or Menus.",
         "not_in_shop": "This role is not in the shop!",
@@ -91,7 +91,7 @@
             "return_role": "Return this role. The original price was %s points.",
             "which_role": "Which role would you like to to return?",
             "are_you_sure": "Are you sure you want to return the role \"%s\"? You will **NOT** get back the points you paid (%s)!",
-            "return_failed": "Failed to remove your role. Please contact an admin to make sure the bot has the correct permissions.",
+            "return_failed": "Failed to remove your role. Please contact an admin. The bot might not have the correct permissions to manage roles.\nATTENTION: In the server role overview, the role of the bot must be ABOVE the shop roles!",
             "return_success": "You returned the role \"%s\".",
             "none_owned": "You don't own any roles that you can return."
         },
