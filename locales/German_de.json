@@ -17,7 +17,7 @@
         "invalid_price": "Ungültiger Preis. Muss eine Ganzzahl sein, die grö0er als 0 ist.",
         "invalid_role": "Ungültige Rolle.",
         "not_enough_points": "Du hast nicht genügend Punkte.",
-        "buy_fail": "Irgendwas ist schief gelaufen. Es wurden keine Punkte abgezogen. Bitte kontaktiere einen Admin. Der Bot hat möglicherweise nicht die richtigen Berechtigungen, Rollen zu vergeben.",
+        "buy_fail": "Irgendwas ist schief gelaufen. Es wurden keine Punkte abgezogen. Bitte kontaktiere einen Admin. Der Bot hat möglicherweise nicht die richtigen Berechtigungen, Rollen zu vergeben.\nACHTUNG: In der Server-Rollenübersicht muss die Rolle des Bots ÜBER den Shop Rollen stehen!",
         "transaction_log_empty": "Kein Transaktionslog für diesen Server gefunden.",
         "interaction_not_yours": "Du kannst nicht die Buttons, Prompts oder Menüs eines anderen Users benutzen.",
         "not_in_shop": "Diese Rolle ist nicht im Shop!",
