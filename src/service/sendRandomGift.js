@@ -79,7 +79,10 @@ const sendRandomGift = async function(message){
 
         if (claimButton.disabled) return;
 
-        const oldEmbed = updatedMsg.embeds[0];
+        const oldEmbed = updatedMsg?.embeds?.[0];
+
+        if (!oldEmbed) return;
+
         const newEmbed = {
             ...oldEmbed.data,
             description: await __("replies.gifts.too_late")(guildId),
