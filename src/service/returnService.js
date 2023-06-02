@@ -43,7 +43,9 @@ const returnEventHandler = async function(interaction){
             };
 
             await interaction.message.edit({
-                content: newReturnableRoles.length === 0 ? String(await __("replies.return.none_owned")(interaction.guildId)) : interaction.message.content,
+                content: newReturnableRoles.length === 0
+                    ? await __("replies.return.none_owned")(interaction.guildId)
+                    : interaction.message.content,
                 components: newReturnableRoles.length === 0 ? [] : [{
                     type: ComponentType.ActionRow,
                     components: [{
