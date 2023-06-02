@@ -1,3 +1,4 @@
+import {ComponentType} from "discord.js";
 import createYesNoInteraction from "../events/yesNoInteraction.js";
 import logTransaction from "./transactionLog.js";
 import Log from "../util/log.js";
@@ -34,8 +35,22 @@ const returnEventHandler = async function(interaction){
 
             await logTransaction(interaction.guildId, interaction.user.id, "RETURN", roleid, role);
 
+            const newReturnableRoles = interaction.component?.options.filter(option => option.value !== interaction.values[0]);
+            const selectMenu = {
+                customId: "role_return",
+                placeholder: await __("replies.return.select_role")(interaction.guildId),
+                options: newReturnableRoles ?? [],
+            };
+
             await interaction.message.edit({
-                components: [],
+                content: newReturnableRoles.length === 0 ? String(await __("replies.return.none_owned")(interaction.guildId)) : interaction.message.content,
+                components: newReturnableRoles.length === 0 ? [] : [{
+                    type: ComponentType.ActionRow,
+                    components: [{
+                        type: ComponentType.StringSelect,
+                        ...selectMenu,
+                    }],
+                }],
             });
 
             return await interaction.channel?.send({
