@@ -1,10 +1,10 @@
 import path from "node:path";
 import { QuickDB } from "quick.db";
+import {ComponentType} from "discord.js";
 import createYesNoInteraction from "../events/yesNoInteraction.js";
 import logTransaction from "./transactionLog.js";
 import Log from "../util/log.js";
 import __ from "./i18n.js";
-import {ComponentType} from "discord.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -51,12 +51,13 @@ const buyEventHandler = async function(interaction){
 
             const oldBalance = userData.points;
             const newBalance = await userDb.sub(`guild-${interaction.guildId}.user-${interaction.user.id}.points`, price);
-            const embed = interaction.message.embeds[0];
+            const embed = interaction.message.embeds?.[0];
+
+            if (!embed) return Log.error("Shop embed not found", new Error());
+
             const oldFields = embed.fields;
 
-            const boughtField = oldFields.filter(field => {
-                return field.name === role;
-            });
+            const boughtField = oldFields.filter(field => field.name === role);
             boughtField[0].value = boughtField[0].value.replace("❌", "✅");
             oldFields[oldFields.findIndex(field => field.name === role)] = boughtField[0];
 
@@ -70,14 +71,11 @@ const buyEventHandler = async function(interaction){
                 fields: oldFields,
             };
 
-            const oldInteractionRoles = interaction.component?.options;
-            const newInteractionRoles = oldInteractionRoles.filter(option => {
-                return option.value !== interaction.values[0];
-            });
+            const newInteractionRoles = interaction.component?.options.filter(option => option.value !== interaction.values[0]);
             const selectMenu = {
                 customId: "role_buy",
                 placeholder: "Select a role to buy",
-                options: newInteractionRoles,
+                options: newInteractionRoles ?? [],
             };
 
             await logTransaction(interaction.guildId, interaction.user.id, "BUY", roleid, role, price, oldBalance, newBalance);
