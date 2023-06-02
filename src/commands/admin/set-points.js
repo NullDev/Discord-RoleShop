@@ -28,10 +28,11 @@ export default {
                 .setDescription(translations.set_points.options.user.desc)
                 .setDescriptionLocalizations(translations.set_points.options.user.translations)
                 .setRequired(true))
-        .addIntegerOption((option) =>
+        .addNumberOption((option) =>
             option.setName("points")
                 .setDescription(translations.set_points.options.points.desc)
                 .setDescriptionLocalizations(translations.set_points.options.points.translations)
+                .setMinValue(0)
                 .setRequired(true)),
     /**
      * @param {import("discord.js").CommandInteraction} interaction

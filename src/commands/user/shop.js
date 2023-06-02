@@ -100,7 +100,7 @@ export default {
         });
 
         const guildServerImg = interaction.guild?.iconURL({ extension: "png" }) ?? "https://cdn.discordapp.com/embed/avatars/0.png";
-        const userPoints = await userDb.get(`guild-${interaction.guildId}.user-${interaction.user.id}.points`) || 0;
+        const userPoints = Math.floor(await userDb.get(`guild-${interaction.guildId}.user-${interaction.user.id}.points`) ?? 0);
         const embed = {
             title: `${interaction.guild?.name}'s ${await __("generic.role_shop")(interaction.guildId)}`,
             description: String(await __("replies.shop.description")(interaction.guildId))

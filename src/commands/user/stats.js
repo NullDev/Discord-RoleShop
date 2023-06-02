@@ -57,7 +57,7 @@ export default {
         const pointsKey = `guild-${interaction.guildId}.user-${userid}.points`;
 
         const points = await db.get(pointsKey) || 0;
-        const context = getAdditionalContext(points);
+        const context = getAdditionalContext(Math.floor(points));
 
         if (!user?.user?.id){
             return await interaction.reply(await __(

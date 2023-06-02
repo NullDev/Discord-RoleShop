@@ -20,10 +20,11 @@ export default {
         .setDescriptionLocalizations(translations.set_boost_multiplier.translations)
         .setDMPermission(false)
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
-        .addIntegerOption((option) =>
+        .addNumberOption((option) =>
             option.setName("value")
                 .setDescription(translations.set_boost_multiplier.options.value.desc)
                 .setDescriptionLocalizations(translations.set_boost_multiplier.options.value.translations)
+                .setMinValue(1)
                 .setRequired(true)),
 
     /**
