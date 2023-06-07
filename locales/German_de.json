@@ -24,7 +24,7 @@
         "unsupported_format": "Ungültiger Anhang! Unterstützt: JPG, PNG & GIF",
         "no_emote_server": "Kein Emote server konfiguriert!",
         "emote_server_not_found": "Emote Server nicht gefunden!",
-        "failed_to_upload_emote": "Konnte EMote nicht auf den Emote Server hochladen."
+        "failed_to_upload_emote": "Konnte Emote nicht auf den Emote Server hochladen."
     },
     "generic": {
         "aborted": "Abgebrochen.",
