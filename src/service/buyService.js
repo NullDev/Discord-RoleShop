@@ -57,7 +57,8 @@ const buyEventHandler = async function(interaction){
 
             const oldFields = embed.fields;
 
-            const boughtField = oldFields.filter(field => field.name === role);
+            const boughtField = oldFields.filter(field => field.name.split(/\s<[a-z]?:[a-zA-Z0-9]+:[0-9]+>/g)[0] === role);
+            if (boughtField.length !== 1) return Log.error("Role field not found", new Error());
             boughtField[0].value = boughtField[0].value.replace("❌", "✅");
             oldFields[oldFields.findIndex(field => field.name === role)] = boughtField[0];
 
@@ -79,7 +80,7 @@ const buyEventHandler = async function(interaction){
             };
 
             await logTransaction(interaction.guildId, interaction.user.id, "BUY", roleid, role, price, oldBalance, newBalance);
-            Log.done("User " + interaction.user.tag + " (" + interaction.user.id + ") bought role " + role + " for " + price + " points");
+            Log.info(`User "${interaction.user.tag}" (${interaction.user.id}) returned role "${role}" (${roleid}) for ${price} in guild "${interaction.guild?.name}" (${interaction.guildId})`);
 
             await interaction.message.edit({
                 embeds: [newEmbed],
