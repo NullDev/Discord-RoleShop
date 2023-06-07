@@ -34,6 +34,7 @@ const returnEventHandler = async function(interaction){
             }
 
             await logTransaction(interaction.guildId, interaction.user.id, "RETURN", roleid, role);
+            Log.info(`User ${interaction.user.tag} (${interaction.user.id}) returned role ${roleid} in guild ${interaction.guildId}`);
 
             const newReturnableRoles = interaction.component?.options.filter(option => option.value !== interaction.values[0]);
             const selectMenu = {

@@ -79,6 +79,7 @@ const buyEventHandler = async function(interaction){
             };
 
             await logTransaction(interaction.guildId, interaction.user.id, "BUY", roleid, role, price, oldBalance, newBalance);
+            Log.done("User " + interaction.user.tag + " (" + interaction.user.id + ") bought role " + role + " for " + price + " points");
 
             await interaction.message.edit({
                 embeds: [newEmbed],
