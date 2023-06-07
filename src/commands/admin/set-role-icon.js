@@ -39,7 +39,7 @@ export default {
      * @param {import("discord.js").CommandInteraction} interaction
      */
     async execute(interaction){
-        interaction.deferReply({ ephemeral: true});
+        await interaction.deferReply({ ephemeral: true});
 
         const roleId = interaction.options.get("role", true).role?.id;
         if (!roleId){
