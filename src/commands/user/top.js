@@ -1,6 +1,7 @@
 import path from "node:path";
 import { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } from "discord.js";
 import { QuickDB } from "quick.db";
+import DiscordUtils from "../../util/discordUtils.js";
 import { config } from "../../../config/config.js";
 import generateImage from "../../service/topImageGenerator.js";
 import translations from "../../../locales/commands/translations.js";
@@ -47,7 +48,7 @@ export default {
             const member = await interaction.guild?.members.fetch(userid).catch(() => null);
             if (!member) return [index, { tag: "Anonymous", pic: "https://cdn.discordapp.com/embed/avatars/0.png" }, points];
 
-            return [index, { tag: member.user.tag, pic: member.displayAvatarURL({
+            return [index, { tag: DiscordUtils.getUserName(member.user, true), pic: member.displayAvatarURL({
                 extension: "png",
             }) }, Math.floor(points), member.premiumSinceTimestamp];
         }));
