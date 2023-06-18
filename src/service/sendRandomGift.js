@@ -68,7 +68,7 @@ const sendRandomGift = async function(message){
     await guildSettingsDb.set(`guild-${guildId}.gift.last_gift_claimed`, false);
 
     setTimeout(async() => {
-        const updatedMsg = await message.channel.messages.fetch(msg.id);
+        const updatedMsg = await message.channel.messages.fetch(msg.id).catch(() => null);
         if (!updatedMsg) return;
 
         const { components } = updatedMsg;
@@ -93,7 +93,7 @@ const sendRandomGift = async function(message){
         };
 
         Log.info(`Gift in ${message.guild?.name} (${message.guild?.id}) expired`);
-        await guildSettingsDb.set(`guild-${guildId}.gift.last_sent`, null);
+        await guildSettingsDb.delete(`guild-${guildId}.gift.last_sent`);
         await updatedMsg.edit({ embeds: [newEmbed], attachments: [], components: [] });
     }, 2 * 60 * 1000);
 };
