@@ -42,8 +42,8 @@
         }
     },
     "replies": {
-        "stats_you": "Dein Rang am Server ist #%s.\nDu hast aktuell %s!",
-        "stats_other": "%s's Rang am Server ist #%s. %s hat aktuell %s!",
+        "stats_you": "Du hast aktuell %s!",
+        "stats_other": "%s hat aktuell %s!",
         "points": {
             "zero": "keine Punkte",
             "one": "einen Punkt",
