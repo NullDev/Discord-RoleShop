@@ -42,8 +42,8 @@
         }
     },
     "replies": {
-        "stats_you": "You currently have %s!",
-        "stats_other": "%s currently has %s!",
+        "stats_you": "Your rank on this server is #%s.\nYou currently have %s!",
+        "stats_other": "%s's rank on this server is #%s.\n%s currently has %s!",
         "points": {
             "zero": "no points",
             "one": "one point",

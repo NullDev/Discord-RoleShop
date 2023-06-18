@@ -2,6 +2,7 @@ import path from "node:path";
 import { SlashCommandBuilder } from "discord.js";
 import { QuickDB } from "quick.db";
 import { config } from "../../../config/config.js";
+import DiscordUtils from "../../util/discordUtils.js";
 import translations from "../../../locales/commands/translations.js";
 import __ from "../../service/i18n.js";
 
@@ -59,16 +60,26 @@ export default {
         const points = await db.get(pointsKey) || 0;
         const context = getAdditionalContext(Math.floor(points));
 
+        const users = await db.get(`guild-${interaction.guildId}`);
+        const topData = DiscordUtils.getTopUsers(users, 0);
+
+        const index = topData.findIndex((entry) => entry[1] === userid);
+        const rank = index + 1;
+
         if (!user?.user?.id){
             return await interaction.reply(await __(
                 "replies.stats_you",
+                rank,
                 await __("replies.points", points, points)(interaction.guildId, true),
             )(interaction.guildId) + context);
         }
+        const name = DiscordUtils.getUserName(user.user, true);
         return await interaction.reply(await __(
             "replies.stats_other",
-            user.user.tag,
-            await __("replies.points", points, points)(interaction.guildId, true),
+            name,
+            rank,
+            name,
+            await __("replies.points", rank, points, points)(interaction.guildId, true),
         )(interaction.guildId) + context);
     },
 };
