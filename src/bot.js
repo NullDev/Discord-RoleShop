@@ -1,4 +1,4 @@
-import { GatewayIntentBits, Events, ActivityType } from "discord.js";
+import { GatewayIntentBits, Events, ActivityType, Partials } from "discord.js";
 import Log from "./util/log.js";
 import RateLimiter from "./util/rateLimiter.js";
 import { config } from "../config/config.js";
@@ -16,6 +16,11 @@ const client = new DiscordClient({
     intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.DirectMessages,
+    ],
+    partials: [
+        Partials.Channel,
+        Partials.Message,
     ],
     presence: {
         status: "dnd",

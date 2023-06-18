@@ -1,6 +1,7 @@
 import path from "node:path";
 import { QuickDB } from "quick.db";
 import sendRandomGift from "../service/sendRandomGift.js";
+import handleDM from "../service/handleDM.js";
 import Log from "../util/log.js";
 
 // ========================= //
@@ -24,6 +25,11 @@ const guildSettingsDb = new QuickDB({
  */
 const messageCreate = async function(message, rateLimiter){
     if (message.author.bot) return;
+
+    if (!message.guild){
+        await handleDM(message);
+        return;
+    }
 
     sendRandomGift(message);
 

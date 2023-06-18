@@ -10,5 +10,6 @@ export default {
             window: 5,
         },
         emote_server_id: "",
+        bot_owner_id: "",
     },
 };
