@@ -6,7 +6,7 @@ import { config } from "../../config/config.js";
  * @param {import("discord.js").Message} message
  */
 const handleDM = async function(message){
-    if (message.author.id !== config.bot_settings.bot_owner_id) return;
+    if (!config.bot_settings.bot_owner_ids.includes(message.author.id)) return;
 
     const cont = message.content;
     if (cont.startsWith(".gw")){
