@@ -16,6 +16,8 @@ export default {
         random_gift: {
             cooldown: 4,
             chance: 5,
+            min_points: 10,
+            max_points: 70,
         },
         points: {
             multiplier: 1,
