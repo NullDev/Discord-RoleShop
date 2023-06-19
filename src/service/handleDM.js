@@ -12,15 +12,26 @@ const handleDM = async function(message){
     if (cont.startsWith(".gw")){
         const split = cont.split(" ");
         const id = split[1].trim();
+        let replyto = split[2].trim();
+        if (!replyto.startsWith("r:")) replyto = "";
         const msg = split.slice(2).join(" ").trim();
 
         if (!id || !msg) return;
 
         try {
-            const channel = await message.client.channels.fetch(id);
+            const channel = await message.client.channels.fetch(id).catch(() => null);
             if (!channel) return;
+
+            if (replyto !== ""){
+                // @ts-ignore
+                const msgR = await channel.messages.fetch(replyto.slice(2)).catch(() => null);
+                if (!msgR) return;
+                await msgR.reply(msg.replace(replyto, "")).catch(() => null);
+                return;
+            }
+
             // @ts-ignore
-            await channel.send(msg);
+            await channel.send(msg).catch(() => null);
         }
         catch (e){ /* */ }
     }
