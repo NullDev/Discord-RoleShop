@@ -44,7 +44,7 @@ export default {
             });
         }
 
-        await db.set(`guild-${interaction.guildId}.boost-multiplier`, value || 1);
+        await db.set(`guild-${interaction.guildId}.boost-multiplier`, value || config.default_values.poitns.multiplier);
 
         return await interaction.reply({
             content: value === 1

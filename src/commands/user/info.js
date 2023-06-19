@@ -45,7 +45,7 @@ export default {
         const totalMembers = members?.reduce((acc, memberCount) => Number(acc) + Number(memberCount), 0);
 
         const botAvatar = interaction.client.user?.displayAvatarURL({ extension: "png" })
-            || "https://cdn.discordapp.com/avatars/1102551839674740737/89848012463df027b4db688e05b89a44.png";
+            || config.default_values.icons.bot;
 
         const embed = {
             title: "Bot Info",

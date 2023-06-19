@@ -1,6 +1,7 @@
 import path from "node:path";
 import { QuickDB } from "quick.db";
 import {ComponentType} from "discord.js";
+import { config } from "../../config/config.js";
 import createYesNoInteraction from "../events/yesNoInteraction.js";
 import logTransaction from "./transactionLog.js";
 import Log from "../util/log.js";
@@ -59,7 +60,7 @@ const buyEventHandler = async function(interaction){
 
             const boughtField = oldFields.filter(field => field.name.split(/\s<[a-z]?:[a-zA-Z0-9]+:[0-9]+>/g)[0] === role);
             if (boughtField.length !== 1) return Log.error("Role field not found", new Error());
-            boughtField[0].value = boughtField[0].value.replace("❌", "✅");
+            boughtField[0].value = boughtField[0].value.replace(config.default_values.shop.not_owned, config.default_values.shop.owned);
             oldFields[oldFields.findIndex(field => field.name === role)] = boughtField[0];
 
             const newEmbed = {
