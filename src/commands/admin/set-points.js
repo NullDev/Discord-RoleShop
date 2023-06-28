@@ -32,7 +32,6 @@ export default {
             option.setName("points")
                 .setDescription(translations.set_points.options.points.desc)
                 .setDescriptionLocalizations(translations.set_points.options.points.translations)
-                .setMinValue(0)
                 .setRequired(true)),
     /**
      * @param {import("discord.js").CommandInteraction} interaction
@@ -50,7 +49,7 @@ export default {
         });
 
         const points = Number(interaction.options.get("points")?.value);
-        if (isNaN(points) || points < 0) return await interaction.reply({
+        if (isNaN(points)) return await interaction.reply({
             content: await __("errors.invalid_points")(interaction.guildId),
             ephemeral: true,
         });
