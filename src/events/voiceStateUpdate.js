@@ -28,6 +28,11 @@ const voiceStateUpdate = async function(oldState, newState){
     const isBanned = await usersDb.get(`guild-${guild}.user-${user}.banned`);
     if (!user || !!isBanned) return;
 
+    // @TODO: Mute/Unmute counts as voiceStateUpdate so we need to
+    // track this event as well and update newState accordingly!
+
+    // Also: Take into account deafen/muted/muted by admin/defenead by admin!
+
     if (!oldState.channel && newState.channel){
         voiceCount.start(guild, oldState.member, newState);
     }
