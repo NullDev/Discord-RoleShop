@@ -1,5 +1,6 @@
 import path from "node:path";
 import { QuickDB } from "quick.db";
+import VoiceCount from "../service/voiceCountService";
 // import { config } from "../../config/config.js";
 // import Log from "../util/log.js";
 
@@ -10,6 +11,8 @@ import { QuickDB } from "quick.db";
 const usersDb = new QuickDB({
     filePath: path.resolve("./data/users.sqlite"),
 });
+
+const voiceCount = new VoiceCount();
 
 /**
  * Handle voiceStateUpdate event
@@ -26,11 +29,11 @@ const voiceStateUpdate = async function(oldState, newState){
     if (!user || !!isBanned) return;
 
     if (!oldState.channel && newState.channel){
-        console.log(`User ${user} joined voice channel ${newState.channel.id} on server ${guild}`);
+        voiceCount.start(guild, user);
     }
 
     else if (oldState.channel && !newState.channel){
-        console.log(`User ${user} left voice channel ${oldState.channel.id} on server ${guild}`);
+        voiceCount.stop(guild, user);
     }
 };
 
