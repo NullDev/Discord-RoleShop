@@ -6,6 +6,7 @@ import DiscordClient from "./service/client.js";
 import registerCommands from "./service/commandRegister.js";
 import interactionCreateHandler from "./events/interactionCreate.js";
 import messageCreate from "./events/messageCreate.js";
+import voiceStateUpdate from "./events/voiceStateUpdate.js";
 import scheduleCrons from "./service/cronScheduler.js";
 
 // ========================= //
@@ -51,6 +52,8 @@ const rateLimiter = new RateLimiter(
 );
 
 client.on(Events.MessageCreate, async message => messageCreate(message, rateLimiter));
+
+client.on(Events.VoiceStateUpdate, async(oldState, newState) => voiceStateUpdate(oldState, newState));
 
 client.on(Events.GuildCreate, guild => Log.info("Joined guild: " + guild.name));
 
