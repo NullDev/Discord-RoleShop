@@ -33,9 +33,6 @@ class VoiceCount {
             const isDeaf = trackedUser.voice.deaf;
             const isIdle = trackedUser.voice.selfDeaf || trackedUser.voice.selfMute || trackedUser.voice.selfVideo;
 
-            const isBanned = await this.db.get(`guild-${guild}.user-${user}.banned`);
-            if (!!isBanned) return;
-
             const timeSpent = Date.now() - trackedUser.startTime;
             const minutesSpent = Math.floor(timeSpent / 60000);
 
