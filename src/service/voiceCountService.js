@@ -26,19 +26,21 @@ class VoiceCount {
         // After being in voice chat for more than 5 hours straight, users shouldn't get any more points
 
         this.trackedUsers.forEach(async trackedUser => {
-            const {guild} = trackedUser;
-            const {user} = trackedUser;
+            const guildid = /** @type {string} */ (trackedUser.guild);
+            const member = /** @type {import("discord.js").GuildMember} */ (trackedUser.user);
+            const state = /** @type {import("discord.js").VoiceState} */ (trackedUser.newState);
 
-            const isMuted = trackedUser.voice.mute;
-            const isDeaf = trackedUser.voice.deaf;
-            const isIdle = trackedUser.voice.selfDeaf || trackedUser.voice.selfMute || trackedUser.voice.selfVideo;
+            if (state.selfMute || state.mute) return;
 
             const timeSpent = Date.now() - trackedUser.startTime;
             const minutesSpent = Math.floor(timeSpent / 60000);
 
+            // 5hrs
             if (minutesSpent >= 300) return;
 
-            const points = (minutesSpent * 0.5) * (isIdle ? 1 : 2);
+            const points = !!member.premiumSince ? 1 : 0.5;
+
+            await this.db?.add(`guild-${guildid}.user-${member.id}.points`, points);
         });
     }
 
@@ -47,12 +49,14 @@ class VoiceCount {
      *
      * @param {string} guild
      * @param {import("discord.js").GuildMember} user
+     * @param {import("discord.js").VoiceState} newState
      * @memberof VoiceCount
      */
-    start(guild, user){
+    start(guild, user, newState){
         this.trackedUsers.push({
             guild,
             user,
+            newState,
             startTime: Date.now(),
         });
     }

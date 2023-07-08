@@ -29,7 +29,7 @@ const voiceStateUpdate = async function(oldState, newState){
     if (!user || !!isBanned) return;
 
     if (!oldState.channel && newState.channel){
-        voiceCount.start(guild, oldState.member);
+        voiceCount.start(guild, oldState.member, newState);
     }
 
     else if (oldState.channel && !newState.channel){
