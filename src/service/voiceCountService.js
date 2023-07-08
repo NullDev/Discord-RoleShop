@@ -2,7 +2,17 @@ import path from "node:path";
 import { QuickDB } from "quick.db";
 import Log from "../util/log.js";
 
+/**
+ * Handle voice state changes
+ *
+ * @class VoiceCount
+ */
 class VoiceCount {
+    /**
+     * Creates a new instance of VoiceCount
+     *
+     * @memberof VoiceCount
+     */
     constriuctor(){
         this.trackedUsers = [];
         this.db = new QuickDB({
@@ -18,6 +28,7 @@ class VoiceCount {
      * Worker that runs every minute
      *
      * @memberof VoiceCount
+     * @returns {void}
      */
     #voicePointsWorker(){
         // 0.5 points per minute
@@ -36,7 +47,10 @@ class VoiceCount {
             const minutesSpent = Math.floor(timeSpent / 60000);
 
             // 5hrs
-            if (minutesSpent >= 300) return;
+            if (minutesSpent >= 300){
+                Log.info(`User ${member} on guild ${guildid} has been in VC for more than 5 hourse. Not counting points`);
+                return;
+            }
 
             const points = !!member.premiumSince ? 1 : 0.5;
 
@@ -50,10 +64,11 @@ class VoiceCount {
      * @param {string} guild
      * @param {import("discord.js").GuildMember} user
      * @param {import("discord.js").VoiceState} newState
+     * @returns {void}
      * @memberof VoiceCount
      */
     start(guild, user, newState){
-        this.trackedUsers.push({
+        return this.trackedUsers.push({
             guild,
             user,
             newState,
