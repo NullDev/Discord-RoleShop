@@ -1,7 +1,7 @@
 import path from "node:path";
 import { QuickDB } from "quick.db";
-import { config } from "../../config/config.js";
-import Log from "../util/log.js";
+// import { config } from "../../config/config.js";
+// import Log from "../util/log.js";
 
 // ========================= //
 // = Copyright (c) NullDev = //
@@ -9,10 +9,6 @@ import Log from "../util/log.js";
 
 const usersDb = new QuickDB({
     filePath: path.resolve("./data/users.sqlite"),
-});
-
-const guildSettingsDb = new QuickDB({
-    filePath: path.resolve("./data/guild_settings.sqlite"),
 });
 
 /**
@@ -29,7 +25,13 @@ const voiceStateUpdate = async function(oldState, newState){
     const isBanned = await usersDb.get(`guild-${guild}.user-${user}.banned`);
     if (!user || !!isBanned) return;
 
-    // if user joined a voice channel on the server
+    if (!oldState.channel && newState.channel){
+        console.log(`User ${user} joined voice channel ${newState.channel.id} on server ${guild}`);
+    }
+
+    else if (oldState.channel && !newState.channel){
+        console.log(`User ${user} left voice channel ${oldState.channel.id} on server ${guild}`);
+    }
 };
 
 export default voiceStateUpdate;
