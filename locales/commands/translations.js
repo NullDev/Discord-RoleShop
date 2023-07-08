@@ -155,6 +155,34 @@ export default {
             },
         },
     },
+    ban: {
+        desc: "Ban a user from using the bot.",
+        translations: {
+            de: "Banne einen Benutzer von der Benutzung des Bots.",
+        },
+        options: {
+            user: {
+                desc: "The user to ban",
+                translations: {
+                    de: "Der zu bannende Benutzer",
+                },
+            },
+        },
+    },
+    unban: {
+        desc: "Unban a user from using the bot.",
+        translations: {
+            de: "Entbanne einen Benutzer von der Benutzung des Bots.",
+        },
+        options: {
+            user: {
+                desc: "The user to unban",
+                translations: {
+                    de: "Der zu entbannende Benutzer",
+                },
+            },
+        },
+    },
     set_points: {
         desc: "Set the points of a user.",
         translations: {

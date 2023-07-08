@@ -49,6 +49,9 @@ const messageCreate = async function(message, rateLimiter){
         return;
     }
 
+    const isBanned = await usersDb.get(`guild-${guild}.user-${user}.banned`);
+    if (!!isBanned) return;
+
     const multiplierKey = `guild-${guild}.boost-multiplier`;
     const multiplier = Number(await guildSettingsDb.get(multiplierKey) ?? config.default_values.points.multiplier);
     const pointsKey = `guild-${guild}.user-${user}.points`;

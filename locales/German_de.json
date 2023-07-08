@@ -24,7 +24,11 @@
         "unsupported_format": "Ungültiger Anhang! Unterstützt: JPG, PNG & GIF",
         "no_emote_server": "Kein Emote server konfiguriert!",
         "emote_server_not_found": "Emote Server nicht gefunden!",
-        "failed_to_upload_emote": "Konnte Emote nicht auf den Emote Server hochladen."
+        "failed_to_upload_emote": "Konnte Emote nicht auf den Emote Server hochladen.",
+        "cannot_ban_admin": "Admins können nicht gebannt werden!",
+        "user_not_banned": "User ist nicht gebannt.",
+        "user_already_banned": "User ist bereits gebannt.",
+        "user_banned": "Du bist gebannt und kannst den Bot nicht mehr benutzen."
     },
     "generic": {
         "aborted": "Abgebrochen.",
@@ -44,6 +48,7 @@
     "replies": {
         "stats_you": "Du hast aktuell %s!",
         "stats_other": "%s hat aktuell %s!",
+        "stats_banned": "Dieser User ist gebannt.",
         "points": {
             "zero": "keine Punkte",
             "one": "einen Punkt",
@@ -105,6 +110,8 @@
             "user_claimed_gift_footer": "🎁 %s hat %s Punkte erhalten!",
             "too_late": "Ein Geschenk ist aufgetaucht!\nKeiner war schnell genug, um es sich zu schnappen :(",
             "too_late_footer": "❌ Niemand war schnell genug..."
-        }
+        },
+        "user_banned": "User %s wurde gebannt und kann den Bot nicht mehr benutzen.",
+        "user_unbanned": "User %s wurde entbannt und kann den Bot wieder benutzen."
     }
 }

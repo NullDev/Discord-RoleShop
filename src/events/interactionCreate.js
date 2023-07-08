@@ -1,3 +1,4 @@
+import { QuickDB } from "quick.db";
 import Log from "../util/log.js";
 import __ from "../service/i18n.js";
 import buyEventHandler from "../service/buyService.js";
@@ -7,6 +8,10 @@ import claimRandomGift from "../service/claimRandomGift.js";
 // ========================= //
 // = Copyright (c) NullDev = //
 // ========================= //
+
+const userDB = new QuickDB({
+    filePath: "./data/users.sqlite",
+});
 
 /**
  * Handle command Interaction events
@@ -83,6 +88,16 @@ const handleButtonInteraction = async function(interaction){
  * @return {Promise<void>}
  */
 const interactionCreateHandler = async function(interaction){
+    const isBanned = await userDB.get(`guild-${interaction.guildId}.user-${interaction.user.id}.banned`);
+    if (!!isBanned){
+        // @ts-ignore
+        await interaction.reply({
+            content: await __("errors.user_banned")(interaction.guildId),
+            ephemeral: true,
+        });
+        return;
+    }
+
     if (interaction.isStringSelectMenu()) await handleSelectMenuInteraction(interaction);
     if (interaction.isChatInputCommand()) await handleCommandInteraction(interaction);
     if (interaction.isButton()) await handleButtonInteraction(interaction);

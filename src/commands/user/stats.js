@@ -28,6 +28,7 @@ const getAdditionalContext = function(points){
         case 420: return " <:420:1113774775203012689>";
         case 666: return " :smiling_imp:";
         case 1337: return " N1C3 0N3 :sunglasses:";
+        case 9001: return " IT'S OVER 9000!!! <:AAHHH:1044205696738131978>";
         default: return "";
     }
 };
@@ -58,6 +59,11 @@ export default {
 
         const points = await db.get(pointsKey) || 0;
         const context = getAdditionalContext(Math.floor(points));
+
+        const isBanned = await db.get(`guild-${interaction.guildId}.user-${userid}.banned`);
+        if (!!isBanned){
+            return await interaction.reply(await __("replies.stats_banned")(interaction.guildId));
+        }
 
         if (!user?.user?.id){
             return await interaction.reply(await __(

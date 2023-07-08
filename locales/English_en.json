@@ -24,7 +24,11 @@
         "unsupported_format": "Invalid attachment! Supported: JPG, PNG & GIF",
         "no_emote_server": "Emote server not configured!",
         "emote_server_not_found": "Emote server not found!",
-        "failed_to_upload_emote": "Failed to upload emote to emote server!"
+        "failed_to_upload_emote": "Failed to upload emote to emote server!",
+        "cannot_ban_admin": "You can't ban an admin!",
+        "user_not_banned": "User is not banned!",
+        "user_already_banned": "User is already banned!",
+        "user_banned": "You are banned from using the bot!"
     },
     "generic": {
         "aborted": "Aborted.",
@@ -44,6 +48,7 @@
     "replies": {
         "stats_you": "You currently have %s!",
         "stats_other": "%s currently has %s!",
+        "stats_banned": "This user is banned.",
         "points": {
             "zero": "no points",
             "one": "one point",
@@ -105,6 +110,8 @@
             "user_claimed_gift_footer": "🎁 %s received %s points!",
             "too_late": "A gift appeared!\nNo one was fast enough to claim it :(",
             "too_late_footer": "❌ Nobody was fast enough..."
-        }
+        },
+        "user_banned": "User %s has been banned from using the bot.",
+        "user_unbanned": "User %s has been unbanned and can use the bot again."
     }
 }

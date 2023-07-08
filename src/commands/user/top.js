@@ -35,7 +35,7 @@ export default {
         if (!users) return await interaction.followUp(await __("errors.no_top_stats")(interaction.guildId));
 
         const top10 = Object.entries(users)
-            .filter((user) => user[1].points > 0)
+            .filter((user) => user[1].points > 0 && !user[1].banned)
             .sort((a, b) => b[1].points - a[1].points)
             .slice(0, 10)
             .map((user, index) => ([index + 1, user[0].split("-")[1], user[1].points]));
