@@ -51,10 +51,13 @@ Alternatively you can host the bot yourself. Instructions [below ⏬](#wrench-se
     - No external database needed
     - Easy configuration system
     - Install instructions provided [below](#wrench-dev-setup)
-- [x] Admin commands
+- [x] Admin-only commands
 - [x] Fail-safes to prevent point loss on error
 - [x] Automatic Syncing to keep up with DB and Discord states 
 - [x] _Smart Spam Filtering™_ via Exponential Smoothing & Moving Average
+- [x] Transaction log
+- [x] Leaderboard
+- [x] Ban / Unban users from using the bot
 
 <hr>
 
