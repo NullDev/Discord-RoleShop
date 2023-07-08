@@ -60,7 +60,7 @@ export default {
         const {attachment} = interaction.options.get("icon", true);
 
         const validTypes = ["jpg", "jpeg", "png", "gif"];
-        const type = attachment?.name?.split(".").pop()?.toLowerCase() ?? config.default_values.role_icon_type;
+        const type = attachment?.name?.split(".").pop()?.toLowerCase() ?? "x";
 
         if (!attachment || !attachment.contentType?.startsWith("image/") || (!type || !validTypes.includes(type))){
             return await interaction.followUp({
