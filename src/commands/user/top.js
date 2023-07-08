@@ -42,7 +42,7 @@ export default {
             const [index, userid, points] = user;
 
             const member = await interaction.guild?.members.fetch(userid).catch(() => null);
-            if (!member) return [index, { tag: "Anonymous", pic: config.default_values.icons.no_pb }, points];
+            if (!member) return [index, { tag: "Anonymous", pic: config.default_values.icons.no_picture }, points];
 
             return [index, { tag: DiscordUtils.getUserName(member.user, true), pic: member.displayAvatarURL({
                 extension: "png",

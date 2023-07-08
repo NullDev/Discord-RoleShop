@@ -99,7 +99,7 @@ export default {
             };
         });
 
-        const guildServerImg = interaction.guild?.iconURL({ extension: "png" }) ?? config.default_values.no_pb;
+        const guildServerImg = interaction.guild?.iconURL({ extension: "png" }) ?? config.default_values.no_picture;
         const userPoints = Math.floor(await userDb.get(`guild-${interaction.guildId}.user-${interaction.user.id}.points`) ?? 0);
         const embed = {
             title: `${interaction.guild?.name}'s ${await __("generic.role_shop")(interaction.guildId)}`,
