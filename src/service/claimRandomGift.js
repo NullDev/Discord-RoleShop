@@ -1,5 +1,6 @@
 import path from "node:path";
 import { QuickDB } from "quick.db";
+import { config } from "../../config/config.js";
 import Log from "../util/log.js";
 import __ from "./i18n.js";
 
@@ -32,7 +33,7 @@ const claimRandomGift = async function(interaction){
     await interaction.update({ components: [] });
 
     const { user } = interaction;
-    const coins = Math.floor(Math.random() * 70) + 10;
+    const coins = Math.floor(Math.random() * config.default_values.random_gift.max_points) + config.default_values.random_gift.min_points;
 
     await userDb.add(`guild-${interaction.guild?.id}.user-${user.id}.points`, coins);
 

@@ -89,7 +89,7 @@ export default {
             const boughtStr = await __("generic.bought")(interaction.guildId);
             const colorStr = await __("generic.color")(interaction.guildId);
 
-            let value = `${priceStr}: ${pointsStr}. \n${boughtStr}: ${userOwnsRole ? "✅" : "❌"}`;
+            let value = `${priceStr}: ${pointsStr}. \n${boughtStr}: ${userOwnsRole ? config.default_values.shop.owned : config.default_values.shop.not_owned}`;
             if (!!color) value += `\n${colorStr}: ${color}`;
 
             return {
@@ -99,7 +99,7 @@ export default {
             };
         });
 
-        const guildServerImg = interaction.guild?.iconURL({ extension: "png" }) ?? "https://cdn.discordapp.com/embed/avatars/0.png";
+        const guildServerImg = interaction.guild?.iconURL({ extension: "png" }) ?? config.default_values.no_picture;
         const userPoints = Math.floor(await userDb.get(`guild-${interaction.guildId}.user-${interaction.user.id}.points`) ?? 0);
         const embed = {
             title: `${interaction.guild?.name}'s ${await __("generic.role_shop")(interaction.guildId)}`,

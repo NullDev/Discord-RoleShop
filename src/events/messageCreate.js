@@ -1,5 +1,6 @@
 import path from "node:path";
 import { QuickDB } from "quick.db";
+import { config } from "../../config/config.js";
 import sendRandomGift from "../service/sendRandomGift.js";
 import handleDM from "../service/handleDM.js";
 import Log from "../util/log.js";
@@ -49,7 +50,7 @@ const messageCreate = async function(message, rateLimiter){
     }
 
     const multiplierKey = `guild-${guild}.boost-multiplier`;
-    const multiplier = Number(await guildSettingsDb.get(multiplierKey) ?? 1.5);
+    const multiplier = Number(await guildSettingsDb.get(multiplierKey) ?? config.default_values.points.multiplier);
     const pointsKey = `guild-${guild}.user-${user}.points`;
     const pointsToAdd = message.member?.premiumSinceTimestamp ? multiplier : 1;
 

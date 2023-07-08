@@ -41,8 +41,8 @@ export default {
      */
     async execute(interaction){
         const isEnabled = Boolean(interaction.options.get("enabled")?.value ?? true);
-        const cooldown = Number(interaction.options.get("cooldown")?.value) ?? 4;
-        const chance = Number(interaction.options.get("chance")?.value) ?? 5;
+        const cooldown = Number(interaction.options.get("cooldown")?.value) ?? config.default_values.random_gift.cooldown;
+        const chance = Number(interaction.options.get("chance")?.value) ?? config.default_values.random_gift.chance;
 
         await db.set(`guild-${interaction.guildId}.gift.enabled`, isEnabled);
         await db.set(`guild-${interaction.guildId}.gift.cooldown`, cooldown);

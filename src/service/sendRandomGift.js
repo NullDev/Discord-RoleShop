@@ -1,6 +1,7 @@
 import path from "node:path";
 import { QuickDB } from "quick.db";
 import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle  } from "discord.js";
+import { config } from "../../config/config.js";
 import Log from "../util/log.js";
 import __ from "./i18n.js";
 
@@ -48,7 +49,7 @@ const sendRandomGift = async function(message){
         .setTimestamp(now)
         .setTitle(await __("replies.gifts.gift")(guildId))
         .setDescription(await __("replies.gifts.gift_appeard")(guildId))
-        .setImage("https://cdn.discordapp.com/attachments/1113567657921355866/1113569384787611668/gift_1.gif");
+        .setImage(config.default_values.icons.gift);
 
     let msg;
     try {
