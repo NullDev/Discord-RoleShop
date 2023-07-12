@@ -58,6 +58,11 @@ class VoiceCount {
         });
     }
 
+    checkVoices(){
+        // sporadically check if there are any users in voice channels
+        // (if join events werent caught)
+    }
+
     /**
      * Start tracking a user
      *
