@@ -25,6 +25,7 @@ const getAdditionalContext = function(points){
     switch (points){
         case 0: return " :sob:";
         case 69: return " Nice. :smirk:";
+        case 404: return " Error: Points not found."
         case 420: return " <:420:1113774775203012689>";
         case 666: return " :smiling_imp:";
         case 1337: return " N1C3 0N3 :sunglasses:";
