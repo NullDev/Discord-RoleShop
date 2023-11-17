@@ -37,7 +37,7 @@ const syncRolesAndShop = async(client) => {
         const roles = Object.keys(dbGuild.value);
 
         for (const roleId of roles){
-            const guild = await client.guilds.fetch(guildId);
+            const guild = await client.guilds.fetch(guildId).catch(() => null);
             if (!guild){
                 await rolesDb.delete(`guild-${guildId}`);
                 await usersDb.delete(`guild-${guildId}`);
